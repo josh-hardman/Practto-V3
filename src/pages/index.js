@@ -37,7 +37,6 @@ class Landing extends Component {
   };
 
   render() {
-    const { index, words } = this.state;
     return (
       <div>
         <Section background={theme.lightBlue}>

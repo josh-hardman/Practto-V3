@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import theme from "../theme/theme";
 import { toRem } from "../utils/utils";
-import Paper from "material-ui/Paper";
 import Chip from "../components/Chip";
 import Avatar from "../components/Avatar";
 import SectionParagraph from "../components/SectionParagraph";
@@ -43,9 +42,9 @@ class Staff extends Component {
   static propTypes = {
     items: PropTypes.arrayOf(
       PropTypes.shape({
-        href: PropTypes.string.isRequired,
+        image: PropTypes.object,
         name: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired
+        about: PropTypes.string.isRequired
       })
     ).isRequired
   };
@@ -60,12 +59,12 @@ class Staff extends Component {
     return (
       <div>
         <AvatarWrapper>
-          <Avatar src={items[index].image.file.url} />
+          <Avatar src={items[index].image.url} />
         </AvatarWrapper>
         <Name>{items[index].name}</Name>
         <DescriptionWrapper>
           <SectionParagraph color={theme.textBlack}>
-            {items[index].description}
+            {items[index].about}
           </SectionParagraph>
         </DescriptionWrapper>
         <ChipWrapper>

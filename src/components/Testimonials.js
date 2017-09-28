@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 import theme from "../theme/theme";
 import { toRem } from "../utils/utils";
@@ -20,11 +19,6 @@ const Review = styled.div`
   width: 75%;
   display: flex;
   justify-content: center;
-`;
-
-const Item = styled.div`
-  width: 30%;
-  float: left;
 `;
 
 const ButtonLeft = styled.button`

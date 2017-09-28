@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import styled from "styled-components";
 import theme from "../theme/theme";
 import { toRem } from "../utils/utils";
@@ -8,8 +7,7 @@ import Email from "react-icons/lib/md/email";
 import Web from "react-icons/lib/fa/globe";
 import Place from "react-icons/lib/md/place";
 
-import { compose, withProps, withStateHandlers } from "recompose";
-import FaAnchor from "react-icons/lib/fa/anchor";
+import { compose, withStateHandlers } from "recompose";
 import {
   withScriptjs,
   withGoogleMap,
@@ -100,12 +98,12 @@ const Contact = ({ phone, email, website, location, practice }) => (
       </List>
       <MapContainer>
         <MapWithInfoWindow
-          googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCAhKcZrLVKXET9xLs1tRA4y6tREWRa`}
+          googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyBMJG2Y0T5xHmtrxL8yrHG7Tka8TxSMaU0`}
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={<div style={{ height: `400px` }} />}
           mapElement={<div style={{ height: `100%` }} />}
           lat={location.lat}
-          lng={location.lon}
+          lng={location.lng}
           practice={practice}
         />
       </MapContainer>
