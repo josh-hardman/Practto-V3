@@ -5,15 +5,15 @@ import theme from "../theme/theme";
 import Section from "../layouts/Section";
 // import Typist from "react-typist";
 
-const Background = styled.div`
-  background: ${theme.mediumBlue};
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  z-index: -2;
-`;
+// const Background = styled.div`
+//   background: ${theme.mediumBlue};
+//   position: fixed;
+//   top: 0;
+//   bottom: 0;
+//   right: 0;
+//   left: 0;
+//   z-index: -2;
+// `;
 
 const Lede = styled.h1`
   font-size: ${toRem(33)};
@@ -40,7 +40,7 @@ class Landing extends Component {
     return (
       <div>
         <Section background={theme.lightBlue}>
-          <Background />
+          {/* <Background /> */}
           <Lede>Find Your Family</Lede>
           {/* <Typist
             className="TypistExample-message"
