@@ -16,7 +16,7 @@ import AutoComplete from "material-ui/AutoComplete";
 import Toggle from "material-ui/Toggle";
 import RaisedButton from "material-ui/RaisedButton";
 import styled from "styled-components";
-import { toRem, youtubeEmbedUrl } from "../utils/utils";
+import { toRem } from "../utils/utils";
 import { toggleLabel } from "../theme/materialStyles";
 import { gql, graphql } from "react-apollo";
 import queryString from "query-string";
@@ -150,7 +150,7 @@ const IndexPage = ({ theme, location, data }) => {
               <SectionHeader color={theme.textBlack}>
                 Welcome Video
               </SectionHeader>
-              <MediaPlayer url={youtubeEmbedUrl(data.Practice.welcomeVideo)} />
+              <MediaPlayer url={data.Practice.welcomeVideo} />
             </Card>
           </Section>
 
