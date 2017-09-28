@@ -20,6 +20,7 @@ import { toRem } from "../utils/utils";
 import { toggleLabel } from "../theme/materialStyles";
 import { gql, graphql } from "react-apollo";
 import queryString from "query-string";
+import dummyData from "../listingPageData";
 
 const fruit = [
   "Apple",
@@ -119,7 +120,7 @@ const Offers = styled.h3`
   font-weight: normal;
 `;
 
-const IndexPage = ({ theme, location, data }) => {
+const IndexPage = ({ theme, location, data = dummyData }) => {
   console.log(data);
   return (
     <div>
@@ -276,6 +277,9 @@ const Query = gql`
       testimonials {
         name
         content
+        image {
+          url
+        }
       }
       location
       phone
@@ -285,12 +289,16 @@ const Query = gql`
   }
 `;
 
-const PracticeQuery = graphql(Query, {
-  options: props => ({
-    variables: {
-      slug: queryString.parse(props.location.search).practice
-    }
-  })
-})(withTheme(IndexPage));
+// Use Dumy Data
+export default withTheme(IndexPage);
 
-export default PracticeQuery;
+// Fetch Live Data
+// const PracticeQuery = graphql(Query, {
+//   options: props => ({
+//     variables: {
+//       slug: queryString.parse(props.location.search).practice
+//     }
+//   })
+// })(withTheme(IndexPage));
+
+// export default PracticeQuery;
