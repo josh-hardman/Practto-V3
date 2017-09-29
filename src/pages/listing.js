@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import Section from "../layouts/Section";
 import { withTheme } from "styled-components";
 import ListingHeader from "../components/ListingHeader";
@@ -120,130 +120,137 @@ const Offers = styled.h3`
   font-weight: normal;
 `;
 
-const IndexPage = ({ theme, location, data = dummyData }) => {
-  console.log(data);
-  return (
-    <div>
-      {data.loading ? (
-        "loading"
-      ) : data.Practice ? (
-        <div>
-          <Section background={theme.lightBlue} zIndex={-1}>
-            <ListingHeader>{data.Practice.name}</ListingHeader>
-          </Section>
+class IndexPage extends Component {
+  handleGetInsurances = () =>
+    this.props.data.Practice.insurances.map(item => item.name);
 
-          <Section background={theme.mediumBlue} zIndex={-2}>
-            <Card background={theme.aliceBlue}>
-              <SectionHeader color={theme.textBlack}>About Us</SectionHeader>
-              <SectionParagraph color={theme.textBlack}>
-                {data.Practice.about}
-              </SectionParagraph>
+  render() {
+    const { theme, location, data = dummyData } = this.props;
+    return (
+      <div>
+        {data.loading ? (
+          "loading"
+        ) : data.Practice ? (
+          <div>
+            <Section background={theme.lightBlue} zIndex={-1}>
+              <ListingHeader>{data.Practice.name}</ListingHeader>
+            </Section>
 
-              <Divider />
+            <Section background={theme.mediumBlue} zIndex={-2}>
+              <Card background={theme.aliceBlue}>
+                <SectionHeader color={theme.textBlack}>About Us</SectionHeader>
+                <SectionParagraph color={theme.textBlack}>
+                  {data.Practice.about}
+                </SectionParagraph>
 
-              <SectionHeader color={theme.textBlack}>
-                Staff Members
+                <Divider />
+
+                <SectionHeader color={theme.textBlack}>
+                  Staff Members
+                </SectionHeader>
+                <Staff items={data.Practice.staffMembers} />
+
+                <Divider />
+
+                <SectionHeader color={theme.textBlack}>
+                  Welcome Video
+                </SectionHeader>
+                <MediaPlayer url={data.Practice.welcomeVideo} />
+              </Card>
+            </Section>
+
+            <Section background={theme.lightRed} zIndex={-3}>
+              {/* <Card background={theme.aliceBlue}> */}
+              <SectionHeader color={theme.white}>
+                Patient Testimonials
               </SectionHeader>
-              <Staff items={data.Practice.staffMembers} />
+              <Testimonials items={data.Practice.testimonials} />
+              {/* </Card> */}
+            </Section>
 
-              <Divider />
+            <Section background={theme.white} zIndex={-4}>
+              <Card>
+                <SectionHeader color={theme.textBlack}>
+                  Contact Us
+                </SectionHeader>
+                <Contact
+                  practice={data.Practice.name}
+                  phone={data.Practice.phone}
+                  email={data.Practice.email}
+                  website={data.Practice.website}
+                  location={data.Practice.location}
+                />
+              </Card>
+            </Section>
 
-              <SectionHeader color={theme.textBlack}>
-                Welcome Video
-              </SectionHeader>
-              <MediaPlayer url={data.Practice.welcomeVideo} />
-            </Card>
-          </Section>
+            <Section background={theme.orange} zIndex={-5} squareBottom>
+              <Card>
+                <SectionHeader color={theme.textBlack}>
+                  Request Appointment
+                </SectionHeader>
+                <TextField
+                  floatingLabelFixed={true}
+                  floatingLabelText="First Name"
+                />
+                <TextField
+                  floatingLabelFixed={true}
+                  floatingLabelText="Last Name"
+                />
+                <TextField
+                  floatingLabelFixed={true}
+                  floatingLabelText="Email Address"
+                />
+                <TextField
+                  floatingLabelFixed={true}
+                  floatingLabelText="Phone Number"
+                />
+                <DatePicker
+                  floatingLabelFixed={true}
+                  floatingLabelText="Request Date"
+                  minDate={new Date()}
+                />
+                <AutoComplete
+                  floatingLabelFixed={true}
+                  floatingLabelText="Insurance Provider"
+                  filter={AutoComplete.fuzzyFilter}
+                  dataSource={this.handleGetInsurances()}
+                  maxSearchResults={5}
+                />
+                <OffersWrapper>
+                  <Offers>Special Offers</Offers>
+                  {data.Practice.specialOffers &&
+                    data.Practice.specialOffers.map((item, i) => (
+                      <Toggle
+                        key={i}
+                        labelStyle={toggleLabel}
+                        label={item.name}
+                        labelPosition="right"
+                      />
+                    ))}
+                </OffersWrapper>
 
-          <Section background={theme.lightRed} zIndex={-3}>
-            {/* <Card background={theme.aliceBlue}> */}
-            <SectionHeader color={theme.white}>
-              Patient Testimonials
-            </SectionHeader>
-            <Testimonials items={data.Practice.testimonials} />
-            {/* </Card> */}
-          </Section>
-
-          <Section background={theme.white} zIndex={-4}>
-            <Card>
-              <SectionHeader color={theme.textBlack}>Contact Us</SectionHeader>
-              <Contact
-                practice={data.Practice.name}
-                phone={data.Practice.phone}
-                email={data.Practice.email}
-                website={data.Practice.website}
-                location={data.Practice.location}
-              />
-            </Card>
-          </Section>
-
-          <Section background={theme.orange} zIndex={-5} squareBottom>
-            <Card>
-              <SectionHeader color={theme.textBlack}>
-                Request Appointment
-              </SectionHeader>
-              <TextField
-                floatingLabelFixed={true}
-                floatingLabelText="First Name"
-              />
-              <TextField
-                floatingLabelFixed={true}
-                floatingLabelText="Last Name"
-              />
-              <TextField
-                floatingLabelFixed={true}
-                floatingLabelText="Email Address"
-              />
-              <TextField
-                floatingLabelFixed={true}
-                floatingLabelText="Phone Number"
-              />
-              <DatePicker
-                floatingLabelFixed={true}
-                floatingLabelText="Request Date"
-                minDate={new Date()}
-              />
-              <AutoComplete
-                floatingLabelFixed={true}
-                floatingLabelText="Insurance Provider"
-                filter={AutoComplete.fuzzyFilter}
-                dataSource={fruit}
-                maxSearchResults={5}
-              />
-              <OffersWrapper>
-                <Offers>Special Offers</Offers>
-                {data.Practice.specialOffers &&
-                  data.Practice.specialOffers.map((item, i) => (
-                    <Toggle
-                      key={i}
-                      labelStyle={toggleLabel}
-                      label={item.name}
-                      labelPosition="right"
-                    />
-                  ))}
-              </OffersWrapper>
-
-              <TextField
-                floatingLabelText="Additional Comments"
-                multiLine={true}
-                floatingLabelFixed={true}
-                rows={1}
-              />
-              <FinePrint>
-                * This form will request an appointment on your behalf. You
-                wiill receive a follow up via email or phone from the listed
-                practice to confirm your visit.
-              </FinePrint>
-              <RaisedButton label="Submit" primary />
-            </Card>
-          </Section>
-        </div>
-      ) : (
-        "practice not found"
-      )}
-    </div>
-  );
-};
+                <TextField
+                  floatingLabelText="Additional Comments"
+                  multiLine={true}
+                  floatingLabelFixed={true}
+                  rows={1}
+                />
+                <FinePrint>
+                  * This form will request an appointment on your behalf. You
+                  wiill receive a follow up via email or phone from the listed
+                  practice to confirm your visit.
+                </FinePrint>
+                <RaisedButton label="Submit" primary />
+              </Card>
+            </Section>
+          </div>
+        ) : (
+          "practice not found"
+        )}
+      </div>
+    );
+  }
+}
 
 // const IndexPage = ({ location, data }) => {
 //   const query = queryString.parse(location.search);
@@ -285,20 +292,24 @@ const Query = gql`
       phone
       email
       website
+      insurances {
+        id
+        name
+      }
     }
   }
 `;
 
 // Use Dumy Data
-export default withTheme(IndexPage);
+// export default withTheme(IndexPage);
 
 // Fetch Live Data
-// const PracticeQuery = graphql(Query, {
-//   options: props => ({
-//     variables: {
-//       slug: queryString.parse(props.location.search).practice
-//     }
-//   })
-// })(withTheme(IndexPage));
+const PracticeQuery = graphql(Query, {
+  options: props => ({
+    variables: {
+      slug: queryString.parse(props.location.search).practice
+    }
+  })
+})(withTheme(IndexPage));
 
-// export default PracticeQuery;
+export default PracticeQuery;
