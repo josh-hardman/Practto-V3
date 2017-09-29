@@ -7,7 +7,7 @@ import ApolloClient, { createNetworkInterface } from "apollo-client";
 import { ApolloProvider } from "react-apollo";
 import { ThemeProvider } from "styled-components";
 import Landing from "./pages/index";
-import Listing from "./pages/Listing";
+import Listing from "./pages/listing";
 import Search from "./pages/Search";
 import ResultCard from "./pages/ResultCard";
 import theme from "./theme/theme";
