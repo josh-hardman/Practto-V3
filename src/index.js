@@ -7,7 +7,9 @@ import ApolloClient, { createNetworkInterface } from "apollo-client";
 import { ApolloProvider } from "react-apollo";
 import { ThemeProvider } from "styled-components";
 import Landing from "./pages/index";
-import Listing from "./pages/listing";
+import Listing from "./pages/Listing";
+import Search from "./pages/Search";
+import ResultCard from "./pages/ResultCard";
 import theme from "./theme/theme";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import "./index.css";
@@ -28,6 +30,8 @@ ReactDOM.render(
             <Route exact path="/" component={Landing} />
             {/* both /roster and /roster/:number begin with /roster */}
             <Route path="/listing" component={Listing} />
+            <Route path="/search" component={Search} />
+            <Route path="/resultcard" component={ResultCard} />
             {/* <Route path="/schedule" component={Schedule} /> */}
           </Switch>
         </BrowserRouter>
