@@ -6,5 +6,6 @@ const ListingHeader = styled.h1`
   color: ${theme.white};
   font-weight: normal;
   font-size: ${toRem(32)};
+  text-transform: capitalize;
 `;
 export default ListingHeader;

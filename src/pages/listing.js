@@ -22,90 +22,6 @@ import { gql, graphql } from "react-apollo";
 import queryString from "query-string";
 import dummyData from "../listingPageData";
 
-const fruit = [
-  "Apple",
-  "Apricot",
-  "Avocado",
-  "Banana",
-  "Bilberry",
-  "Blackberry",
-  "Blackcurrant",
-  "Blueberry",
-  "Boysenberry",
-  "Blood Orange",
-  "Cantaloupe",
-  "Currant",
-  "Cherry",
-  "Cherimoya",
-  "Cloudberry",
-  "Coconut",
-  "Cranberry",
-  "Clementine",
-  "Damson",
-  "Date",
-  "Dragonfruit",
-  "Durian",
-  "Elderberry",
-  "Feijoa",
-  "Fig",
-  "Goji berry",
-  "Gooseberry",
-  "Grape",
-  "Grapefruit",
-  "Guava",
-  "Honeydew",
-  "Huckleberry",
-  "Jabouticaba",
-  "Jackfruit",
-  "Jambul",
-  "Jujube",
-  "Juniper berry",
-  "Kiwi fruit",
-  "Kumquat",
-  "Lemon",
-  "Lime",
-  "Loquat",
-  "Lychee",
-  "Nectarine",
-  "Mango",
-  "Marion berry",
-  "Melon",
-  "Miracle fruit",
-  "Mulberry",
-  "Mandarine",
-  "Olive",
-  "Orange",
-  "Papaya",
-  "Passionfruit",
-  "Peach",
-  "Pear",
-  "Persimmon",
-  "Physalis",
-  "Plum",
-  "Pineapple",
-  "Pumpkin",
-  "Pomegranate",
-  "Pomelo",
-  "Purple Mangosteen",
-  "Quince",
-  "Raspberry",
-  "Raisin",
-  "Rambutan",
-  "Redcurrant",
-  "Salal berry",
-  "Satsuma",
-  "Star fruit",
-  "Strawberry",
-  "Squash",
-  "Salmonberry",
-  "Tamarillo",
-  "Tamarind",
-  "Tomato",
-  "Tangerine",
-  "Ugli fruit",
-  "Watermelon"
-];
-
 const FinePrint = styled.p`
   padding: ${toRem(12)} 0;
   font-size: ${toRem(8)};
@@ -124,129 +40,158 @@ class IndexPage extends Component {
   handleGetInsurances = () =>
     this.props.data.Practice.insurances.map(item => item.name);
 
+  handleGetTitle = () =>
+    queryString.parse(this.props.location.search).practice.replace("-", " ");
+
   render() {
     const { theme, location, data = dummyData } = this.props;
+    console.log(JSON.stringify(data));
     return (
       <div>
-        {data.loading ? (
-          "loading"
-        ) : data.Practice ? (
-          <div>
-            <Section background={theme.lightBlue} zIndex={-1}>
-              <ListingHeader>{data.Practice.name}</ListingHeader>
-            </Section>
-
+        <div>
+          <Section background={theme.lightBlue} zIndex={-1}>
+            <ListingHeader>{this.handleGetTitle()}</ListingHeader>
+          </Section>
+          {data.loading ? (
             <Section background={theme.mediumBlue} zIndex={-2}>
-              <Card background={theme.aliceBlue}>
-                <SectionHeader color={theme.textBlack}>About Us</SectionHeader>
-                <SectionParagraph color={theme.textBlack}>
-                  {data.Practice.about}
-                </SectionParagraph>
-
-                <Divider />
-
-                <SectionHeader color={theme.textBlack}>
-                  Staff Members
-                </SectionHeader>
-                <Staff items={data.Practice.staffMembers} />
-
-                <Divider />
-
-                <SectionHeader color={theme.textBlack}>
-                  Welcome Video
-                </SectionHeader>
-                <MediaPlayer url={data.Practice.welcomeVideo} />
+              <Card background={theme.aliceBlue} style={{ height: "800px" }}>
+                loading...
               </Card>
             </Section>
+          ) : data.Practice ? (
+            <div>
+              <Section background={theme.mediumBlue} zIndex={-2}>
+                <Card background={theme.aliceBlue}>
+                  {data.Practice.about && (
+                    <div>
+                      <SectionHeader color={theme.textBlack}>
+                        About Us
+                      </SectionHeader>
+                      <SectionParagraph color={theme.textBlack}>
+                        {data.Practice.about}
+                      </SectionParagraph>
 
-            <Section background={theme.lightRed} zIndex={-3}>
-              {/* <Card background={theme.aliceBlue}> */}
-              <SectionHeader color={theme.white}>
-                Patient Testimonials
-              </SectionHeader>
-              <Testimonials items={data.Practice.testimonials} />
-              {/* </Card> */}
+                      <Divider />
+                    </div>
+                  )}
+
+                  {data.Practice.staffMembers && (
+                    <div>
+                      <SectionHeader color={theme.textBlack}>
+                        Staff Members
+                      </SectionHeader>
+                      <Staff items={data.Practice.staffMembers} />
+
+                      <Divider />
+                    </div>
+                  )}
+
+                  {data.Practice.welcomeVideo && (
+                    <div>
+                      <SectionHeader color={theme.textBlack}>
+                        Welcome Video
+                      </SectionHeader>
+                      <MediaPlayer url={data.Practice.welcomeVideo} />
+                    </div>
+                  )}
+                </Card>
+              </Section>
+
+              {data.Practice.testimonials && (
+                <Section background={theme.lightRed} zIndex={-3}>
+                  {/* <Card background={theme.aliceBlue}> */}
+                  <SectionHeader color={theme.white}>
+                    Patient Testimonials
+                  </SectionHeader>
+                  <Testimonials items={data.Practice.testimonials} />
+                  {/* </Card> */}
+                </Section>
+              )}
+
+              <Section background={theme.white} zIndex={-4}>
+                <Card>
+                  <SectionHeader color={theme.textBlack}>
+                    Contact Us
+                  </SectionHeader>
+                  <Contact
+                    practice={data.Practice.name}
+                    phone={data.Practice.phone}
+                    email={data.Practice.email}
+                    website={data.Practice.website}
+                    location={data.Practice.location}
+                  />
+                </Card>
+              </Section>
+
+              <Section background={theme.orange} zIndex={-5} squareBottom>
+                <Card>
+                  <SectionHeader color={theme.textBlack}>
+                    Request Appointment
+                  </SectionHeader>
+                  <TextField
+                    floatingLabelFixed={true}
+                    floatingLabelText="First Name"
+                  />
+                  <TextField
+                    floatingLabelFixed={true}
+                    floatingLabelText="Last Name"
+                  />
+                  <TextField
+                    floatingLabelFixed={true}
+                    floatingLabelText="Email Address"
+                  />
+                  <TextField
+                    floatingLabelFixed={true}
+                    floatingLabelText="Phone Number"
+                  />
+                  <DatePicker
+                    floatingLabelFixed={true}
+                    floatingLabelText="Request Date"
+                    minDate={new Date()}
+                  />
+                  <AutoComplete
+                    floatingLabelFixed={true}
+                    floatingLabelText="Insurance Provider"
+                    filter={AutoComplete.fuzzyFilter}
+                    dataSource={this.handleGetInsurances()}
+                    maxSearchResults={5}
+                  />
+                  {data.Practice.specialOffers && (
+                    <OffersWrapper>
+                      <Offers>Special Offers</Offers>
+
+                      {data.Practice.specialOffers.map((item, i) => (
+                        <Toggle
+                          key={i}
+                          labelStyle={toggleLabel}
+                          label={item.name}
+                          labelPosition="right"
+                        />
+                      ))}
+                    </OffersWrapper>
+                  )}
+
+                  <TextField
+                    floatingLabelText="Additional Comments"
+                    multiLine={true}
+                    floatingLabelFixed={true}
+                    rows={1}
+                  />
+                  <FinePrint>
+                    * This form will request an appointment on your behalf. You
+                    wiill receive a follow up via email or phone from the listed
+                    practice to confirm your visit.
+                  </FinePrint>
+                  <RaisedButton label="Submit" primary />
+                </Card>
+              </Section>
+            </div>
+          ) : (
+            <Section background={theme.mediumBlue} zIndex={-2} squareBottom>
+              <Card background={theme.aliceBlue}>Practice Not Found</Card>
             </Section>
-
-            <Section background={theme.white} zIndex={-4}>
-              <Card>
-                <SectionHeader color={theme.textBlack}>
-                  Contact Us
-                </SectionHeader>
-                <Contact
-                  practice={data.Practice.name}
-                  phone={data.Practice.phone}
-                  email={data.Practice.email}
-                  website={data.Practice.website}
-                  location={data.Practice.location}
-                />
-              </Card>
-            </Section>
-
-            <Section background={theme.orange} zIndex={-5} squareBottom>
-              <Card>
-                <SectionHeader color={theme.textBlack}>
-                  Request Appointment
-                </SectionHeader>
-                <TextField
-                  floatingLabelFixed={true}
-                  floatingLabelText="First Name"
-                />
-                <TextField
-                  floatingLabelFixed={true}
-                  floatingLabelText="Last Name"
-                />
-                <TextField
-                  floatingLabelFixed={true}
-                  floatingLabelText="Email Address"
-                />
-                <TextField
-                  floatingLabelFixed={true}
-                  floatingLabelText="Phone Number"
-                />
-                <DatePicker
-                  floatingLabelFixed={true}
-                  floatingLabelText="Request Date"
-                  minDate={new Date()}
-                />
-                <AutoComplete
-                  floatingLabelFixed={true}
-                  floatingLabelText="Insurance Provider"
-                  filter={AutoComplete.fuzzyFilter}
-                  dataSource={this.handleGetInsurances()}
-                  maxSearchResults={5}
-                />
-                <OffersWrapper>
-                  <Offers>Special Offers</Offers>
-                  {data.Practice.specialOffers &&
-                    data.Practice.specialOffers.map((item, i) => (
-                      <Toggle
-                        key={i}
-                        labelStyle={toggleLabel}
-                        label={item.name}
-                        labelPosition="right"
-                      />
-                    ))}
-                </OffersWrapper>
-
-                <TextField
-                  floatingLabelText="Additional Comments"
-                  multiLine={true}
-                  floatingLabelFixed={true}
-                  rows={1}
-                />
-                <FinePrint>
-                  * This form will request an appointment on your behalf. You
-                  wiill receive a follow up via email or phone from the listed
-                  practice to confirm your visit.
-                </FinePrint>
-                <RaisedButton label="Submit" primary />
-              </Card>
-            </Section>
-          </div>
-        ) : (
-          "practice not found"
-        )}
+          )}
+        </div>
       </div>
     );
   }
@@ -294,6 +239,9 @@ const Query = gql`
       website
       insurances {
         id
+        name
+      }
+      specialOffers {
         name
       }
     }
