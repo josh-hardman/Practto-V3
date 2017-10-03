@@ -87,19 +87,19 @@ const Contact = ({ phone, email, website, location, practice, address }) => (
     <ContactBlock>
       <List>
         {phone && (
-          <LineItem href={`tel:${phone}`}>
+          <LineItem target="_blank" href={`tel:${phone}`}>
             <Phone size={18} />
             <Detail>{phone}</Detail>
           </LineItem>
         )}
         {email && (
-          <LineItem href={`mailto:${email}`}>
+          <LineItem target="_blank" href={`mailto:${email}`}>
             <Email size={18} />
             <Detail>{email}</Detail>
           </LineItem>
         )}
         {website && (
-          <LineItem href={website}>
+          <LineItem target="_blank" href={website}>
             <Web size={18} />
             <Detail>{website}</Detail>
           </LineItem>
