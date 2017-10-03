@@ -30,9 +30,16 @@
 
   <!-- A little help for the Netlify post-processing bots -->
 
-  <form name="contact" netlify netlify-honeypot="bot-field" hidden>
-    <input type="text" name="name" />
-    <input type="email" name="email" />
+  <form name="appointment_request" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="first_name" />
+    <input type="text" name="last_name" />
+    <input type="text" name="email" />
+    <input type="text" name="phone" />
+    <input type="text" name="request_date" />
+    <input type="text" name="insuance" />
+    <input type="text" name="special_offer[]" />
+    <input type="text" name="additional_comments" />
+
     <textarea name="message"></textarea>
   </form>
 
