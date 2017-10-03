@@ -129,61 +129,65 @@ class IndexPage extends Component {
                   <SectionHeader color={theme.textBlack}>
                     Request Appointment
                   </SectionHeader>
-                  <TextField
-                    floatingLabelFixed={true}
-                    floatingLabelText="First Name"
-                  />
-                  <TextField
-                    floatingLabelFixed={true}
-                    floatingLabelText="Last Name"
-                  />
-                  <TextField
-                    floatingLabelFixed={true}
-                    floatingLabelText="Email Address"
-                  />
-                  <TextField
-                    floatingLabelFixed={true}
-                    floatingLabelText="Phone Number"
-                  />
-                  <DatePicker
-                    floatingLabelFixed={true}
-                    floatingLabelText="Request Date"
-                    minDate={new Date()}
-                  />
-                  <AutoComplete
-                    floatingLabelFixed={true}
-                    floatingLabelText="Insurance Provider"
-                    filter={AutoComplete.fuzzyFilter}
-                    dataSource={this.handleGetInsurances()}
-                    maxSearchResults={5}
-                  />
-                  {data.Practice.specialOffers && (
-                    <OffersWrapper>
-                      <Offers>Special Offers</Offers>
+                  <form method="post">
+                    <input type="hidden" name="form-name" value="contact" />
 
-                      {data.Practice.specialOffers.map((item, i) => (
-                        <Toggle
-                          key={i}
-                          labelStyle={toggleLabel}
-                          label={item.name}
-                          labelPosition="right"
-                        />
-                      ))}
-                    </OffersWrapper>
-                  )}
+                    <TextField
+                      floatingLabelFixed={true}
+                      floatingLabelText="First Name"
+                    />
+                    <TextField
+                      floatingLabelFixed={true}
+                      floatingLabelText="Last Name"
+                    />
+                    <TextField
+                      floatingLabelFixed={true}
+                      floatingLabelText="Email Address"
+                    />
+                    <TextField
+                      floatingLabelFixed={true}
+                      floatingLabelText="Phone Number"
+                    />
+                    <DatePicker
+                      floatingLabelFixed={true}
+                      floatingLabelText="Request Date"
+                      minDate={new Date()}
+                    />
+                    <AutoComplete
+                      floatingLabelFixed={true}
+                      floatingLabelText="Insurance Provider"
+                      filter={AutoComplete.fuzzyFilter}
+                      dataSource={this.handleGetInsurances()}
+                      maxSearchResults={5}
+                    />
+                    {data.Practice.specialOffers && (
+                      <OffersWrapper>
+                        <Offers>Special Offers</Offers>
 
-                  <TextField
-                    floatingLabelText="Additional Comments"
-                    multiLine={true}
-                    floatingLabelFixed={true}
-                    rows={1}
-                  />
-                  <FinePrint>
-                    * This form will request an appointment on your behalf. You
-                    wiill receive a follow up via email or phone from the listed
-                    practice to confirm your visit.
-                  </FinePrint>
-                  <RaisedButton label="Submit" primary />
+                        {data.Practice.specialOffers.map((item, i) => (
+                          <Toggle
+                            key={i}
+                            labelStyle={toggleLabel}
+                            label={item.name}
+                            labelPosition="right"
+                          />
+                        ))}
+                      </OffersWrapper>
+                    )}
+
+                    <TextField
+                      floatingLabelText="Additional Comments"
+                      multiLine={true}
+                      floatingLabelFixed={true}
+                      rows={1}
+                    />
+                    <FinePrint>
+                      * This form will request an appointment on your behalf.
+                      You wiill receive a follow up via email or phone from the
+                      listed practice to confirm your visit.
+                    </FinePrint>
+                    <RaisedButton label="Submit" primary />
+                  </form>
                 </Card>
               </Section>
             </div>
