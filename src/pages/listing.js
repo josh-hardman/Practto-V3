@@ -131,7 +131,11 @@ class IndexPage extends Component {
                   </SectionHeader>
 
                   <form method="post">
-                    <input type="hidden" name="form-name" value="contact" />
+                    <input
+                      type="hidden"
+                      name="form-name"
+                      value="appointment_request"
+                    />
                     <TextField
                       name="first_name"
                       floatingLabelFixed={true}
