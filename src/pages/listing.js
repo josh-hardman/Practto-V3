@@ -53,7 +53,7 @@ class IndexPage extends Component {
             <ListingHeader>{this.handleGetTitle()}</ListingHeader>
           </Section>
           {data.loading ? (
-            <Section background={theme.mediumBlue} zIndex={-2}>
+            <Section background={theme.mediumBlue} zIndex={-2} squareBottom>
               <Card background={theme.aliceBlue} style={{ height: "800px" }}>
                 loading...
               </Card>
@@ -170,7 +170,7 @@ class IndexPage extends Component {
                       dataSource={this.handleGetInsurances()}
                       maxSearchResults={5}
                     />
-                    {data.Practice.specialOffers && (
+                    {data.Practice.specialOffers.length > 0 && (
                       <OffersWrapper>
                         <Offers>Special Offers</Offers>
 
