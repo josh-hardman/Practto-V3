@@ -129,6 +129,18 @@ class IndexPage extends Component {
                   <SectionHeader color={theme.textBlack}>
                     Request Appointment
                   </SectionHeader>
+
+                  <form
+                    name="contact"
+                    netlify
+                    netlify-honeypot="bot-field"
+                    hidden
+                  >
+                    <input type="text" name="name" />
+                    <input type="email" name="email" />
+                    <textarea name="message" />
+                  </form>
+
                   <form method="post">
                     <input type="hidden" name="form-name" value="contact" />
 
@@ -187,6 +199,25 @@ class IndexPage extends Component {
                       listed practice to confirm your visit.
                     </FinePrint>
                     <RaisedButton label="Submit" primary />
+                    <input type="hidden" name="form-name" value="contact" />
+                    <p>
+                      <label>
+                        Your Name: <input type="text" name="name" />
+                      </label>
+                    </p>
+                    <p>
+                      <label>
+                        Your Email: <input type="email" name="email" />
+                      </label>
+                    </p>
+                    <p>
+                      <label>
+                        Message: <textarea name="message" />
+                      </label>
+                    </p>
+                    <p>
+                      <button type="submit">Send</button>
+                    </p>
                   </form>
                 </Card>
               </Section>
