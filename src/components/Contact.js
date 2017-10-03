@@ -21,6 +21,11 @@ const StyledLineItem = styled.a`
   display: flex;
   align-items: center;
   text-decoration: none;
+
+  &:hover {
+    color: ${theme.lightBlue};
+    pointer: cursor;
+  }
 `;
 
 const Detail = styled.span`
@@ -28,9 +33,11 @@ const Detail = styled.span`
   font-size: ${toRem(14)};
 `;
 
-const LineItem = ({ href, children }) => (
+const LineItem = ({ href, target, children }) => (
   <li>
-    <StyledLineItem href={href}>{children}</StyledLineItem>
+    <StyledLineItem href={href} target={target}>
+      {children}
+    </StyledLineItem>
   </li>
 );
 
@@ -75,32 +82,38 @@ const MapWithInfoWindow = compose(
   </GoogleMap>
 ));
 
-const Contact = ({ phone, email, website, location, practice }) => (
+const Contact = ({ phone, email, website, location, practice, address }) => (
   <CenterContent>
     <ContactBlock>
       <List>
         {phone && (
-          <LineItem href="asdf">
+          <LineItem href={`tel:${phone}`}>
             <Phone size={18} />
             <Detail>{phone}</Detail>
           </LineItem>
         )}
         {email && (
-          <LineItem href="asdf">
+          <LineItem href={`mailto:${email}`}>
             <Email size={18} />
             <Detail>{email}</Detail>
           </LineItem>
         )}
         {website && (
-          <LineItem href="asdf">
+          <LineItem href={website}>
             <Web size={18} />
             <Detail>{website}</Detail>
           </LineItem>
         )}
-        {location && (
-          <LineItem href="asdf">
+        {address && (
+          <LineItem
+            href={`http://www.google.com/maps/place/${practice.replace(
+              "-",
+              " "
+            )}/${location.lat},${location.lng}`}
+            target="_blank"
+          >
             <Place size={18} />
-            <Detail>address</Detail>
+            <Detail>{address}</Detail>
           </LineItem>
         )}
       </List>

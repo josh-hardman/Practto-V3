@@ -119,6 +119,7 @@ class IndexPage extends Component {
                     email={data.Practice.email}
                     website={data.Practice.website}
                     location={data.Practice.location}
+                    address={data.Practice.address}
                   />
                 </Card>
               </Section>
@@ -234,6 +235,7 @@ const Query = gql`
         }
       }
       location
+      address
       phone
       email
       website
