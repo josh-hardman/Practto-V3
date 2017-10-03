@@ -130,76 +130,62 @@ class IndexPage extends Component {
                     Request Appointment
                   </SectionHeader>
 
-                  <form
-                    name="contact"
-                    netlify
-                    netlify-honeypot="bot-field"
-                    hidden
-                  >
-                    <input type="text" name="name" />
-                    <input type="email" name="email" />
-                    <textarea name="message" />
-                  </form>
+                  <TextField
+                    floatingLabelFixed={true}
+                    floatingLabelText="First Name"
+                  />
+                  <TextField
+                    floatingLabelFixed={true}
+                    floatingLabelText="Last Name"
+                  />
+                  <TextField
+                    floatingLabelFixed={true}
+                    floatingLabelText="Email Address"
+                  />
+                  <TextField
+                    floatingLabelFixed={true}
+                    floatingLabelText="Phone Number"
+                  />
+                  <DatePicker
+                    floatingLabelFixed={true}
+                    floatingLabelText="Request Date"
+                    minDate={new Date()}
+                  />
+                  <AutoComplete
+                    floatingLabelFixed={true}
+                    floatingLabelText="Insurance Provider"
+                    filter={AutoComplete.fuzzyFilter}
+                    dataSource={this.handleGetInsurances()}
+                    maxSearchResults={5}
+                  />
+                  {data.Practice.specialOffers && (
+                    <OffersWrapper>
+                      <Offers>Special Offers</Offers>
 
-                  <form method="post" data-netlify="true">
-                    <input type="hidden" name="form-name" value="contact" />
+                      {data.Practice.specialOffers.map((item, i) => (
+                        <Toggle
+                          key={i}
+                          labelStyle={toggleLabel}
+                          label={item.name}
+                          labelPosition="right"
+                        />
+                      ))}
+                    </OffersWrapper>
+                  )}
 
-                    <TextField
-                      floatingLabelFixed={true}
-                      floatingLabelText="First Name"
-                    />
-                    <TextField
-                      floatingLabelFixed={true}
-                      floatingLabelText="Last Name"
-                    />
-                    <TextField
-                      floatingLabelFixed={true}
-                      floatingLabelText="Email Address"
-                    />
-                    <TextField
-                      floatingLabelFixed={true}
-                      floatingLabelText="Phone Number"
-                    />
-                    <DatePicker
-                      floatingLabelFixed={true}
-                      floatingLabelText="Request Date"
-                      minDate={new Date()}
-                    />
-                    <AutoComplete
-                      floatingLabelFixed={true}
-                      floatingLabelText="Insurance Provider"
-                      filter={AutoComplete.fuzzyFilter}
-                      dataSource={this.handleGetInsurances()}
-                      maxSearchResults={5}
-                    />
-                    {data.Practice.specialOffers && (
-                      <OffersWrapper>
-                        <Offers>Special Offers</Offers>
-
-                        {data.Practice.specialOffers.map((item, i) => (
-                          <Toggle
-                            key={i}
-                            labelStyle={toggleLabel}
-                            label={item.name}
-                            labelPosition="right"
-                          />
-                        ))}
-                      </OffersWrapper>
-                    )}
-
-                    <TextField
-                      floatingLabelText="Additional Comments"
-                      multiLine={true}
-                      floatingLabelFixed={true}
-                      rows={1}
-                    />
-                    <FinePrint>
-                      * This form will request an appointment on your behalf.
-                      You wiill receive a follow up via email or phone from the
-                      listed practice to confirm your visit.
-                    </FinePrint>
-                    <RaisedButton label="Submit" primary />
-                    <input type="hidden" name="form-name" value="contact" />
+                  <TextField
+                    floatingLabelText="Additional Comments"
+                    multiLine={true}
+                    floatingLabelFixed={true}
+                    rows={1}
+                  />
+                  <FinePrint>
+                    * This form will request an appointment on your behalf. You
+                    wiill receive a follow up via email or phone from the listed
+                    practice to confirm your visit.
+                  </FinePrint>
+                  <RaisedButton label="Submit" primary />
+                  <form name="contact" action="thank-you" netlify>
                     <p>
                       <label>
                         Your Name: <input type="text" name="name" />
