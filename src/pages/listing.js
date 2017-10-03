@@ -45,7 +45,7 @@ class IndexPage extends Component {
 
   render() {
     const { theme, location, data = dummyData } = this.props;
-    console.log(JSON.stringify(data));
+
     return (
       <div>
         <div>
@@ -75,7 +75,7 @@ class IndexPage extends Component {
                     </div>
                   )}
 
-                  {data.Practice.staffMembers && (
+                  {data.Practice.staffMembers.length > 0 && (
                     <div>
                       <SectionHeader color={theme.textBlack}>
                         Staff Members
@@ -97,7 +97,7 @@ class IndexPage extends Component {
                 </Card>
               </Section>
 
-              {data.Practice.testimonials && (
+              {data.Practice.testimonials.length > 0 && (
                 <Section background={theme.lightRed} zIndex={-3}>
                   {/* <Card background={theme.aliceBlue}> */}
                   <SectionHeader color={theme.white}>

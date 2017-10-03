@@ -96,7 +96,6 @@ export default class Testimonial extends Component {
   };
 
   handleLeft = () => {
-    console.log("left");
     this.slideshow.prev();
   };
 

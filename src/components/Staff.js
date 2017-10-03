@@ -58,22 +58,26 @@ class Staff extends Component {
     const { index, items } = this.state;
     return (
       <div>
-        <AvatarWrapper>
-          <Avatar src={items[index].image.url} />
-        </AvatarWrapper>
-        <Name>{items[index].name}</Name>
-        <DescriptionWrapper>
-          <SectionParagraph color={theme.textBlack}>
-            {items[index].about}
-          </SectionParagraph>
-        </DescriptionWrapper>
-        <ChipWrapper>
-          {items.map((item, i) => (
-            <Chip key={i} onClick={() => this.handleSelect(i)}>
-              {item.name}
-            </Chip>
-          ))}
-        </ChipWrapper>
+        {items.length > 0 && (
+          <div>
+            <AvatarWrapper>
+              <Avatar src={items[index].image.url} />
+            </AvatarWrapper>
+            <Name>{items[index].name}</Name>
+            <DescriptionWrapper>
+              <SectionParagraph color={theme.textBlack}>
+                {items[index].about}
+              </SectionParagraph>
+            </DescriptionWrapper>
+            <ChipWrapper>
+              {items.map((item, i) => (
+                <Chip key={i} onClick={() => this.handleSelect(i)}>
+                  {item.name}
+                </Chip>
+              ))}
+            </ChipWrapper>
+          </div>
+        )}
       </div>
     );
   }

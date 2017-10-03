@@ -79,22 +79,30 @@ const Contact = ({ phone, email, website, location, practice }) => (
   <CenterContent>
     <ContactBlock>
       <List>
-        <LineItem href="asdf">
-          <Phone size={18} />
-          <Detail>{phone}</Detail>
-        </LineItem>
-        <LineItem href="asdf">
-          <Email size={18} />
-          <Detail>{email}</Detail>
-        </LineItem>
-        <LineItem href="asdf">
-          <Web size={18} />
-          <Detail>{website}</Detail>
-        </LineItem>
-        <LineItem href="asdf">
-          <Place size={18} />
-          <Detail>stuff</Detail>
-        </LineItem>
+        {phone && (
+          <LineItem href="asdf">
+            <Phone size={18} />
+            <Detail>{phone}</Detail>
+          </LineItem>
+        )}
+        {email && (
+          <LineItem href="asdf">
+            <Email size={18} />
+            <Detail>{email}</Detail>
+          </LineItem>
+        )}
+        {website && (
+          <LineItem href="asdf">
+            <Web size={18} />
+            <Detail>{website}</Detail>
+          </LineItem>
+        )}
+        {location && (
+          <LineItem href="asdf">
+            <Place size={18} />
+            <Detail>address</Detail>
+          </LineItem>
+        )}
       </List>
       <MapContainer>
         <MapWithInfoWindow

@@ -55,7 +55,6 @@ class Landing extends Component {
   };
 
   onHeaderTyped = () => {
-    console.log("end");
     this.setState({
       index: 1
     });
