@@ -6,6 +6,8 @@ import Phone from "react-icons/lib/fa/phone";
 import Email from "react-icons/lib/md/email";
 import Web from "react-icons/lib/fa/globe";
 import Place from "react-icons/lib/md/place";
+import LineItem from "../components/LineItem";
+import List from "../components/List";
 
 import { compose, withStateHandlers } from "recompose";
 import {
@@ -16,30 +18,10 @@ import {
   InfoWindow
 } from "react-google-maps";
 
-const StyledLineItem = styled.a`
-  color: ${props => (props.href ? theme.link : theme.textBlack)};
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-
-  &:hover {
-    color: ${theme.lightBlue};
-    pointer: cursor;
-  }
-`;
-
 const Detail = styled.span`
   padding-left: 8px;
   font-size: ${toRem(14)};
 `;
-
-const LineItem = ({ href, target, children }) => (
-  <li>
-    <StyledLineItem href={href} target={target}>
-      {children}
-    </StyledLineItem>
-  </li>
-);
 
 const CenterContent = styled.div`
   display: flex;
@@ -47,13 +29,6 @@ const CenterContent = styled.div`
 `;
 
 const ContactBlock = styled.div`width: 100%;`;
-
-const List = styled.ul`
-  margin: 0;
-  padding: 0 ${toRem(18)};
-  list-style: none;
-  line-height: ${toRem(18)};
-`;
 
 const MapContainer = styled.div`padding: ${toRem(24)} ${toRem(14)};`;
 

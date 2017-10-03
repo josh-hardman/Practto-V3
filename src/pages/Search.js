@@ -59,7 +59,7 @@ class Search extends Component {
             />
           </Card>
         </Section>
-        <Section background={theme.mediumBlue} zIndex={-2} squareBottom />
+        Results
       </div>
     );
   }

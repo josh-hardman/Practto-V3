@@ -14,6 +14,7 @@ const theme = {
   lightGrey: "#E0E0E0",
   mediumGrey: "#CECECE",
   darkGrey: "#C4C4C4",
+  green: "#18D073",
   tan: "#E4E4E4",
   link: "#4A90E2",
   shadow: "rgba(0, 0, 0, 0.25)",
