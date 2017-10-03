@@ -185,7 +185,8 @@ class IndexPage extends Component {
                     practice to confirm your visit.
                   </FinePrint>
                   <RaisedButton label="Submit" primary />
-                  <form name="contact" action="thank-you" data-netlify="true">
+                  <form method="post">
+                    <input type="hidden" name="form-name" value="contact" />
                     <p>
                       <label>
                         Your Name: <input type="text" name="name" />
