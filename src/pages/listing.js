@@ -141,7 +141,7 @@ class IndexPage extends Component {
                     <textarea name="message" />
                   </form>
 
-                  <form method="post">
+                  <form method="post" data-netlify="true">
                     <input type="hidden" name="form-name" value="contact" />
 
                     <TextField
