@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { toRem } from "../utils/utils";
+import { toRem, removeDash, addDash } from "../utils/utils";
+import breakpoints from "../theme/breakpoints";
 import theme from "../theme/theme";
 import Section from "../layouts/Section";
 import Typing from "react-typing-animation";
@@ -8,6 +9,11 @@ import Card from "../components/Card";
 import RaisedButton from "material-ui/RaisedButton";
 import AutoComplete from "material-ui/AutoComplete";
 import { gql, graphql } from "react-apollo";
+import ResultCard from "../components/ResultCard";
+import { Link } from "react-router-dom";
+import filterQuery from "../queries/filters";
+
+const ResultsContainer = styled.div`max-width: ${breakpoints._840};`;
 
 class Search extends Component {
   handleGetPracticeTypes = () =>
@@ -16,9 +22,9 @@ class Search extends Component {
       : [];
 
   handleGetLocation = () =>
-    this.props.data.allPractices
-      ? this.props.data.allPractices.map(
-          item => `${item.city.name}, ${item.state.name}`
+    this.props.data.allCities
+      ? this.props.data.allCities.map(
+          item => `${item.name}, ${item.state.postalCode}`
         )
       : [];
 
@@ -59,7 +65,34 @@ class Search extends Component {
             />
           </Card>
         </Section>
-        Results
+        <ResultsContainer>
+          {data.allPractices &&
+            data.allPractices.map((practice, i) => (
+              <Link
+                key={i}
+                to={`/listing?practice=${addDash(practice.name)}`}
+                style={{ textDecoration: "none" }}
+              >
+                <ResultCard
+                  name={practice.name}
+                  practiceType={
+                    practice.practiceType.length > 1 ? (
+                      "Multiple Types"
+                    ) : practice.practiceType[0] ? (
+                      practice.practiceType[0].name
+                    ) : (
+                      ""
+                    )
+                  }
+                  location={`${practice.city.name}, ${practice.city.state
+                    .name} `}
+                  inNetwork={true}
+                  numOffers={practice.specialOffers.length}
+                  numReviews={practice.testimonials.length}
+                />
+              </Link>
+            ))}
+        </ResultsContainer>
       </div>
     );
   }
@@ -67,22 +100,18 @@ class Search extends Component {
 
 const query = gql`
   query {
-    allPracticeTypeses {
-      name
-    }
+    ${filterQuery}
     allPractices {
+      name
       city {
         name
+        state {
+          name
+        }
       }
-      state {
+      practiceType {
         name
       }
-    }
-    allInsurances {
-      name
-    }
-    allPractices {
-      name
       hero {
         url
       }
@@ -98,5 +127,7 @@ const query = gql`
     }
   }
 `;
+
+console.log(query);
 
 export default graphql(query)(Search);

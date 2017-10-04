@@ -1,20 +1,14 @@
-import { gql } from "react-apollo";
-
-export default gql`
-  query {
-    allPracticeTypeses {
-      name
+export default `
+  allPracticeTypeses {
+    name
+  }
+  allCities {
+    name
+    state {
+      postalCode
     }
-    allPractices {
-      city {
-        name
-      }
-      state {
-        name
-      }
-    }
-    allInsurances {
-      name
-    }
+  }
+  allInsurances {
+    name
   }
 `;

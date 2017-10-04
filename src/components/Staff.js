@@ -10,6 +10,8 @@ import SectionParagraph from "../components/SectionParagraph";
 const AvatarWrapper = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
+  margin-bottom: ${toRem(18)};
 `;
 
 const ChipWrapper = styled.div`
@@ -61,7 +63,7 @@ class Staff extends Component {
         {items.length > 0 && (
           <div>
             <AvatarWrapper>
-              <Avatar src={items[index].image.url} />
+              <Avatar height={250} src={items[index].image.url} />
             </AvatarWrapper>
             <Name>{items[index].name}</Name>
             <DescriptionWrapper>

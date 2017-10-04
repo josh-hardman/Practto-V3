@@ -8,6 +8,7 @@ const StyledLineItem = styled.a`
   display: flex;
   align-items: center;
   text-decoration: none;
+  font-weight: lighter;
 
   &:hover {
     color: ${props => props.href && theme.lightBlue};
@@ -15,12 +16,21 @@ const StyledLineItem = styled.a`
   }
 `;
 
-const LineItem = ({ href, target, color, children }) => (
-  <li>
-    <StyledLineItem href={href} target={target} color={color}>
+const ListItem = styled.li`
+  margin: ${props => (props.margin ? `${props.margin}px` : "0px")};
+`;
+
+const LineItem = ({ href, target, color, children, margin, fontSize }) => (
+  <ListItem margin={margin}>
+    <StyledLineItem
+      href={href}
+      target={target}
+      color={color}
+      fontSize={fontSize}
+    >
       {children}
     </StyledLineItem>
-  </li>
+  </ListItem>
 );
 
 export default LineItem;

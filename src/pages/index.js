@@ -7,7 +7,7 @@ import Typing from "react-typing-animation";
 import Card from "../components/Card";
 import RaisedButton from "material-ui/RaisedButton";
 import AutoComplete from "material-ui/AutoComplete";
-import { graphql } from "react-apollo";
+import { gql, graphql } from "react-apollo";
 import { Link } from "react-router-dom";
 import filterQuery from "../queries/filters";
 // const Background = styled.div`
@@ -66,9 +66,9 @@ class Landing extends Component {
       : [];
 
   handleGetLocation = () =>
-    this.props.data.allPractices
-      ? this.props.data.allPractices.map(
-          item => `${item.city.name}, ${item.state.name}`
+    this.props.data.allCities
+      ? this.props.data.allCities.map(
+          item => `${item.name}, ${item.state.postalCode}`
         )
       : [];
 
@@ -129,4 +129,8 @@ class Landing extends Component {
   }
 }
 
-export default graphql(filterQuery)(Landing);
+const query = gql`query{
+  ${filterQuery}
+}`;
+
+export default graphql(query)(Landing);

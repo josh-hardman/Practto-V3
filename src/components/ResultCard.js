@@ -8,81 +8,115 @@ import Chip from "../components/Chip";
 import List from "../components/List";
 import LineItem from "../components/LineItem";
 import Check from "react-icons/lib/md/check-circle";
+import Offer from "react-icons/lib/md/local-offer";
+import Chat from "react-icons/lib/md/chat";
+import ArrowRight from "react-icons/lib/fa/angle-right";
 
 const StyledResultCard = styled.div`
-  width: 100%;
-  margin-right: ${toRem(18)};
-  margin-left: ${toRem(18)};
+  margin: ${toRem(18)} ${toRem(8)};
   max-width: ${breakpoints._480};
   background: ${theme.white};
   height: ${toRem(130)};
   position: relative;
   overflow: hidden;
   display: flex;
+`;
+
+const AvatarWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: -10px;
+  bottom: 0;
+  width: ${toRem(135)};
+  justify-content: center;
+  align-items: center;
+  display: none;
+  padding: 18px;
+  display: flex;
 
   &::before {
     content: "";
     position: absolute;
-
-    @media screen and (min-width: ${breakpoints._300}) {
-      top: 0;
-      left: -10px;
-      bottom: 0;
-      width: ${toRem(126)};
-      background: ${theme.tan};
-      transform: skew(-5deg);
-      border-right: 1px solid ${theme.mediumGrey};
-    }
-  }
-`;
-
-const AvatarWrapper = styled.div`
-  height: 100%;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  display: none;
-
-  @media screen and (min-width: ${breakpoints._300}) {
-    display: flex;
+    top: 0;
+    left: -10px;
+    bottom: 0;
+    width: ${toRem(135)};
+    background: ${theme.tan};
+    transform: skew(-5deg);
+    border-right: 1px solid ${theme.mediumGrey};
   }
 `;
 
 const CardTitle = styled.h1`
   color: ${theme.mediumBlue};
   font-weight: lighter;
-  font-size: ${toRem(18)};
+  font-size: ${toRem(16)};
   margin: 0;
+
+  @media screen and (min-width: ${breakpoints._480}) {
+    font-size: ${toRem(18)};
+  }
 `;
 
 const SubHeader = styled.div``;
 
-const ContentWrapper = styled.div`padding: ${toRem(16)} ${toRem(32)};`;
+const ContentWrapper = styled.div`
+  padding: ${toRem(16)} 0 ${toRem(16)} ${toRem(135)};
+`;
 
 const Location = styled.span`
   margin-left: ${toRem(6)};
-  font-size: ${toRem(14)};
+  font-size: ${toRem(12)};
   color: ${theme.darkGrey};
   font-weight: lighter;
+
+  @media screen and (min-width: ${breakpoints._480}) {
+    font-size: ${toRem(14)};
+  }
 `;
 
 const Pill = styled.span`
   padding: 2px 10px;
   border-radius: ${toRem(20)};
   background: ${theme.teal};
-  font-size: ${toRem(12)};
+  font-size: ${toRem(10)};
   color: ${theme.white};
   font-weight: lighter;
+
+  @media screen and (min-width: ${breakpoints._480}) {
+    font-size: ${toRem(12)};
+  }
 `;
 
-const InfoContainer = styled.div`padding-top: ${toRem(12)};`;
+const InfoContainer = styled.div`padding-top: ${toRem(8)};`;
 
 const Detail = styled.span`
   padding-left: 8px;
-  font-size: ${toRem(14)};
+  font-size: ${toRem(10)};
+
+  @media screen and (min-width: ${breakpoints._480}) {
+    font-size: ${toRem(12)};
+  }
 `;
 
-const ResultCard = () => (
+const ArrowContainer = styled.div`
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ResultCard = ({
+  name,
+  practiceType,
+  location,
+  inNetwork,
+  numOffers,
+  numReviews
+}) => (
   <StyledResultCard>
     <AvatarWrapper>
       <Avatar
@@ -91,28 +125,43 @@ const ResultCard = () => (
       />
     </AvatarWrapper>
     <ContentWrapper>
-      <CardTitle>Canyonlands Dental</CardTitle>
+      <CardTitle>{name}</CardTitle>
       <SubHeader>
-        <Pill>Dentist</Pill>
-        <Location>in Lehi, UT</Location>
+        <Pill>{practiceType}</Pill>
+        <Location>{`in ${location}`}</Location>
       </SubHeader>
       <InfoContainer>
         <List>
-          <LineItem color={theme.green}>
-            <Check size={18} />
-            <Detail>In Network</Detail>
+          <LineItem margin={0} color={theme.green} fontSize={8}>
+            <Check size={14} />
+            <Detail>{inNetwork ? "In Network" : "Out of Network"}</Detail>
           </LineItem>
-          <LineItem color={theme.lightRed}>
-            <Check size={18} />
-            <Detail>3 Special Offers</Detail>
+          <LineItem margin={0} color={theme.lightRed}>
+            <Offer size={14} />
+            <Detail>
+              {numOffers > 0 ? (
+                `${numOffers} Special Offers`
+              ) : (
+                "Ask About Special Offers"
+              )}
+            </Detail>
           </LineItem>
-          <LineItem color={theme.lightRed}>
-            <Check size={18} />
-            <Detail>7 Verified Reviews</Detail>
+          <LineItem margin={0} color={theme.lightRed}>
+            <Chat size={14} />
+            <Detail>
+              {numReviews > 0 ? (
+                `${numReviews} Verified Reviews`
+              ) : (
+                "No reviews yet"
+              )}
+            </Detail>
           </LineItem>
         </List>
       </InfoContainer>
     </ContentWrapper>
+    <ArrowContainer>
+      <ArrowRight size={32} color={theme.lightBlue} />
+    </ArrowContainer>
   </StyledResultCard>
 );
 

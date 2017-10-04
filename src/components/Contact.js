@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import theme from "../theme/theme";
-import { toRem } from "../utils/utils";
+import { toRem, removeDash } from "../utils/utils";
 import Phone from "react-icons/lib/fa/phone";
 import Email from "react-icons/lib/md/email";
 import Web from "react-icons/lib/fa/globe";
@@ -62,30 +62,30 @@ const Contact = ({ phone, email, website, location, practice, address }) => (
     <ContactBlock>
       <List>
         {phone && (
-          <LineItem target="_blank" href={`tel:${phone}`}>
+          <LineItem margin={4} target="_blank" href={`tel:${phone}`}>
             <Phone size={18} />
             <Detail>{phone}</Detail>
           </LineItem>
         )}
         {email && (
-          <LineItem target="_blank" href={`mailto:${email}`}>
+          <LineItem margin={4} target="_blank" href={`mailto:${email}`}>
             <Email size={18} />
             <Detail>{email}</Detail>
           </LineItem>
         )}
         {website && (
-          <LineItem target="_blank" href={website}>
+          <LineItem margin={4} target="_blank" href={website}>
             <Web size={18} />
             <Detail>{website}</Detail>
           </LineItem>
         )}
         {address && (
           <LineItem
-            href={`http://www.google.com/maps/place/${practice.replace(
-              "-",
-              " "
+            href={`http://www.google.com/maps/place/${removeDash(
+              practice
             )}/${location.lat},${location.lng}`}
             target="_blank"
+            margin={4}
           >
             <Place size={18} />
             <Detail>{address}</Detail>

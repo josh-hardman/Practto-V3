@@ -16,7 +16,7 @@ import AutoComplete from "material-ui/AutoComplete";
 import Toggle from "material-ui/Toggle";
 import RaisedButton from "material-ui/RaisedButton";
 import styled from "styled-components";
-import { toRem } from "../utils/utils";
+import { toRem, removeDash } from "../utils/utils";
 import { toggleLabel } from "../theme/materialStyles";
 import { gql, graphql } from "react-apollo";
 import queryString from "query-string";
@@ -41,7 +41,7 @@ class IndexPage extends Component {
     this.props.data.Practice.insurances.map(item => item.name);
 
   handleGetTitle = () =>
-    queryString.parse(this.props.location.search).practice.replace("-", " ");
+    removeDash(queryString.parse(this.props.location.search).practice);
 
   render() {
     const { theme, location, data = dummyData } = this.props;
