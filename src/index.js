@@ -12,33 +12,9 @@ import Search from "./pages/Search";
 import ResultCard from "./pages/ResultCard";
 import theme from "./theme/theme";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import AppStateContainer from "./containers/AppStateContainer";
 import "./index.css";
 
-const networkInterface = createNetworkInterface({
-  uri: "https://api.graphcms.com/simple/v1/cj7mqzlyl07dt0145piidjnni"
-});
-const client = new ApolloClient({
-  networkInterface
-});
-
-ReactDOM.render(
-  <ApolloProvider client={client}>
-    <MuiThemeProvider>
-      <ThemeProvider theme={theme}>
-        <BrowserRouter>
-          <Switch>
-            <Route exact path="/" component={Landing} />
-            {/* both /roster and /roster/:number begin with /roster */}
-            <Route path="/listing" component={Listing} />
-            <Route path="/search" component={Search} />
-            <Route path="/resultcard" component={ResultCard} />
-            {/* <Route path="/schedule" component={Schedule} /> */}
-          </Switch>
-        </BrowserRouter>
-      </ThemeProvider>
-    </MuiThemeProvider>
-  </ApolloProvider>,
-  document.getElementById("root")
-);
+ReactDOM.render(<AppStateContainer />, document.getElementById("root"));
 
 registerServiceWorker();

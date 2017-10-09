@@ -78,7 +78,15 @@ class Landing extends Component {
       : [];
 
   render() {
-    const { data } = this.props;
+    const {
+      data,
+      practiceType,
+      city,
+      insurance,
+      handleUpdatePracticeType,
+      handleUpdateCity,
+      handleUpdateInsurance
+    } = this.props;
     return (
       <div>
         <Section background={theme.lightBlue}>
@@ -95,6 +103,8 @@ class Landing extends Component {
               dataSource={this.handleGetPracticeTypes()}
               maxSearchResults={5}
               disabled={!this.handleGetPracticeTypes().length}
+              searchText={practiceType}
+              onUpdateInput={handleUpdatePracticeType}
             />
             <AutoComplete
               floatingLabelFixed={true}
@@ -103,6 +113,8 @@ class Landing extends Component {
               dataSource={this.handleGetLocation()}
               maxSearchResults={5}
               disabled={!this.handleGetLocation().length}
+              searchText={city}
+              onUpdateInput={handleUpdateCity}
             />
             <AutoComplete
               floatingLabelFixed={true}
@@ -111,6 +123,8 @@ class Landing extends Component {
               dataSource={this.handleGetInsurances()}
               maxSearchResults={5}
               disabled={!this.handleGetInsurances().length}
+              searchText={insurance}
+              onUpdateInput={handleUpdateInsurance}
             />
           </Card>
           <ButtonContainer>

@@ -40,8 +40,7 @@ class IndexPage extends Component {
   handleGetInsurances = () =>
     this.props.data.Practice.insurances.map(item => item.name);
 
-  handleGetTitle = () =>
-    removeDash(queryString.parse(this.props.location.search).practice);
+  handleGetTitle = () => this.props.data.Practice.name;
 
   render() {
     const { theme, location, data = dummyData } = this.props;
@@ -50,7 +49,9 @@ class IndexPage extends Component {
       <div>
         <div>
           <Section background={theme.lightBlue} zIndex={-1}>
-            <ListingHeader>{this.handleGetTitle()}</ListingHeader>
+            <ListingHeader>
+              {data.Practice && removeDash(data.Practice.name)}
+            </ListingHeader>
           </Section>
           {data.loading ? (
             <Section background={theme.mediumBlue} zIndex={-2} squareBottom>
@@ -231,8 +232,8 @@ class IndexPage extends Component {
 // };
 
 const Query = gql`
-  query FetchPractice($slug: String!) {
-    Practice(name: $slug) {
+  query FetchPractice($practice: ID!) {
+    Practice(id: $practice) {
       name
       about
       staffMembers {
@@ -273,7 +274,7 @@ const Query = gql`
 const PracticeQuery = graphql(Query, {
   options: props => ({
     variables: {
-      slug: queryString.parse(props.location.search).practice
+      practice: queryString.parse(props.location.search).practice
     }
   })
 })(withTheme(IndexPage));

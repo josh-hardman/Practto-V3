@@ -24,8 +24,8 @@ class Search extends Component {
   handleGetLocation = () =>
     this.props.data.allCities
       ? this.props.data.allCities.map(
-          item => `${item.name}, ${item.state.postalCode}`
-        )
+        item => `${item.name}, ${item.state.postalCode}`
+      )
       : [];
 
   handleGetInsurances = () =>
@@ -33,8 +33,52 @@ class Search extends Component {
       ? this.props.data.allInsurances.map(item => item.name)
       : [];
 
+  getFilteredPracticeTypes = (data) => {
+    return data.filter(
+      practice => {
+        return (
+          practice.practiceType.map(item => item.name).includes(this.props.practiceType)
+          || '' === this.props.practiceType
+        )
+      }
+    );
+  };
+
+  getFilteredLocations = (data) => {
+    return data.filter(
+      practice => {
+        return (
+          `${practice.city.name}, ${practice.city.state.postalCode}` ===
+          this.props.city || '' === this.props.city
+        )
+      }
+    );
+  };
+
+  getFilteredInsurance = (data) => {
+    return data.filter(
+      practice => {
+        return (
+          practice.insurances.map(item => item.name).includes(this.props.insurance)
+          || '' === this.props.insurance
+        )
+      }
+    );
+  };
+
+  getFilteredPractices = () => this.getFilteredInsurance(this.getFilteredLocations(this.getFilteredPracticeTypes(this.props.data.allPractices)))
+
   render() {
-    const { data } = this.props;
+    const {
+      data,
+      practiceType,
+      city,
+      insurance,
+      handleUpdatePracticeType,
+      handleUpdateCity,
+      handleUpdateInsurance
+    } = this.props;
+
     return (
       <div>
         <Section background={theme.lightBlue}>
@@ -46,6 +90,8 @@ class Search extends Component {
               dataSource={this.handleGetPracticeTypes()}
               maxSearchResults={5}
               disabled={!this.handleGetPracticeTypes().length}
+              searchText={practiceType}
+              onUpdateInput={handleUpdatePracticeType}
             />
             <AutoComplete
               floatingLabelFixed={true}
@@ -54,6 +100,8 @@ class Search extends Component {
               dataSource={this.handleGetLocation()}
               maxSearchResults={5}
               disabled={!this.handleGetLocation().length}
+              searchText={city}
+              onUpdateInput={handleUpdateCity}
             />
             <AutoComplete
               floatingLabelFixed={true}
@@ -62,15 +110,17 @@ class Search extends Component {
               dataSource={this.handleGetInsurances()}
               maxSearchResults={5}
               disabled={!this.handleGetInsurances().length}
+              searchText={insurance}
+              onUpdateInput={handleUpdateInsurance}
             />
           </Card>
         </Section>
         <ResultsContainer>
           {data.allPractices &&
-            data.allPractices.map((practice, i) => (
+            this.getFilteredPractices().map((practice, i) => (
               <Link
                 key={i}
-                to={`/listing?practice=${addDash(practice.name)}`}
+                to={`/listing?practice=${practice.id}`}
                 style={{ textDecoration: "none" }}
               >
                 <ResultCard
@@ -81,11 +131,11 @@ class Search extends Component {
                     ) : practice.practiceType[0] ? (
                       practice.practiceType[0].name
                     ) : (
-                      ""
-                    )
+                          ""
+                        )
                   }
                   location={`${practice.city.name}, ${practice.city.state
-                    .name} `}
+                    .postalCode}`}
                   inNetwork={true}
                   numOffers={practice.specialOffers.length}
                   numReviews={practice.testimonials.length}
@@ -103,10 +153,12 @@ const query = gql`
     ${filterQuery}
     allPractices {
       name
+      id
       city {
         name
         state {
           name
+          postalCode
         }
       }
       practiceType {
