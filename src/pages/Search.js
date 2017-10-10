@@ -84,6 +84,7 @@ class Search extends Component {
         <Section background={theme.lightBlue}>
           <Card background={theme.aliceBlue}>
             <AutoComplete
+              fullWidth
               floatingLabelFixed={true}
               floatingLabelText="Practice Type"
               filter={AutoComplete.fuzzyFilter}
@@ -94,6 +95,7 @@ class Search extends Component {
               onUpdateInput={handleUpdatePracticeType}
             />
             <AutoComplete
+              fullWidth
               floatingLabelFixed={true}
               floatingLabelText="City"
               filter={AutoComplete.fuzzyFilter}
@@ -104,6 +106,7 @@ class Search extends Component {
               onUpdateInput={handleUpdateCity}
             />
             <AutoComplete
+              fullWidth
               floatingLabelFixed={true}
               floatingLabelText="Insurance Provider"
               filter={AutoComplete.fuzzyFilter}

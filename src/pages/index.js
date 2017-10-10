@@ -68,8 +68,8 @@ class Landing extends Component {
   handleGetLocation = () =>
     this.props.data.allCities
       ? this.props.data.allCities.map(
-          item => `${item.name}, ${item.state.postalCode}`
-        )
+        item => `${item.name}, ${item.state.postalCode}`
+      )
       : [];
 
   handleGetInsurances = () =>
@@ -97,6 +97,7 @@ class Landing extends Component {
           <Question>What can we help you find today?</Question>
           <Card background={theme.aliceBlue}>
             <AutoComplete
+              fullWidth
               floatingLabelFixed={true}
               floatingLabelText="Practice Type"
               filter={AutoComplete.fuzzyFilter}
@@ -107,6 +108,7 @@ class Landing extends Component {
               onUpdateInput={handleUpdatePracticeType}
             />
             <AutoComplete
+              fullWidth
               floatingLabelFixed={true}
               floatingLabelText="City"
               filter={AutoComplete.fuzzyFilter}
@@ -117,6 +119,7 @@ class Landing extends Component {
               onUpdateInput={handleUpdateCity}
             />
             <AutoComplete
+              fullWidth
               floatingLabelFixed={true}
               floatingLabelText="Insurance Provider"
               filter={AutoComplete.fuzzyFilter}

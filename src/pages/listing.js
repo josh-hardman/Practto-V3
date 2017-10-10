@@ -138,32 +138,38 @@ class IndexPage extends Component {
                       value="appointment_request"
                     />
                     <TextField
+                      fullWidth
                       name="first_name"
                       floatingLabelFixed={true}
                       floatingLabelText="First Name"
                     />
                     <TextField
+                      fullWidth
                       name="last_name"
                       floatingLabelFixed={true}
                       floatingLabelText="Last Name"
                     />
                     <TextField
+                      fullWidth
                       name="email"
                       floatingLabelFixed={true}
                       floatingLabelText="Email Address"
                     />
                     <TextField
+                      fullWidth
                       name="phone"
                       floatingLabelFixed={true}
                       floatingLabelText="Phone Number"
                     />
                     <DatePicker
+                      fullWidth
                       name="request_date"
                       floatingLabelFixed={true}
                       floatingLabelText="Request Date"
                       minDate={new Date()}
                     />
                     <AutoComplete
+                      fullWidth
                       name="insuance"
                       floatingLabelFixed={true}
                       floatingLabelText="Insurance Provider"
@@ -188,6 +194,7 @@ class IndexPage extends Component {
                     )}
 
                     <TextField
+                      fullWidth
                       name="additional_comments"
                       floatingLabelText="Additional Comments"
                       multiLine={true}
@@ -205,10 +212,10 @@ class IndexPage extends Component {
               </Section>
             </div>
           ) : (
-            <Section background={theme.mediumBlue} zIndex={-2} squareBottom>
-              <Card background={theme.aliceBlue}>Practice Not Found</Card>
-            </Section>
-          )}
+                <Section background={theme.mediumBlue} zIndex={-2} squareBottom>
+                  <Card background={theme.aliceBlue}>Practice Not Found</Card>
+                </Section>
+              )}
         </div>
       </div>
     );
