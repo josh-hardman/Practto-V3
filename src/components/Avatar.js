@@ -1,11 +1,29 @@
+import React from 'react'
 import styled from "styled-components";
 
-const Avatar = styled.img`
-  width: auto;
-  border-radius: 100%;
-  margin: 0;
-  z-index: 1;
-  display: block;
+
+
+const Square = styled.div`
+  position: relative;
+  width: ${props => props.widthPercent ? `${props.widthPercent}%` : props.width ? `${props.width}px` : '100%'};
+  overflow: hidden;
+  border-radius: 50%;
+
+  &::after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+`
+
+const StyledImg = styled.img`
+  position: absolute;
+  width: 100%;
 `;
 
-export default Avatar;
+const Avatar = ({ widthPercent, width, src }) =>
+  <Square widthPercent={widthPercent} width={width}>
+    <StyledImg src={src} />
+  </Square >
+
+export default Avatar

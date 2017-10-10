@@ -17,7 +17,6 @@ const SwipeWrapper = styled.div`
 
 const Review = styled.div`
   width: 75%;
-  max-height: ${toRem(360)};
   display: flex;
   justify-content: center;
 `;
@@ -50,7 +49,6 @@ const ReviewWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 4px;
 `;
 
 const Name = styled.p`
@@ -67,14 +65,13 @@ const Flex = styled.div`
 
 const Description = styled.p`
   font-size: ${toRem(12)};
-  padding-left: ${toRem(8)};
   font-weight: lighter;
   color: ${theme.textBlack};
 `;
 
-const CardWithBar = styled(Card)`
-  max-width: ${toRem(225)};
-  overflow: scroll;
+const CardWithBar = styled(Card) `
+  max-width: ${toRem(300)};
+  
   &::before {
     content: "";
     position: absolute;
@@ -123,12 +120,12 @@ export default class Testimonial extends Component {
               <ReviewWrapper key={i}>
                 <Review>
                   <CardWithBar background={theme.aliceBlue}>
-                    {item.image && (
+                    {item.image.url && (
                       <div>
                         <Flex>
-                          <Avatar src={item.image.url} height={80} />
+                          <Avatar src={item.image.url} width={80} />
                         </Flex>
-                        <Divider color={theme.darkRed} />
+                        <Divider color={theme.darkRed} paddingTop={8} paddingBottom={16} />
                       </div>
                     )}
                     <Description>{`"${item.content}"`}</Description>

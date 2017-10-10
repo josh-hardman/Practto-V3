@@ -63,7 +63,7 @@ class Staff extends Component {
         {items.length > 0 && (
           <div>
             <AvatarWrapper>
-              <Avatar height={250} src={items[index].image.url} />
+              <Avatar widthPercent={80} src={items[index].image.url} />
             </AvatarWrapper>
             <Name>{items[index].name}</Name>
             <DescriptionWrapper>

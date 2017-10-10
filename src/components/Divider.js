@@ -14,12 +14,12 @@ const StyledDivider = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding-top: ${toRem(18)};
-	padding-bottom: ${toRem(32)};
+	padding-top: ${props => props.paddingTop ? toRem(props.paddingTop) : toRem(18)};
+	padding-bottom: ${props => props.paddingBottom ? toRem(props.paddingBottom) : toRem(32)};
 `
 
-const Divider = ({ color }) => (
-	<StyledDivider>
+const Divider = ({ color, paddingTop, paddingBottom }) => (
+	<StyledDivider paddingTop={paddingTop} paddingBottom={paddingBottom}>
 		<Line color={color} />
 	</StyledDivider>
 )
