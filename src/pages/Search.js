@@ -95,6 +95,8 @@ class Search extends Component {
       handleUpdateInsurance
     } = this.props;
 
+    console.log(data)
+
     return (
       <div>
         <Section background={theme.lightBlue}>
@@ -142,6 +144,7 @@ class Search extends Component {
                   key={i}
                   id={practice.id}
                   name={practice.name}
+                  url={practice.hero && practice.hero.url}
                   practiceType={
                     practice.practiceType.length > 1 ? (
                       "Multiple Types"
@@ -173,7 +176,7 @@ const query = gql`
       name
       id
       hero {
-        id
+        url
       }
       city {
         name
@@ -184,9 +187,6 @@ const query = gql`
       }
       practiceType {
         name
-      }
-      hero {
-        url
       }
       specialOffers {
         id
