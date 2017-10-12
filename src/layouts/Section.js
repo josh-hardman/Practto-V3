@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { toRem } from "../utils/utils";
+import PageColumn from '../components/PageColumn'
 
 const StyledSection = styled.div`
   width: 100%;
@@ -46,7 +47,9 @@ const Section = ({ children, background, zIndex, squareBottom }) => (
     index={zIndex}
     squareBottom={squareBottom}
   >
-    <Padding squareBottom={squareBottom}>{children}</Padding>
+
+    <PageColumn><Padding squareBottom={squareBottom}>{children}</Padding></PageColumn>
+
   </StyledSection>
 );
 

@@ -10,6 +10,7 @@ import AutoComplete from "material-ui/AutoComplete";
 import { gql, graphql } from "react-apollo";
 import { Link } from "react-router-dom";
 import filterQuery from "../queries/filters";
+
 // const Background = styled.div`
 //   background: ${theme.mediumBlue};
 //   position: fixed;

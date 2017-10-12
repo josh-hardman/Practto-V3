@@ -20,7 +20,7 @@ import {
 
 const Detail = styled.span`
   padding-left: 8px;
-  font-size: ${toRem(14)};
+  font-size: ${toRem(12)};
 `;
 
 const CenterContent = styled.div`

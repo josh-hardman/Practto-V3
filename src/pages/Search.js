@@ -10,10 +10,26 @@ import RaisedButton from "material-ui/RaisedButton";
 import AutoComplete from "material-ui/AutoComplete";
 import { gql, graphql } from "react-apollo";
 import ResultCard from "../components/ResultCard";
-import { Link } from "react-router-dom";
 import filterQuery from "../queries/filters";
+import PageColumn from '../components/PageColumn'
 
-const ResultsContainer = styled.div`max-width: ${breakpoints._840};`;
+const ResultsContainer = styled.div`
+  width: ${breakpoints._840};
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @media screen and (min-width: ${breakpoints._840}) {
+    justify-content: flex-start;
+    
+  }
+`;
+
+const ResultsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+`
 
 class Search extends Component {
   handleGetPracticeTypes = () =>
@@ -118,15 +134,13 @@ class Search extends Component {
             />
           </Card>
         </Section>
-        <ResultsContainer>
-          {data.allPractices &&
-            this.getFilteredPractices().map((practice, i) => (
-              <Link
-                key={i}
-                to={`/listing?practice=${practice.id}`}
-                style={{ textDecoration: "none" }}
-              >
+        <ResultsWrapper>
+          <ResultsContainer>
+            {data.allPractices &&
+              this.getFilteredPractices().map((practice, i) => (
                 <ResultCard
+                  key={i}
+                  id={practice.id}
                   name={practice.name}
                   practiceType={
                     practice.practiceType.length > 1 ? (
@@ -143,9 +157,10 @@ class Search extends Component {
                   numOffers={practice.specialOffers.length}
                   numReviews={practice.testimonials.length}
                 />
-              </Link>
-            ))}
-        </ResultsContainer>
+              ))}
+
+          </ResultsContainer>
+        </ResultsWrapper>
       </div>
     );
   }
@@ -157,6 +172,9 @@ const query = gql`
     allPractices {
       name
       id
+      hero {
+        id
+      }
       city {
         name
         state {
@@ -182,7 +200,5 @@ const query = gql`
     }
   }
 `;
-
-console.log(query);
 
 export default graphql(query)(Search);

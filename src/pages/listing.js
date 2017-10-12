@@ -100,12 +100,10 @@ class IndexPage extends Component {
 
               {data.Practice.testimonials.length > 0 && (
                 <Section background={theme.lightRed} zIndex={-3}>
-                  {/* <Card background={theme.aliceBlue}> */}
                   <SectionHeader color={theme.white}>
                     Patient Testimonials
                   </SectionHeader>
                   <Testimonials items={data.Practice.testimonials} />
-                  {/* </Card> */}
                 </Section>
               )}
 

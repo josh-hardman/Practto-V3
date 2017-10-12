@@ -8,6 +8,7 @@ const StyledCard = styled.div`
   padding: ${toRem(18)};
   border-radius: 5px;
   position: relative;
+  width: 100%;
 `;
 
 export default StyledCard;

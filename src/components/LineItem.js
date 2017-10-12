@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import theme from "../theme/theme";
+import { toRem } from '../utils/utils'
 
 const StyledLineItem = styled.a`
   color: ${props =>
@@ -11,22 +12,21 @@ const StyledLineItem = styled.a`
   font-weight: lighter;
 
   &:hover {
-    color: ${props => props.href && theme.lightBlue};
-    pointer: ${props => props.href && "cursor"};
-  }
+  color: ${props => props.href && theme.lightBlue};
+  pointer: ${props => props.href && "cursor"};
+}
 `;
 
 const ListItem = styled.li`
-  margin: ${props => (props.margin ? `${props.margin}px` : "0px")};
+margin: ${props => (props.margin ? `${props.margin}px` : "0px")};
 `;
 
-const LineItem = ({ href, target, color, children, margin, fontSize }) => (
+const LineItem = ({ href, target, color, children, margin }) => (
   <ListItem margin={margin}>
     <StyledLineItem
       href={href}
       target={target}
       color={color}
-      fontSize={fontSize}
     >
       {children}
     </StyledLineItem>

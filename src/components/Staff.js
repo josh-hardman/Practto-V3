@@ -16,6 +16,7 @@ const AvatarWrapper = styled.div`
 
 const ChipWrapper = styled.div`
   margin-top: ${toRem(18)};
+  margin-bottom: ${toRem(24)};
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -32,7 +33,8 @@ const Name = styled.h2`
   font-size: ${toRem(16)};
   color: ${theme.textBlack};
   font-weight: normal;
-  margin: ${toRem(8)} 0;
+  margin-top: ${toRem(16)};
+  margin-bottom: ${toRem(16)};
 `;
 
 class Staff extends Component {
@@ -65,19 +67,22 @@ class Staff extends Component {
             <AvatarWrapper>
               <Avatar widthPercent={80} src={items[index].image.url} />
             </AvatarWrapper>
+            {
+              items.length > 1 &&
+              <ChipWrapper>
+                {items.map((item, i) => (
+                  <Chip key={i} onClick={() => this.handleSelect(i)}>
+                    {item.name}
+                  </Chip>
+                ))}
+              </ChipWrapper>
+            }
             <Name>{items[index].name}</Name>
             <DescriptionWrapper>
               <SectionParagraph color={theme.textBlack}>
                 {items[index].about}
               </SectionParagraph>
             </DescriptionWrapper>
-            <ChipWrapper>
-              {items.map((item, i) => (
-                <Chip key={i} onClick={() => this.handleSelect(i)}>
-                  {item.name}
-                </Chip>
-              ))}
-            </ChipWrapper>
           </div>
         )}
       </div>
