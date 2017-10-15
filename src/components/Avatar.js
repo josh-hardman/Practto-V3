@@ -9,6 +9,7 @@ const Square = styled.div`
   max-width: 300px;
   overflow: hidden;
   border-radius: 50%;
+  z-index: 1;
 
   &::after {
     content: "";

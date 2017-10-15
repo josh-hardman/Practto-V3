@@ -11,16 +11,6 @@ import { gql, graphql } from "react-apollo";
 import { Link } from "react-router-dom";
 import filterQuery from "../queries/filters";
 
-// const Background = styled.div`
-//   background: ${theme.mediumBlue};
-//   position: fixed;
-//   top: 0;
-//   bottom: 0;
-//   right: 0;
-//   left: 0;
-//   z-index: -2;
-// `;
-
 const Lede = styled.h1`
   font-size: ${toRem(33)};
   text-align: center;

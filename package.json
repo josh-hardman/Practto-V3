@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "apollo-client": "^1.9.3",
+    "embed-video": "^2.0.0",
     "eslint": "^4.7.2",
     "graphql-tag": "^2.4.2",
     "material-ui": "^0.19.2",

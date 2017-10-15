@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { toRem } from "../utils/utils";
-import { youtubeEmbedUrl } from "../utils/utils";
+import embed from 'embed-video'
 
 const VideoWrapper = styled.div`
   position: relative;
@@ -9,22 +9,11 @@ const VideoWrapper = styled.div`
   padding-top: ${toRem(20)};
   height: 0;
   overflow: hidden;
-`;
-
-const Video = styled.iframe`
-  margin-top: ${toRem(12)};
-  border: none;
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
 `;
 
 const MediaPlayer = ({ url }) => (
-  <VideoWrapper>
-    <Video id="ytplayer" src={youtubeEmbedUrl(url)} />
-  </VideoWrapper>
+  <VideoWrapper dangerouslySetInnerHTML={{ __html: embed(url), image: 'mqdefault' }} />
 );
 
 export default MediaPlayer;

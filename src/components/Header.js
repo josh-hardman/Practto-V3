@@ -24,7 +24,6 @@ const Logo = styled.img`
 const StyledMenu = styled(Menu) `
     color: ${theme.white};
     transition: all .3s ease;
-    visibility: ${props => props.hide && 'hidden'};
 
     &:hover {
         color: ${theme.darkBlue};
@@ -39,7 +38,7 @@ const DropDown = styled.div`
     position: absolute;
     top: 0;
     right: 0;
-    background: rgba(255,255,255,.9);
+    background: ${theme.white};
     z-index: 4;
 `
 
@@ -83,7 +82,7 @@ const StyledLink = styled(Link) `
 
 class Header extends Component {
     state = {
-        open: true
+        open: false
     }
 
     componentWillMount() {
@@ -106,34 +105,35 @@ class Header extends Component {
     render() {
         return (
             <StyledHeader >
-                <Logo src="dentto_logo.svg" />
-                <StyledMenu hide={this.state.open} onClick={this.handleToggleMenu} size={32} />
+                <Link to="/">
+                    <Logo src="dentto_logo.svg" />
+                </Link>
+                <StyledMenu onClick={this.handleToggleMenu} size={32} />
                 {
                     this.state.open &&
-                    <div ref={node => this.node = node}>
-                        <DropDown>
-                            <CloseWrapper>
-                                <CloseButton size={32} onClick={this.handleToggleMenu} />
-                            </CloseWrapper>
-                            <MenuList>
-                                <MenuItem>
-                                    <StyledLink to="/about">
-                                        About
+                    <DropDown innerRef={node => this.node = node}>
+                        <CloseWrapper>
+                            <CloseButton size={32} onClick={this.handleToggleMenu} />
+                        </CloseWrapper>
+                        <MenuList>
+                            <MenuItem>
+                                <StyledLink to="/about">
+                                    About
                                 </StyledLink>
-                                </MenuItem>
-                                <MenuItem>
-                                    <StyledLink to="/contact">
-                                        Contact
+                            </MenuItem>
+                            <MenuItem>
+                                <StyledLink to="/contact">
+                                    Contact
                                 </StyledLink>
-                                </MenuItem>
-                                <MenuItem>
-                                    <StyledLink to="/get-listed">
-                                        Get Listed
+                            </MenuItem>
+                            <MenuItem>
+                                <StyledLink to="/get-listed">
+                                    Get Listed
                                 </StyledLink>
-                                </MenuItem>
-                            </MenuList>
-                        </DropDown>
-                    </div>
+                            </MenuItem>
+                        </MenuList>
+                    </DropDown>
+
                 }
             </StyledHeader>
         )
