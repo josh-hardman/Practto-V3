@@ -11,6 +11,7 @@ const theme = {
   orange: "#E79E24",
   white: "#fff",
   textBlack: "#4A4A4A",
+  textHoverBlack: "black",
   lightGrey: "#E0E0E0",
   mediumGrey: "#CECECE",
   darkGrey: "#C4C4C4",

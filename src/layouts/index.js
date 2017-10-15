@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { ThemeProvider } from "styled-components";
 import theme from "../theme/theme";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import { Link } from "react-router-dom";
 
 import "./index.css";
 
@@ -25,7 +26,7 @@ const Header = () => (
         padding: "1.45rem 1.0875rem"
       }}
     >
-      {/* <h1 style={{ margin: 0 }}>
+      <h1 style={{ margin: 0 }}>
         <Link
           to="/"
           style={{
@@ -36,7 +37,7 @@ const Header = () => (
         >
           Practto
         </Link>
-      </h1> */}
+      </h1>
     </HeaderContent>
   </StyledHeader>
 );

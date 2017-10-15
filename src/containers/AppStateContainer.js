@@ -12,6 +12,7 @@ import Search from "../pages/Search";
 import ResultCard from "../pages/ResultCard";
 import theme from "../theme/theme";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import Header from '../components/Header'
 import "../index.css";
 
 const networkInterface = createNetworkInterface({
@@ -58,37 +59,40 @@ class AppStateContainer extends Component {
         <MuiThemeProvider>
           <ThemeProvider theme={theme}>
             <BrowserRouter>
-              <Switch>
-                <Route
-                  exact
-                  path="/"
-                  render={() => (
-                    <Landing
-                      practiceType={practiceType}
-                      city={city}
-                      insurance={insurance}
-                      handleUpdatePracticeType={this.handleUpdatePracticeType}
-                      handleUpdateCity={this.handleUpdateCity}
-                      handleUpdateInsurance={this.handleUpdateInsurance}
-                    />
-                  )}
-                />
-                <Route
-                  exact
-                  path="/search"
-                  render={() => (
-                    <Search
-                      practiceType={practiceType}
-                      city={city}
-                      insurance={insurance}
-                      handleUpdatePracticeType={this.handleUpdatePracticeType}
-                      handleUpdateCity={this.handleUpdateCity}
-                      handleUpdateInsurance={this.handleUpdateInsurance}
-                    />
-                  )}
-                />
-                <Route path="/listing" component={Listing} />
-              </Switch>
+              <div>
+                <Header />
+                <Switch>
+                  <Route
+                    exact
+                    path="/"
+                    render={() => (
+                      <Landing
+                        practiceType={practiceType}
+                        city={city}
+                        insurance={insurance}
+                        handleUpdatePracticeType={this.handleUpdatePracticeType}
+                        handleUpdateCity={this.handleUpdateCity}
+                        handleUpdateInsurance={this.handleUpdateInsurance}
+                      />
+                    )}
+                  />
+                  <Route
+                    exact
+                    path="/search"
+                    render={() => (
+                      <Search
+                        practiceType={practiceType}
+                        city={city}
+                        insurance={insurance}
+                        handleUpdatePracticeType={this.handleUpdatePracticeType}
+                        handleUpdateCity={this.handleUpdateCity}
+                        handleUpdateInsurance={this.handleUpdateInsurance}
+                      />
+                    )}
+                  />
+                  <Route path="/listing" component={Listing} />
+                </Switch>
+              </div>
             </BrowserRouter>
           </ThemeProvider>
         </MuiThemeProvider>
