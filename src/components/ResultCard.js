@@ -134,7 +134,7 @@ const ResultCard = ({
         />
       </AvatarWrapper>
       <ContentWrapper>
-        <CardTitle>{name}</CardTitle>
+        <CardTitle>{name.replace(/-/g, ' ')}</CardTitle>
         <SubHeader>
           <Pill>{practiceType}</Pill>
           <Location>{`in ${location}`}</Location>

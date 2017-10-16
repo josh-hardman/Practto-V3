@@ -35,7 +35,7 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   padding-top: 32px;
-  padding-bottom: 120px;
+  padding-bottom: 100px;
 `;
 
 class Landing extends Component {

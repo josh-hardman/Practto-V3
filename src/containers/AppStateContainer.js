@@ -13,6 +13,7 @@ import ResultCard from "../pages/ResultCard";
 import theme from "../theme/theme";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 import "../index.css";
 
 const networkInterface = createNetworkInterface({
@@ -92,6 +93,7 @@ class AppStateContainer extends Component {
                   />
                   <Route path="/listing" component={Listing} />
                 </Switch>
+                <Footer />
               </div>
             </BrowserRouter>
           </ThemeProvider>
