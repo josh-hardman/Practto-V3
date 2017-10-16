@@ -6,8 +6,8 @@ import theme from "../theme/theme";
 import Section from "../layouts/Section";
 import Typing from "react-typing-animation";
 import Card from "../components/Card";
-import RaisedButton from "material-ui/RaisedButton";
-import AutoComplete from "material-ui/AutoComplete";
+
+// import AutoComplete from "material-ui/AutoComplete";
 import { gql, graphql } from "react-apollo";
 import ResultCard from "../components/ResultCard";
 import filterQuery from "../queries/filters";
@@ -101,7 +101,7 @@ class Search extends Component {
       <div>
         <Section background={theme.lightBlue}>
           <Card background={theme.aliceBlue}>
-            <AutoComplete
+            {/* <AutoComplete
               fullWidth
               floatingLabelFixed={true}
               floatingLabelText="Practice Type"
@@ -133,7 +133,7 @@ class Search extends Component {
               disabled={!this.handleGetInsurances().length}
               searchText={insurance}
               onUpdateInput={handleUpdateInsurance}
-            />
+            /> */}
           </Card>
         </Section>
         <ResultsWrapper>

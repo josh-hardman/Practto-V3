@@ -11,10 +11,10 @@ import Testimonials from "../components/Testimonials";
 import MediaPlayer from "../components/MediaPlayer";
 import Card from "../components/Card";
 import TextField from "material-ui/TextField";
-import DatePicker from "material-ui/DatePicker";
-import AutoComplete from "material-ui/AutoComplete";
-import Toggle from "material-ui/Toggle";
-import RaisedButton from "material-ui/RaisedButton";
+// import DatePicker from "material-ui/DatePicker";
+// import AutoComplete from "material-ui/AutoComplete";
+// import Toggle from "material-ui/Toggle";
+
 import styled from "styled-components";
 import { toRem, removeDash } from "../utils/utils";
 import { toggleLabel } from "../theme/materialStyles";
@@ -159,14 +159,14 @@ class IndexPage extends Component {
                       floatingLabelFixed={true}
                       floatingLabelText="Phone Number"
                     />
-                    <DatePicker
+                    {/* <DatePicker
                       fullWidth
                       name="request_date"
                       floatingLabelFixed={true}
                       floatingLabelText="Request Date"
                       minDate={new Date()}
-                    />
-                    <AutoComplete
+                    /> */}
+                    {/* <AutoComplete
                       fullWidth
                       name="insuance"
                       floatingLabelFixed={true}
@@ -174,12 +174,12 @@ class IndexPage extends Component {
                       filter={AutoComplete.fuzzyFilter}
                       dataSource={this.handleGetInsurances()}
                       maxSearchResults={5}
-                    />
+                    /> */}
                     {data.Practice.specialOffers.length > 0 && (
                       <OffersWrapper>
                         <Offers>Special Offers</Offers>
 
-                        {data.Practice.specialOffers.map((item, i) => (
+                        {/* {data.Practice.specialOffers.map((item, i) => (
                           <Toggle
                             name={`special_offer[]`}
                             key={i}
@@ -187,7 +187,7 @@ class IndexPage extends Component {
                             label={item.name}
                             labelPosition="right"
                           />
-                        ))}
+                        ))} */}
                       </OffersWrapper>
                     )}
 
@@ -204,7 +204,7 @@ class IndexPage extends Component {
                       You wiill receive a follow up via email or phone from the
                       listed practice to confirm your visit.
                     </FinePrint>
-                    <RaisedButton type="submit" label="Submit" primary />
+                    {/* <RaisedButton type="submit" label="Submit" primary /> */}
                   </form>
                 </Card>
               </Section>

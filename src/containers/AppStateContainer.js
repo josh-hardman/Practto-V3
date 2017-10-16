@@ -77,7 +77,7 @@ class AppStateContainer extends Component {
                       />
                     )}
                   />
-                  <Route
+                  {/* <Route
                     exact
                     path="/search"
                     render={() => (
@@ -91,7 +91,7 @@ class AppStateContainer extends Component {
                       />
                     )}
                   />
-                  <Route path="/listing" component={Listing} />
+                  <Route path="/listing" component={Listing} /> */}
                 </Switch>
                 <Footer />
               </div>

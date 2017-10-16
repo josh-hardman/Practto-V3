@@ -5,11 +5,32 @@ import theme from "../theme/theme";
 import Section from "../layouts/Section";
 import Typing from "react-typing-animation";
 import Card from "../components/Card";
-import RaisedButton from "material-ui/RaisedButton";
-import AutoComplete from "material-ui/AutoComplete";
+import { withStyles } from 'material-ui/styles';
+import Input, { InputLabel } from 'material-ui/Input';
+import { FormControl, FormHelperText } from 'material-ui/Form';
+import Select from 'material-ui/Select';
+import SelectFilter from '../components/SelectFilter'
+
+// import AutoComplete from "material-ui/AutoComplete";
 import { gql, graphql } from "react-apollo";
 import { Link } from "react-router-dom";
 import filterQuery from "../queries/filters";
+
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  formControl: {
+    margin: theme.spacing.unit,
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing.unit * 2,
+  },
+});
+
+
 
 const Lede = styled.h1`
   font-size: ${toRem(33)};
@@ -37,6 +58,11 @@ const ButtonContainer = styled.div`
   padding-top: 32px;
   padding-bottom: 100px;
 `;
+
+const FilterContainer = styled.div`
+  display: 'flex',
+  flexWrap: 'wrap'
+`
 
 class Landing extends Component {
   state = {
@@ -87,7 +113,12 @@ class Landing extends Component {
         <Section background={theme.mediumBlue} zIndex={-2} squareBottom>
           <Question>What can we help you find today?</Question>
           <Card background={theme.aliceBlue}>
-            <AutoComplete
+            <FilterContainer>
+              <SelectFilter label="Service" suggestions={this.handleGetPracticeTypes()} value="Dentist" />
+              <SelectFilter label="City" suggestions={this.handleGetLocation()} />
+              <SelectFilter label="Insurance" suggestions={this.handleGetInsurances()} />
+            </FilterContainer>
+            {/* <AutoComplete
               fullWidth
               floatingLabelFixed={true}
               floatingLabelText="Practice Type"
@@ -119,9 +150,9 @@ class Landing extends Component {
               disabled={!this.handleGetInsurances().length}
               searchText={insurance}
               onUpdateInput={handleUpdateInsurance}
-            />
+            /> */}
           </Card>
-          <ButtonContainer>
+          {/* <ButtonContainer>
             <Link to="/search">
               <RaisedButton
                 label="Search"
@@ -130,7 +161,7 @@ class Landing extends Component {
                 backgroundColor={theme.orange}
               />
             </Link>
-          </ButtonContainer>
+          </ButtonContainer> */}
         </Section>
       </div>
     );
