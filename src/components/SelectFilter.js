@@ -17,7 +17,7 @@ const styles = theme => ({
 
 class NativeSelect extends React.Component {
     render() {
-        const { classes, label, suggestions, value, handleChange } = this.props;
+        const { classes, label, suggestions, value, handleUpdate } = this.props;
 
         return (
             <FormControl className={classes.formControl}>
@@ -25,7 +25,7 @@ class NativeSelect extends React.Component {
                 <Select
                     native
                     value={value}
-                    onChange={handleChange}
+                    onChange={handleUpdate(label.toLowerCase())}
                     input={<Input id="age-native-simple" />}
                 >
                     <option value="" />

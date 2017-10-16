@@ -25,36 +25,17 @@ const client = new ApolloClient({
 
 class AppStateContainer extends Component {
   state = {
-    practiceType: "",
+    service: "",
     city: "",
     insurance: ""
   };
 
-  handleUpdatePracticeType = searchText => {
-    this.setState({
-      practiceType: searchText
-    });
+  handleChange = name => event => {
+    this.setState({ [name]: event.target.value });
   };
-  handleUpdateCity = searchText => {
-    this.setState({
-      city: searchText
-    });
-  };
-  handleUpdateInsurance = searchText => {
-    this.setState({
-      insurance: searchText
-    });
-  };
-
-  // handleNewRequest = () => {
-  // console.log("new request");
-  // this.setState({
-  //   practiceType: ""
-  // });
-  // };
 
   render() {
-    const { practiceType, city, insurance } = this.state;
+    const { service, city, insurance } = this.state;
     return (
       <ApolloProvider client={client}>
         <MuiThemeProvider>
@@ -68,12 +49,10 @@ class AppStateContainer extends Component {
                     path="/"
                     render={() => (
                       <Landing
-                        practiceType={practiceType}
+                        service={service}
                         city={city}
                         insurance={insurance}
-                        handleUpdatePracticeType={this.handleUpdatePracticeType}
-                        handleUpdateCity={this.handleUpdateCity}
-                        handleUpdateInsurance={this.handleUpdateInsurance}
+                        handleChange={this.handleChange}
                       />
                     )}
                   />

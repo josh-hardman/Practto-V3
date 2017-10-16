@@ -10,6 +10,8 @@ import Input, { InputLabel } from 'material-ui/Input';
 import { FormControl, FormHelperText } from 'material-ui/Form';
 import Select from 'material-ui/Select';
 import SelectFilter from '../components/SelectFilter'
+import Button from 'material-ui/Button';
+
 
 // import AutoComplete from "material-ui/AutoComplete";
 import { gql, graphql } from "react-apollo";
@@ -56,12 +58,12 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   padding-top: 32px;
-  padding-bottom: 100px;
+  padding-right: 8px;
 `;
 
 const FilterContainer = styled.div`
-  display: 'flex',
-  flexWrap: 'wrap'
+  display: flex;
+  justify-content: space-between;
 `
 
 class Landing extends Component {
@@ -97,12 +99,10 @@ class Landing extends Component {
   render() {
     const {
       data,
-      practiceType,
+      service,
       city,
       insurance,
-      handleUpdatePracticeType,
-      handleUpdateCity,
-      handleUpdateInsurance
+      handleChange
     } = this.props;
     return (
       <div>
@@ -114,54 +114,16 @@ class Landing extends Component {
           <Question>What can we help you find today?</Question>
           <Card background={theme.aliceBlue}>
             <FilterContainer>
-              <SelectFilter label="Service" suggestions={this.handleGetPracticeTypes()} value="Dentist" />
-              <SelectFilter label="City" suggestions={this.handleGetLocation()} />
-              <SelectFilter label="Insurance" suggestions={this.handleGetInsurances()} />
+              <SelectFilter label="Service" suggestions={this.handleGetPracticeTypes()} handleUpdate={handleChange} value={service} />
+              <SelectFilter label="City" suggestions={this.handleGetLocation()} handleUpdate={handleChange} value={city} />
+              <SelectFilter label="Insurance" suggestions={this.handleGetInsurances()} handleUpdate={handleChange} value={insurance} />
             </FilterContainer>
-            {/* <AutoComplete
-              fullWidth
-              floatingLabelFixed={true}
-              floatingLabelText="Practice Type"
-              filter={AutoComplete.fuzzyFilter}
-              dataSource={this.handleGetPracticeTypes()}
-              maxSearchResults={5}
-              disabled={!this.handleGetPracticeTypes().length}
-              searchText={practiceType}
-              onUpdateInput={handleUpdatePracticeType}
-            />
-            <AutoComplete
-              fullWidth
-              floatingLabelFixed={true}
-              floatingLabelText="City"
-              filter={AutoComplete.fuzzyFilter}
-              dataSource={this.handleGetLocation()}
-              maxSearchResults={5}
-              disabled={!this.handleGetLocation().length}
-              searchText={city}
-              onUpdateInput={handleUpdateCity}
-            />
-            <AutoComplete
-              fullWidth
-              floatingLabelFixed={true}
-              floatingLabelText="Insurance Provider"
-              filter={AutoComplete.fuzzyFilter}
-              dataSource={this.handleGetInsurances()}
-              maxSearchResults={5}
-              disabled={!this.handleGetInsurances().length}
-              searchText={insurance}
-              onUpdateInput={handleUpdateInsurance}
-            /> */}
+            <ButtonContainer>
+              <Link to="/search">
+                <Button raised color='primary'>Search</Button>
+              </Link>
+            </ButtonContainer>
           </Card>
-          {/* <ButtonContainer>
-            <Link to="/search">
-              <RaisedButton
-                label="Search"
-                labelStyle={{ textTransform: "none", fontWeight: "lighter" }}
-                labelColor={theme.white}
-                backgroundColor={theme.orange}
-              />
-            </Link>
-          </ButtonContainer> */}
         </Section>
       </div>
     );
