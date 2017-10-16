@@ -56,21 +56,19 @@ class AppStateContainer extends Component {
                       />
                     )}
                   />
-                  {/* <Route
+                  <Route
                     exact
                     path="/search"
                     render={() => (
                       <Search
-                        practiceType={practiceType}
+                        service={service}
                         city={city}
                         insurance={insurance}
-                        handleUpdatePracticeType={this.handleUpdatePracticeType}
-                        handleUpdateCity={this.handleUpdateCity}
-                        handleUpdateInsurance={this.handleUpdateInsurance}
+                        handleChange={this.handleChange}
                       />
                     )}
                   />
-                  <Route path="/listing" component={Listing} /> */}
+                  <Route path="/listing" component={Listing} />
                 </Switch>
                 <Footer />
               </div>

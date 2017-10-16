@@ -3,36 +3,12 @@ import styled from "styled-components";
 import { toRem } from "../utils/utils";
 import theme from "../theme/theme";
 import Section from "../layouts/Section";
-import Typing from "react-typing-animation";
 import Card from "../components/Card";
-import { withStyles } from 'material-ui/styles';
-import Input, { InputLabel } from 'material-ui/Input';
-import { FormControl, FormHelperText } from 'material-ui/Form';
-import Select from 'material-ui/Select';
-import SelectFilter from '../components/SelectFilter'
 import Button from 'material-ui/Button';
-
-
-// import AutoComplete from "material-ui/AutoComplete";
+import SearchFilters from '../components/SearchFilters'
 import { gql, graphql } from "react-apollo";
 import { Link } from "react-router-dom";
 import filterQuery from "../queries/filters";
-
-const styles = theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  formControl: {
-    margin: theme.spacing.unit,
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing.unit * 2,
-  },
-});
-
-
 
 const Lede = styled.h1`
   font-size: ${toRem(33)};
@@ -54,17 +30,17 @@ const Question = styled.p`
   font-weight: lighter;
 `;
 
+const FilterContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   padding-top: 32px;
   padding-right: 8px;
 `;
-
-const FilterContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-`
 
 class Landing extends Component {
   state = {
@@ -84,7 +60,7 @@ class Landing extends Component {
       ? this.props.data.allPracticeTypeses.map(item => item.name)
       : [];
 
-  handleGetLocation = () =>
+  handleGetLocations = () =>
     this.props.data.allCities
       ? this.props.data.allCities.map(
         item => `${item.name}, ${item.state.postalCode}`
@@ -114,9 +90,15 @@ class Landing extends Component {
           <Question>What can we help you find today?</Question>
           <Card background={theme.aliceBlue}>
             <FilterContainer>
-              <SelectFilter label="Service" suggestions={this.handleGetPracticeTypes()} handleUpdate={handleChange} value={service} />
-              <SelectFilter label="City" suggestions={this.handleGetLocation()} handleUpdate={handleChange} value={city} />
-              <SelectFilter label="Insurance" suggestions={this.handleGetInsurances()} handleUpdate={handleChange} value={insurance} />
+              <SearchFilters
+                handleChange={handleChange}
+                service={service}
+                services={this.handleGetPracticeTypes()}
+                city={city}
+                cities={this.handleGetLocations()}
+                insurance={insurance}
+                insurances={this.handleGetInsurances()}
+              />
             </FilterContainer>
             <ButtonContainer>
               <Link to="/search">
