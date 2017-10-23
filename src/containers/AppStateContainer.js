@@ -15,6 +15,7 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import "../index.css";
+import ScrollToTop from '../components/ScrollToTop'
 
 const networkInterface = createNetworkInterface({
   uri: "https://api.graphcms.com/simple/v1/cj7mqzlyl07dt0145piidjnni"
@@ -40,8 +41,8 @@ class AppStateContainer extends Component {
       <ApolloProvider client={client}>
         <MuiThemeProvider>
           <ThemeProvider theme={theme}>
-            <BrowserRouter>
-              <div>
+            <BrowserRouter >
+              <ScrollToTop>
                 <Header />
                 <Switch>
                   <Route
@@ -68,10 +69,19 @@ class AppStateContainer extends Component {
                       />
                     )}
                   />
-                  <Route path="/listing" component={Listing} />
+                  <Route
+                    path="/listing"
+                    render={({ location }) => (
+                      <Listing
+                        location={location}
+                        insurance={insurance}
+                        handleChange={this.handleChange}
+                      />
+                    )}
+                  />
                 </Switch>
                 <Footer />
-              </div>
+              </ScrollToTop>
             </BrowserRouter>
           </ThemeProvider>
         </MuiThemeProvider>

@@ -13,7 +13,7 @@ const VideoWrapper = styled.div`
 `;
 
 const MediaPlayer = ({ url }) => (
-  <VideoWrapper dangerouslySetInnerHTML={{ __html: embed(url), image: 'mqdefault' }} />
+  <VideoWrapper dangerouslySetInnerHTML={{ __html: embed(url, { query: { rel: 0 }, image: 'mqdefault' }) }} />
 );
 
 export default MediaPlayer;
