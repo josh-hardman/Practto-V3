@@ -101,7 +101,7 @@ class Landing extends Component {
               />
             </FilterContainer>
             <ButtonContainer>
-              <Link to="/search">
+              <Link style={{ textDecoration: 'none' }} to="/search">
                 <Button raised color='primary'>Search</Button>
               </Link>
             </ButtonContainer>

@@ -8,11 +8,18 @@ import { toRem, removeDash } from "../utils/utils";
 import { toggleLabel } from "../theme/materialStyles";
 import Switch from 'material-ui/Switch';
 import SelectFilter from '../components/SelectFilter';
+import Button from 'material-ui/Button';
+import { Link } from "react-router-dom";
+import { FormControl, FormControlLabel } from 'material-ui/Form';
+import Input, { InputLabel } from 'material-ui/Input';
+import Select from 'material-ui/Select';
+import breakpoints from "../theme/breakpoints";
 
 const FinePrint = styled.p`
-  padding: ${toRem(12)} 0;
+  padding: 0 ${toRem(12)};
   font-size: ${toRem(8)};
   line-height: ${toRem(12)};
+  margin: 0;
 `;
 
 const OffersWrapper = styled.div`margin-bottom: ${toRem(12)};`;
@@ -23,6 +30,13 @@ const Offers = styled.h3`
   font-weight: normal;
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 32px;
+  padding-right: 8px;
+`;
+
 const styles = theme => ({
     container: {
         display: 'flex',
@@ -31,124 +45,130 @@ const styles = theme => ({
     textField: {
         marginLeft: theme.spacing.unit,
         marginRight: theme.spacing.unit,
-        width: 200,
+        width: '100%',
     },
     menu: {
         width: 200,
     },
 });
 
-const currencies = [
-    {
-        value: 'USD',
-        label: '$',
-    },
-    {
-        value: 'EUR',
-        label: '€',
-    },
-    {
-        value: 'BTC',
-        label: '฿',
-    },
-    {
-        value: 'JPY',
-        label: '¥',
-    },
-];
+const StyledForm = styled.form`
+    display: flex;
+    flex-wrap: wrap;
+`
+
+const FieldWrapper = styled.div`
+    padding: 16px;
+    width: 100%;
+
+    @media screen and (min-width: ${breakpoints._480}) {
+        width: 50%; 
+    }
+`
 
 class TextFields extends React.Component {
 
     render() {
-        const { classes, specialOffers = [], insurance, handleUpdate } = this.props;
+        const { classes, specialOffers = [], insurance, insurances = [], handleUpdate } = this.props;
         console.log(handleUpdate)
         return (
-            <form method="post">
+            <StyledForm method="post" >
                 <input
                     type="hidden"
                     name="form-name"
                     value="appointment_request"
                 />
-                <TextField
-                    id="full_name"
-                    label="Full Name"
-                    margin="normal"
-                />
-                <TextField
-                    id="email"
-                    label="Email"
-                    margin="normal"
-                />
-                <TextField
-                    id="request_date"
-                    label="Request Date"
-                    type="date"
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                />
-                <SelectFilter
-                    label="Insurance"
-                    suggestions={[]}
-                    value={insurance}
-                    handleUpdate={handleUpdate}
-                />
-                <TextField
-                    fullWidth
-                    name="email"
-                    floatingLabelFixed={true}
-                    floatingLabelText="Email Address"
-                />
-                <TextField
-                    fullWidth
-                    name="phone"
-                    floatingLabelFixed={true}
-                    floatingLabelText="Phone Number"
-                />
-                {/* <DatePicker
-                      fullWidth
-                      name="request_date"
-                      floatingLabelFixed={true}
-                      floatingLabelText="Request Date"
-                      minDate={new Date()}
-                    /> */}
-                {/* <AutoComplete
-                      fullWidth
-                      name="insuance"
-                      floatingLabelFixed={true}
-                      floatingLabelText="Insurance Provider"
-                      filter={AutoComplete.fuzzyFilter}
-                      dataSource={this.handleGetInsurances()}
-                      maxSearchResults={5}
-                    /> */}
-                {specialOffers.length > 0 && (
-                    <OffersWrapper>
-                        <Offers>Special Offers</Offers>
+                <FieldWrapper>
+                    <TextField
+                        id="full_name"
+                        label="Full Name"
+                        margin="normal"
+                        className={classes.textField}
+                    />
+                </FieldWrapper>
+                <FieldWrapper>
+                    <TextField
+                        id="email"
+                        label="Email"
+                        margin="normal"
+                        className={classes.textField}
+                    />
+                </FieldWrapper>
+                <FieldWrapper>
+                    <TextField
+                        id="request_date"
+                        label="Request Date"
+                        type="date"
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        className={classes.textField}
+                    />
+                </FieldWrapper>
+                <FieldWrapper>
+                    <FormControl className={classes.textField}>
+                        <InputLabel htmlFor="age-native-simple">Insurance</InputLabel>
+                        <Select
+                            native
+                            value={insurance}
+                            onChange={handleUpdate('insurance')}
+                            input={<Input id="age-native-simple" />}
+                        >
+                            <option value="" />
+                            {
+                                insurances && insurances.map((suggestion, i) => (
+                                    <option key={i} value={suggestion}>{suggestion}</option>
+                                ))
+                            }
 
-                        {specialOffers.map((item, i) => (
-                            <Switch
-                                name={`special_offer[]`}
-                                key={i}
-                                aria-label="checkedA"
-                            />
-                        ))}
-                    </OffersWrapper>
-                )}
+                        </Select>
+                    </FormControl>
+                </FieldWrapper>
+                <FieldWrapper>
+                    <TextField
+                        label="email"
+                        className={classes.textField}
+                    />
+                </FieldWrapper>
+                <FieldWrapper>
+                    <TextField
+                        label="Additional Comments"
+                        floatingLabelFixed={true}
+                        floatingLabelText="Phone Number"
+                        className={classes.textField}
+                    />
+                </FieldWrapper>
+                <FieldWrapper>
+                    {specialOffers.length > 0 && (
+                        <OffersWrapper>
+                            <Offers>Special Offers</Offers>
 
-                <TextField
-                    fullWidth
-                    name="additional_comments"
-                    floatingLabelText="Additional Comments"
-                    multiLine={true}
-                    floatingLabelFixed={true}
-                    rows={1}
-                />
-                <FinePrint>
+                            {specialOffers.map((item, i) => (
+                                <FormControlLabel
+                                    key={i}
+                                    control={
+                                        <Switch
+                                            name={`special_offer[]`}
+                                            aria-label="checkedA"
+                                        />
+                                    }
+                                    label={item.name}
+                                />
+                            ))}
+                        </OffersWrapper>
+                    )}
+                </FieldWrapper>
+                
+                <ButtonContainer>
+                    <Link style={{ textDecoration: 'none' }} to="/search">
+                        <Button raised color='primary'>Search</Button>
+                    </Link>
+                    <FinePrint>
                     * This form will request an appointment on your behalf.
-                      You should receive an email to confirm your visit shortly.
+                        You should receive an email to confirm your visit shortly.
                     </FinePrint>
-                {/* <RaisedButton type="submit" label="Submit" primary /> */}
-            </form>
+                </ButtonContainer>
+            </StyledForm>
         );
     }
 }
@@ -157,5 +177,5 @@ TextFields.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-// export default withStyles(styles)(TextFields);
-export default TextFields;
+export default withStyles(styles)(TextFields);
+// export default TextFields;

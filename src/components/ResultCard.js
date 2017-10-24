@@ -22,6 +22,7 @@ const StyledResultCard = styled(Link) `
   position: relative;
   overflow: hidden;
   display: flex;
+  box-shadow: ${theme.dropShadow};
 `;
 
 const AvatarWrapper = styled.div`

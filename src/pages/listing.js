@@ -32,7 +32,7 @@ class ListingPage extends Component {
 
   render() {
     const { theme, location, data = dummyData, handleChange } = this.props;
-    console.log(handleChange)
+    console.log(data)
     return (
       <div>
         <div>
@@ -67,7 +67,7 @@ class ListingPage extends Component {
                   {data.Practice.staffMembers.length > 0 && (
                     <div>
                       <SectionHeader color={theme.textBlack}>
-                        Staff Members
+                        Doctors
                       </SectionHeader>
                       <Staff items={data.Practice.staffMembers} />
 
@@ -117,7 +117,7 @@ class ListingPage extends Component {
                     Request Appointment
                   </SectionHeader>
 
-                  <RequestAppointmentForm specialOffers={data.Practice.specialOffers} handleUpdate={handleChange} />
+                  <RequestAppointmentForm insurances={data.Practice.insurances} specialOffers={data.Practice.specialOffers} handleUpdate={handleChange} />
                 </Card>
               </Section>
             </div>

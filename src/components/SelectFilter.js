@@ -8,7 +8,7 @@ import Select from 'material-ui/Select';
 const styles = theme => ({
     formControl: {
         margin: theme.spacing.unit,
-        width: '30%',
+        width: '100%',
     },
     selectEmpty: {
         marginTop: theme.spacing.unit * 2,
