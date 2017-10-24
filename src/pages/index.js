@@ -83,12 +83,11 @@ class Landing extends Component {
     return (
       <div>
         <Section background={theme.lightBlue}>
-          <Lede>Find Your Family</Lede>
-          <PracticeType>Dentist</PracticeType>
+          <Lede>Dentto lists the highest rated Dentists near you!</Lede>
         </Section>
         <Section background={theme.mediumBlue} zIndex={-2} squareBottom>
           <Question>What can we help you find today?</Question>
-          <Card background={theme.aliceBlue}>
+          <Card background={theme.aliceBlue} style={{marginBottom: '20vh'}}>
             <FilterContainer>
               <SearchFilters
                 handleChange={handleChange}

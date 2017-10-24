@@ -8,6 +8,8 @@ import { gql, graphql } from "react-apollo";
 import ResultCard from "../components/ResultCard";
 import filterQuery from "../queries/filters";
 import SearchFilters from '../components/SearchFilters';
+import { CircularProgress } from 'material-ui/Progress';
+import { toRem } from '../utils/utils';
 
 const ResultsContainer = styled.div`
   width: ${breakpoints._840};
@@ -30,6 +32,12 @@ const ResultsWrapper = styled.div`
 const FilterContainer = styled.div`
   display: flex;
   justify-content: space-between;
+`
+
+const ErrorText = styled.span`
+  color: ${theme.white};
+  font-size: ${toRem(12)};
+  font-weight: lighter;
 `
 
 class Search extends Component {
@@ -88,6 +96,7 @@ class Search extends Component {
   render() {
     const {
       data,
+      loading,
       service,
       city,
       insurance,
@@ -115,29 +124,38 @@ class Search extends Component {
         </Section>
         <ResultsWrapper>
           <ResultsContainer>
-            {data.allPractices &&
-              this.getFilteredPractices().map((practice, i) => (
-                <ResultCard
-                  key={i}
-                  id={practice.id}
-                  name={practice.name}
-                  url={practice.hero && practice.hero.url}
-                  practiceType={
-                    practice.practiceType.length > 1 ? (
-                      "Multiple Types"
-                    ) : practice.practiceType[0] ? (
-                      practice.practiceType[0].name
-                    ) : (
-                          ""
-                        )
+            {data.loading 
+              ? 
+                <CircularProgress size={50} /> 
+              : 
+                data.allPractices && this.getFilteredPractices().length > 0
+                  ?
+                    this.getFilteredPractices().map((practice, i) => (
+                      <ResultCard
+                        key={i}
+                        id={practice.id}
+                        name={practice.name}
+                        url={practice.hero && practice.hero.url}
+                        practiceType={
+                          practice.practiceType.length > 1 ? (
+                            "Multiple Types"
+                          ) : practice.practiceType[0] ? (
+                            practice.practiceType[0].name
+                          ) : (
+                                ""
+                              )
+                        }
+                        location={`${practice.city.name}, ${practice.city.state
+                          .postalCode}`}
+                        inNetwork={true}
+                        numOffers={practice.specialOffers.length}
+                        numReviews={practice.testimonials.length}
+                      />
+                    ))
+                  :
+                    <ErrorText>Sorry, we were unable to find any practices that matched your search</ErrorText>
                   }
-                  location={`${practice.city.name}, ${practice.city.state
-                    .postalCode}`}
-                  inNetwork={true}
-                  numOffers={practice.specialOffers.length}
-                  numReviews={practice.testimonials.length}
-                />
-              ))}
+                
 
           </ResultsContainer>
         </ResultsWrapper>
