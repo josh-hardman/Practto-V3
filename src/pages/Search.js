@@ -1,17 +1,13 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { toRem, removeDash, addDash } from "../utils/utils";
 import breakpoints from "../theme/breakpoints";
 import theme from "../theme/theme";
 import Section from "../layouts/Section";
-import Typing from "react-typing-animation";
 import Card from "../components/Card";
-import RaisedButton from "material-ui/RaisedButton";
-import AutoComplete from "material-ui/AutoComplete";
 import { gql, graphql } from "react-apollo";
 import ResultCard from "../components/ResultCard";
 import filterQuery from "../queries/filters";
-import PageColumn from '../components/PageColumn'
+import SearchFilters from '../components/SearchFilters';
 
 const ResultsContainer = styled.div`
   width: ${breakpoints._840};
@@ -31,13 +27,18 @@ const ResultsWrapper = styled.div`
   margin-top: 60px;
 `
 
+const FilterContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
 class Search extends Component {
   handleGetPracticeTypes = () =>
     this.props.data.allPracticeTypeses
       ? this.props.data.allPracticeTypeses.map(item => item.name)
       : [];
 
-  handleGetLocation = () =>
+  handleGetLocations = () =>
     this.props.data.allCities
       ? this.props.data.allCities.map(
         item => `${item.name}, ${item.state.postalCode}`
@@ -53,8 +54,8 @@ class Search extends Component {
     return data.filter(
       practice => {
         return (
-          practice.practiceType.map(item => item.name).includes(this.props.practiceType)
-          || '' === this.props.practiceType
+          practice.practiceType.map(item => item.name).includes(this.props.service)
+          || '' === this.props.service
         )
       }
     );
@@ -87,12 +88,10 @@ class Search extends Component {
   render() {
     const {
       data,
-      practiceType,
+      service,
       city,
       insurance,
-      handleUpdatePracticeType,
-      handleUpdateCity,
-      handleUpdateInsurance
+      handleChange
     } = this.props;
 
     console.log(data)
@@ -101,39 +100,17 @@ class Search extends Component {
       <div>
         <Section background={theme.lightBlue}>
           <Card background={theme.aliceBlue}>
-            <AutoComplete
-              fullWidth
-              floatingLabelFixed={true}
-              floatingLabelText="Practice Type"
-              filter={AutoComplete.fuzzyFilter}
-              dataSource={this.handleGetPracticeTypes()}
-              maxSearchResults={5}
-              disabled={!this.handleGetPracticeTypes().length}
-              searchText={practiceType}
-              onUpdateInput={handleUpdatePracticeType}
-            />
-            <AutoComplete
-              fullWidth
-              floatingLabelFixed={true}
-              floatingLabelText="City"
-              filter={AutoComplete.fuzzyFilter}
-              dataSource={this.handleGetLocation()}
-              maxSearchResults={5}
-              disabled={!this.handleGetLocation().length}
-              searchText={city}
-              onUpdateInput={handleUpdateCity}
-            />
-            <AutoComplete
-              fullWidth
-              floatingLabelFixed={true}
-              floatingLabelText="Insurance Provider"
-              filter={AutoComplete.fuzzyFilter}
-              dataSource={this.handleGetInsurances()}
-              maxSearchResults={5}
-              disabled={!this.handleGetInsurances().length}
-              searchText={insurance}
-              onUpdateInput={handleUpdateInsurance}
-            />
+            <FilterContainer>
+              <SearchFilters
+                handleChange={handleChange}
+                service={service}
+                services={this.handleGetPracticeTypes()}
+                city={city}
+                cities={this.handleGetLocations()}
+                insurance={insurance}
+                insurances={this.handleGetInsurances()}
+              />
+            </FilterContainer>
           </Card>
         </Section>
         <ResultsWrapper>

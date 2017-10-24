@@ -11,40 +11,28 @@ import Testimonials from "../components/Testimonials";
 import MediaPlayer from "../components/MediaPlayer";
 import Card from "../components/Card";
 import TextField from "material-ui/TextField";
-import DatePicker from "material-ui/DatePicker";
-import AutoComplete from "material-ui/AutoComplete";
-import Toggle from "material-ui/Toggle";
-import RaisedButton from "material-ui/RaisedButton";
-import styled from "styled-components";
-import { toRem, removeDash } from "../utils/utils";
-import { toggleLabel } from "../theme/materialStyles";
+import { removeDash } from '../utils/utils';
+// import DatePicker from "material-ui/DatePicker";
+// import AutoComplete from "material-ui/AutoComplete";
+// import Toggle from "material-ui/Toggle";
+
+
 import { gql, graphql } from "react-apollo";
 import queryString from "query-string";
 import dummyData from "../listingPageData";
+import RequestAppointmentForm from '../components/RequestAppointmentForm'
 
-const FinePrint = styled.p`
-  padding: ${toRem(12)} 0;
-  font-size: ${toRem(8)};
-  line-height: ${toRem(12)};
-`;
 
-const OffersWrapper = styled.div`margin-bottom: ${toRem(12)};`;
 
-const Offers = styled.h3`
-  font-size: ${toRem(14)};
-  margin: ${toRem(24)} 0 ${toRem(12)};
-  font-weight: normal;
-`;
-
-class IndexPage extends Component {
+class ListingPage extends Component {
   handleGetInsurances = () =>
     this.props.data.Practice.insurances.map(item => item.name);
 
   handleGetTitle = () => this.props.data.Practice.name;
 
   render() {
-    const { theme, location, data = dummyData } = this.props;
-
+    const { theme, location, data = dummyData, handleChange } = this.props;
+    console.log(data)
     return (
       <div>
         <div>
@@ -79,7 +67,7 @@ class IndexPage extends Component {
                   {data.Practice.staffMembers.length > 0 && (
                     <div>
                       <SectionHeader color={theme.textBlack}>
-                        Staff Members
+                        Doctors
                       </SectionHeader>
                       <Staff items={data.Practice.staffMembers} />
 
@@ -129,83 +117,7 @@ class IndexPage extends Component {
                     Request Appointment
                   </SectionHeader>
 
-                  <form method="post">
-                    <input
-                      type="hidden"
-                      name="form-name"
-                      value="appointment_request"
-                    />
-                    <TextField
-                      fullWidth
-                      name="first_name"
-                      floatingLabelFixed={true}
-                      floatingLabelText="First Name"
-                    />
-                    <TextField
-                      fullWidth
-                      name="last_name"
-                      floatingLabelFixed={true}
-                      floatingLabelText="Last Name"
-                    />
-                    <TextField
-                      fullWidth
-                      name="email"
-                      floatingLabelFixed={true}
-                      floatingLabelText="Email Address"
-                    />
-                    <TextField
-                      fullWidth
-                      name="phone"
-                      floatingLabelFixed={true}
-                      floatingLabelText="Phone Number"
-                    />
-                    <DatePicker
-                      fullWidth
-                      name="request_date"
-                      floatingLabelFixed={true}
-                      floatingLabelText="Request Date"
-                      minDate={new Date()}
-                    />
-                    <AutoComplete
-                      fullWidth
-                      name="insuance"
-                      floatingLabelFixed={true}
-                      floatingLabelText="Insurance Provider"
-                      filter={AutoComplete.fuzzyFilter}
-                      dataSource={this.handleGetInsurances()}
-                      maxSearchResults={5}
-                    />
-                    {data.Practice.specialOffers.length > 0 && (
-                      <OffersWrapper>
-                        <Offers>Special Offers</Offers>
-
-                        {data.Practice.specialOffers.map((item, i) => (
-                          <Toggle
-                            name={`special_offer[]`}
-                            key={i}
-                            labelStyle={toggleLabel}
-                            label={item.name}
-                            labelPosition="right"
-                          />
-                        ))}
-                      </OffersWrapper>
-                    )}
-
-                    <TextField
-                      fullWidth
-                      name="additional_comments"
-                      floatingLabelText="Additional Comments"
-                      multiLine={true}
-                      floatingLabelFixed={true}
-                      rows={1}
-                    />
-                    <FinePrint>
-                      * This form will request an appointment on your behalf.
-                      You wiill receive a follow up via email or phone from the
-                      listed practice to confirm your visit.
-                    </FinePrint>
-                    <RaisedButton type="submit" label="Submit" primary />
-                  </form>
+                  <RequestAppointmentForm insurances={data.Practice.insurances} specialOffers={data.Practice.specialOffers} handleUpdate={handleChange} />
                 </Card>
               </Section>
             </div>
@@ -219,22 +131,6 @@ class IndexPage extends Component {
     );
   }
 }
-
-// const IndexPage = ({ location, data }) => {
-//   const query = queryString.parse(location.search);
-//   console.log(data);
-//   return (
-//     <div>
-//       {data.loading ? (
-//         "loading"
-//       ) : data.Practice ? (
-//         data.Practice.name
-//       ) : (
-//         "practice not found"
-//       )}
-//     </div>
-//   );
-// };
 
 const Query = gql`
   query FetchPractice($practice: ID!) {
@@ -273,15 +169,16 @@ const Query = gql`
 `;
 
 // Use Dumy Data
-// export default withTheme(IndexPage);
+// export default withTheme(ListingPage);
 
 // Fetch Live Data
 const PracticeQuery = graphql(Query, {
   options: props => ({
     variables: {
       practice: queryString.parse(props.location.search).practice
+
     }
   })
-})(withTheme(IndexPage));
+})(withTheme(ListingPage));
 
 export default PracticeQuery;

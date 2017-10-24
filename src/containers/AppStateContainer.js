@@ -15,6 +15,7 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import "../index.css";
+import ScrollToTop from '../components/ScrollToTop'
 
 const networkInterface = createNetworkInterface({
   uri: "https://api.graphcms.com/simple/v1/cj7mqzlyl07dt0145piidjnni"
@@ -25,42 +26,23 @@ const client = new ApolloClient({
 
 class AppStateContainer extends Component {
   state = {
-    practiceType: "",
+    service: "",
     city: "",
     insurance: ""
   };
 
-  handleUpdatePracticeType = searchText => {
-    this.setState({
-      practiceType: searchText
-    });
+  handleChange = name => event => {
+    this.setState({ [name]: event.target.value });
   };
-  handleUpdateCity = searchText => {
-    this.setState({
-      city: searchText
-    });
-  };
-  handleUpdateInsurance = searchText => {
-    this.setState({
-      insurance: searchText
-    });
-  };
-
-  // handleNewRequest = () => {
-  // console.log("new request");
-  // this.setState({
-  //   practiceType: ""
-  // });
-  // };
 
   render() {
-    const { practiceType, city, insurance } = this.state;
+    const { service, city, insurance } = this.state;
     return (
       <ApolloProvider client={client}>
         <MuiThemeProvider>
           <ThemeProvider theme={theme}>
-            <BrowserRouter>
-              <div>
+            <BrowserRouter >
+              <ScrollToTop>
                 <Header />
                 <Switch>
                   <Route
@@ -68,12 +50,10 @@ class AppStateContainer extends Component {
                     path="/"
                     render={() => (
                       <Landing
-                        practiceType={practiceType}
+                        service={service}
                         city={city}
                         insurance={insurance}
-                        handleUpdatePracticeType={this.handleUpdatePracticeType}
-                        handleUpdateCity={this.handleUpdateCity}
-                        handleUpdateInsurance={this.handleUpdateInsurance}
+                        handleChange={this.handleChange}
                       />
                     )}
                   />
@@ -82,19 +62,26 @@ class AppStateContainer extends Component {
                     path="/search"
                     render={() => (
                       <Search
-                        practiceType={practiceType}
+                        service={service}
                         city={city}
                         insurance={insurance}
-                        handleUpdatePracticeType={this.handleUpdatePracticeType}
-                        handleUpdateCity={this.handleUpdateCity}
-                        handleUpdateInsurance={this.handleUpdateInsurance}
+                        handleChange={this.handleChange}
                       />
                     )}
                   />
-                  <Route path="/listing" component={Listing} />
+                  <Route
+                    path="/listing"
+                    render={({ location }) => (
+                      <Listing
+                        location={location}
+                        insurance={insurance}
+                        handleChange={this.handleChange}
+                      />
+                    )}
+                  />
                 </Switch>
                 <Footer />
-              </div>
+              </ScrollToTop>
             </BrowserRouter>
           </ThemeProvider>
         </MuiThemeProvider>

@@ -3,10 +3,9 @@ import styled from "styled-components";
 import { toRem } from "../utils/utils";
 import theme from "../theme/theme";
 import Section from "../layouts/Section";
-import Typing from "react-typing-animation";
 import Card from "../components/Card";
-import RaisedButton from "material-ui/RaisedButton";
-import AutoComplete from "material-ui/AutoComplete";
+import Button from 'material-ui/Button';
+import SearchFilters from '../components/SearchFilters'
 import { gql, graphql } from "react-apollo";
 import { Link } from "react-router-dom";
 import filterQuery from "../queries/filters";
@@ -31,11 +30,16 @@ const Question = styled.p`
   font-weight: lighter;
 `;
 
+const FilterContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   padding-top: 32px;
-  padding-bottom: 100px;
+  padding-right: 8px;
 `;
 
 class Landing extends Component {
@@ -56,7 +60,7 @@ class Landing extends Component {
       ? this.props.data.allPracticeTypeses.map(item => item.name)
       : [];
 
-  handleGetLocation = () =>
+  handleGetLocations = () =>
     this.props.data.allCities
       ? this.props.data.allCities.map(
         item => `${item.name}, ${item.state.postalCode}`
@@ -71,12 +75,10 @@ class Landing extends Component {
   render() {
     const {
       data,
-      practiceType,
+      service,
       city,
       insurance,
-      handleUpdatePracticeType,
-      handleUpdateCity,
-      handleUpdateInsurance
+      handleChange
     } = this.props;
     return (
       <div>
@@ -87,50 +89,23 @@ class Landing extends Component {
         <Section background={theme.mediumBlue} zIndex={-2} squareBottom>
           <Question>What can we help you find today?</Question>
           <Card background={theme.aliceBlue}>
-            <AutoComplete
-              fullWidth
-              floatingLabelFixed={true}
-              floatingLabelText="Practice Type"
-              filter={AutoComplete.fuzzyFilter}
-              dataSource={this.handleGetPracticeTypes()}
-              maxSearchResults={5}
-              disabled={!this.handleGetPracticeTypes().length}
-              searchText={practiceType}
-              onUpdateInput={handleUpdatePracticeType}
-            />
-            <AutoComplete
-              fullWidth
-              floatingLabelFixed={true}
-              floatingLabelText="City"
-              filter={AutoComplete.fuzzyFilter}
-              dataSource={this.handleGetLocation()}
-              maxSearchResults={5}
-              disabled={!this.handleGetLocation().length}
-              searchText={city}
-              onUpdateInput={handleUpdateCity}
-            />
-            <AutoComplete
-              fullWidth
-              floatingLabelFixed={true}
-              floatingLabelText="Insurance Provider"
-              filter={AutoComplete.fuzzyFilter}
-              dataSource={this.handleGetInsurances()}
-              maxSearchResults={5}
-              disabled={!this.handleGetInsurances().length}
-              searchText={insurance}
-              onUpdateInput={handleUpdateInsurance}
-            />
-          </Card>
-          <ButtonContainer>
-            <Link to="/search">
-              <RaisedButton
-                label="Search"
-                labelStyle={{ textTransform: "none", fontWeight: "lighter" }}
-                labelColor={theme.white}
-                backgroundColor={theme.orange}
+            <FilterContainer>
+              <SearchFilters
+                handleChange={handleChange}
+                service={service}
+                services={this.handleGetPracticeTypes()}
+                city={city}
+                cities={this.handleGetLocations()}
+                insurance={insurance}
+                insurances={this.handleGetInsurances()}
               />
-            </Link>
-          </ButtonContainer>
+            </FilterContainer>
+            <ButtonContainer>
+              <Link style={{ textDecoration: 'none' }} to="/search">
+                <Button raised color='primary'>Search</Button>
+              </Link>
+            </ButtonContainer>
+          </Card>
         </Section>
       </div>
     );
