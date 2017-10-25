@@ -8,11 +8,12 @@ import { Link } from "react-router-dom";
 
 const StyledHeader = styled.div`
     width: 100%;
-    // background: grey;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: ${toRem(32)};
+    padding-left: ${toRem(32)};
+    padding-right: ${toRem(32)};
+    padding-top: ${toRem(32)};
 `
 
 const Logo = styled.img`

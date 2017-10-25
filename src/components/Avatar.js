@@ -6,7 +6,7 @@ import styled from "styled-components";
 const Square = styled.div`
   position: relative;
   width: ${props => props.widthPercent ? `${props.widthPercent}%` : props.width ? `${props.width}px` : '100%'};
-  max-width: 300px;
+  max-width: 250px;
   overflow: hidden;
   border-radius: 50%;
   z-index: 1;

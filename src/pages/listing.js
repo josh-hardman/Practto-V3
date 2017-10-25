@@ -12,6 +12,8 @@ import MediaPlayer from "../components/MediaPlayer";
 import Card from "../components/Card";
 import TextField from "material-ui/TextField";
 import { removeDash } from '../utils/utils';
+import { CircularProgress } from 'material-ui/Progress';
+import styled from 'styled-components'
 // import DatePicker from "material-ui/DatePicker";
 // import AutoComplete from "material-ui/AutoComplete";
 // import Toggle from "material-ui/Toggle";
@@ -22,7 +24,12 @@ import queryString from "query-string";
 import dummyData from "../listingPageData";
 import RequestAppointmentForm from '../components/RequestAppointmentForm'
 
-
+const ProgressWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+`
 
 class ListingPage extends Component {
   handleGetInsurances = () =>
@@ -32,19 +39,27 @@ class ListingPage extends Component {
 
   render() {
     const { theme, location, data = dummyData, handleChange } = this.props;
-    console.log(data)
     return (
       <div>
         <div>
           <Section background={theme.lightBlue} zIndex={-1}>
-            <ListingHeader>
-              {data.Practice && removeDash(data.Practice.name)}
-            </ListingHeader>
+            {
+              data.loading ? 
+                <ProgressWrapper>
+                  <CircularProgress size={50} /> 
+                </ProgressWrapper> 
+              : 
+                <ListingHeader>
+                  {data.Practice && removeDash(data.Practice.name)}
+                </ListingHeader>
+              }
           </Section>
           {data.loading ? (
             <Section background={theme.mediumBlue} zIndex={-2} squareBottom>
-              <Card background={theme.aliceBlue} style={{ height: "800px" }}>
-                loading...
+              <Card background={theme.aliceBlue}>
+                <ProgressWrapper>
+                  <CircularProgress size={50} /> 
+                </ProgressWrapper>
               </Card>
             </Section>
           ) : data.Practice ? (

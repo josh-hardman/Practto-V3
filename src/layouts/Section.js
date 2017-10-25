@@ -36,7 +36,7 @@ const StyledSection = styled.div`
 const Padding = styled.div`
   margin: 0 auto;
   max-width: 960px;
-  padding: 0 ${toRem(12)};
+  padding: 0 ${toRem(24)};
   padding-bottom: ${props => (props.squareBottom ? toRem(20) : toRem(80))};
   padding-top: ${toRem(40)};
 `;

@@ -14,7 +14,7 @@ import ArrowRight from "react-icons/lib/fa/angle-right";
 import { Link } from "react-router-dom";
 
 const StyledResultCard = styled(Link) `
-  margin: ${toRem(8)};
+  margin: ${toRem(12)};
   width: 100%;
   max-width: 400px;
   background: ${theme.white};
@@ -150,7 +150,7 @@ const ResultCard = ({
               <Offer size={14} />
               <Detail>
                 {numOffers > 0 ? (
-                  `${numOffers} Special Offers`
+                  `${numOffers} Special ${numOffers > 1 ? 'Offers' : 'Offer'}`
                 ) : (
                     "Ask About Special Offers"
                   )}
@@ -162,7 +162,7 @@ const ResultCard = ({
                 {numReviews > 0 ? (
                   `${numReviews} Verified Reviews`
                 ) : (
-                    "No reviews yet"
+                    "No Reviews Yet"
                   )}
               </Detail>
             </LineItem>

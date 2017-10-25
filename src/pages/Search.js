@@ -19,14 +19,13 @@ const ResultsContainer = styled.div`
 
   @media screen and (min-width: ${breakpoints._840}) {
     justify-content: flex-start;
-    
   }
 `;
 
 const ResultsWrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 60px;
+  margin-top: 30px;
 `
 
 const FilterContainer = styled.div`
@@ -38,6 +37,16 @@ const ErrorText = styled.span`
   color: ${theme.white};
   font-size: ${toRem(12)};
   font-weight: lighter;
+`
+
+const NumResults = styled.span`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: ${theme.white};
+  font-size: ${toRem(12)};
+  font-weight: lighter;
+  padding: ${toRem(12)};
 `
 
 class Search extends Component {
@@ -130,28 +139,31 @@ class Search extends Component {
               : 
                 data.allPractices && this.getFilteredPractices().length > 0
                   ?
-                    this.getFilteredPractices().map((practice, i) => (
-                      <ResultCard
-                        key={i}
-                        id={practice.id}
-                        name={practice.name}
-                        url={practice.hero && practice.hero.url}
-                        practiceType={
-                          practice.practiceType.length > 1 ? (
-                            "Multiple Types"
-                          ) : practice.practiceType[0] ? (
-                            practice.practiceType[0].name
-                          ) : (
-                                ""
-                              )
-                        }
-                        location={`${practice.city.name}, ${practice.city.state
-                          .postalCode}`}
-                        inNetwork={true}
-                        numOffers={practice.specialOffers.length}
-                        numReviews={practice.testimonials.length}
-                      />
-                    ))
+                    <div>
+                      <NumResults>{`${this.getFilteredPractices().length} Practices Found`}</NumResults>
+                      {this.getFilteredPractices().map((practice, i) => (
+                        <ResultCard
+                          key={i}
+                          id={practice.id}
+                          name={practice.name}
+                          url={practice.hero && practice.hero.url}
+                          practiceType={
+                            practice.practiceType.length > 1 ? (
+                              "Multiple Types"
+                            ) : practice.practiceType[0] ? (
+                              practice.practiceType[0].name
+                            ) : (
+                                  ""
+                                )
+                          }
+                          location={`${practice.city.name}, ${practice.city.state
+                            .postalCode}`}
+                          inNetwork={true}
+                          numOffers={practice.specialOffers.length}
+                          numReviews={practice.testimonials.length}
+                        />
+                      ))}
+                      </div>
                   :
                     <ErrorText>Sorry, we were unable to find any practices that matched your search</ErrorText>
                   }
