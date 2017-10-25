@@ -11,25 +11,32 @@ import Testimonials from "../components/Testimonials";
 import MediaPlayer from "../components/MediaPlayer";
 import Card from "../components/Card";
 import TextField from "material-ui/TextField";
-import { removeDash } from '../utils/utils';
-import { CircularProgress } from 'material-ui/Progress';
-import styled from 'styled-components'
+import { removeDash } from "../utils/utils";
+import { CircularProgress } from "material-ui/Progress";
+import styled from "styled-components";
+import SocialMediaBar from "../components/SocialMediaBar";
 // import DatePicker from "material-ui/DatePicker";
 // import AutoComplete from "material-ui/AutoComplete";
 // import Toggle from "material-ui/Toggle";
 
-
 import { gql, graphql } from "react-apollo";
 import queryString from "query-string";
 import dummyData from "../listingPageData";
-import RequestAppointmentForm from '../components/RequestAppointmentForm'
+import RequestAppointmentForm from "../components/RequestAppointmentForm";
 
 const ProgressWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-`
+`;
+
+const SocialMediaBarWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const SocialMediaBarInner = styled.div`width: 40%;`;
 
 class ListingPage extends Component {
   handleGetInsurances = () =>
@@ -43,22 +50,21 @@ class ListingPage extends Component {
       <div>
         <div>
           <Section background={theme.lightBlue} zIndex={-1}>
-            {
-              data.loading ? 
-                <ProgressWrapper>
-                  <CircularProgress size={50} /> 
-                </ProgressWrapper> 
-              : 
-                <ListingHeader>
-                  {data.Practice && removeDash(data.Practice.name)}
-                </ListingHeader>
-              }
+            {data.loading ? (
+              <ProgressWrapper>
+                <CircularProgress size={50} />
+              </ProgressWrapper>
+            ) : (
+              <ListingHeader>
+                {data.Practice && removeDash(data.Practice.name)}
+              </ListingHeader>
+            )}
           </Section>
           {data.loading ? (
             <Section background={theme.mediumBlue} zIndex={-2} squareBottom>
               <Card background={theme.aliceBlue}>
                 <ProgressWrapper>
-                  <CircularProgress size={50} /> 
+                  <CircularProgress size={50} />
                 </ProgressWrapper>
               </Card>
             </Section>
@@ -123,6 +129,16 @@ class ListingPage extends Component {
                     location={data.Practice.location}
                     address={data.Practice.address}
                   />
+                  <SocialMediaBarWrapper>
+                    <SocialMediaBarInner>
+                      <SocialMediaBar
+                        facebook={data.Practice.facebook}
+                        instagram={data.Practice.instagram}
+                        twitter={data.Practice.twitter}
+                        youtube={data.Practice.youtube}
+                      />
+                    </SocialMediaBarInner>
+                  </SocialMediaBarWrapper>
                 </Card>
               </Section>
 
@@ -132,15 +148,19 @@ class ListingPage extends Component {
                     Request Appointment
                   </SectionHeader>
 
-                  <RequestAppointmentForm insurances={data.Practice.insurances} specialOffers={data.Practice.specialOffers} handleUpdate={handleChange} />
+                  <RequestAppointmentForm
+                    insurances={data.Practice.insurances}
+                    specialOffers={data.Practice.specialOffers}
+                    handleUpdate={handleChange}
+                  />
                 </Card>
               </Section>
             </div>
           ) : (
-                <Section background={theme.mediumBlue} zIndex={-2} squareBottom>
-                  <Card background={theme.aliceBlue}>Practice Not Found</Card>
-                </Section>
-              )}
+            <Section background={theme.mediumBlue} zIndex={-2} squareBottom>
+              <Card background={theme.aliceBlue}>Practice Not Found</Card>
+            </Section>
+          )}
         </div>
       </div>
     );
@@ -172,6 +192,10 @@ const Query = gql`
       phone
       email
       website
+      facebook
+      youtube
+      twitter
+      instagram
       insurances {
         id
         name
@@ -191,7 +215,6 @@ const PracticeQuery = graphql(Query, {
   options: props => ({
     variables: {
       practice: queryString.parse(props.location.search).practice
-
     }
   })
 })(withTheme(ListingPage));
