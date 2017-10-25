@@ -6,3 +6,6 @@ export const youtubeEmbedUrl = watchUrl =>
 export const removeDash = string => string.replace(/-/g, " ");
 
 export const addDash = string => string.replace(/ /g, "-");
+
+export const capitalizeFirstLetter = string =>
+  string.charAt(0).toUpperCase() + string.slice(1);

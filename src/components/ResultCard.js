@@ -53,11 +53,11 @@ const AvatarWrapper = styled.div`
 const CardTitle = styled.h1`
   color: ${theme.mediumBlue};
   font-weight: lighter;
-  font-size: ${toRem(16)};
+  font-size: ${toRem(12)};
   margin: 0;
 
   @media screen and (min-width: ${breakpoints._480}) {
-    font-size: ${toRem(18)};
+    font-size: ${toRem(14)};
   }
 `;
 
@@ -69,12 +69,12 @@ const ContentWrapper = styled.div`
 
 const Location = styled.span`
   margin-left: ${toRem(6)};
-  font-size: ${toRem(12)};
+  font-size: ${toRem(9)};
   color: ${theme.darkGrey};
   font-weight: lighter;
 
   @media screen and (min-width: ${breakpoints._480}) {
-    font-size: ${toRem(14)};
+    font-size: ${toRem(11)};
   }
 `;
 

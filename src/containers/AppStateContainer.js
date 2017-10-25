@@ -9,13 +9,14 @@ import { ThemeProvider } from "styled-components";
 import Landing from "../pages/index";
 import Listing from "../pages/listing";
 import Search from "../pages/Search";
+import State from "../pages/State";
 import ResultCard from "../pages/ResultCard";
 import theme from "../theme/theme";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import "../index.css";
-import ScrollToTop from '../components/ScrollToTop'
+import ScrollToTop from "../components/ScrollToTop";
 
 const networkInterface = createNetworkInterface({
   uri: "https://api.graphcms.com/simple/v1/cj7mqzlyl07dt0145piidjnni"
@@ -41,7 +42,7 @@ class AppStateContainer extends Component {
       <ApolloProvider client={client}>
         <MuiThemeProvider>
           <ThemeProvider theme={theme}>
-            <BrowserRouter >
+            <BrowserRouter>
               <ScrollToTop>
                 <Header />
                 <Switch>
@@ -78,6 +79,10 @@ class AppStateContainer extends Component {
                         handleChange={this.handleChange}
                       />
                     )}
+                  />
+                  <Route
+                    path="/state"
+                    render={({ location }) => <State location={location} />}
                   />
                 </Switch>
                 <Footer />

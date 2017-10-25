@@ -11,4 +11,7 @@ export default `
   allInsurances {
     name
   }
+  allStates {
+    name
+  }
 `;
