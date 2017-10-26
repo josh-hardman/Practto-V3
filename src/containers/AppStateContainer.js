@@ -17,6 +17,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../index.css";
 import ScrollToTop from "../components/ScrollToTop";
+import styled from "styled-components";
 
 const networkInterface = createNetworkInterface({
   uri: "https://api.graphcms.com/simple/v1/cj7mqzlyl07dt0145piidjnni"
@@ -24,6 +25,12 @@ const networkInterface = createNetworkInterface({
 const client = new ApolloClient({
   networkInterface
 });
+
+const Wrapper = styled.div`
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 60px;
+`;
 
 class AppStateContainer extends Component {
   state = {
@@ -44,48 +51,50 @@ class AppStateContainer extends Component {
           <ThemeProvider theme={theme}>
             <BrowserRouter>
               <ScrollToTop>
-                <Header />
-                <Switch>
-                  <Route
-                    exact
-                    path="/"
-                    render={() => (
-                      <Landing
-                        service={service}
-                        city={city}
-                        insurance={insurance}
-                        handleChange={this.handleChange}
-                      />
-                    )}
-                  />
-                  <Route
-                    exact
-                    path="/search"
-                    render={() => (
-                      <Search
-                        service={service}
-                        city={city}
-                        insurance={insurance}
-                        handleChange={this.handleChange}
-                      />
-                    )}
-                  />
-                  <Route
-                    path="/listing"
-                    render={({ location }) => (
-                      <Listing
-                        location={location}
-                        insurance={insurance}
-                        handleChange={this.handleChange}
-                      />
-                    )}
-                  />
-                  <Route
-                    path="/state"
-                    render={({ location }) => <State location={location} />}
-                  />
-                </Switch>
-                <Footer />
+                <Wrapper>
+                  <Header />
+                  <Switch>
+                    <Route
+                      exact
+                      path="/"
+                      render={() => (
+                        <Landing
+                          service={service}
+                          city={city}
+                          insurance={insurance}
+                          handleChange={this.handleChange}
+                        />
+                      )}
+                    />
+                    <Route
+                      exact
+                      path="/search"
+                      render={() => (
+                        <Search
+                          service={service}
+                          city={city}
+                          insurance={insurance}
+                          handleChange={this.handleChange}
+                        />
+                      )}
+                    />
+                    <Route
+                      path="/listing"
+                      render={({ location }) => (
+                        <Listing
+                          location={location}
+                          insurance={insurance}
+                          handleChange={this.handleChange}
+                        />
+                      )}
+                    />
+                    <Route
+                      path="/state"
+                      render={({ location }) => <State location={location} />}
+                    />
+                  </Switch>
+                  <Footer />
+                </Wrapper>
               </ScrollToTop>
             </BrowserRouter>
           </ThemeProvider>

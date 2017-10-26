@@ -9,12 +9,23 @@ import SearchFilters from "../components/SearchFilters";
 import { gql, graphql } from "react-apollo";
 import { Link } from "react-router-dom";
 import filterQuery from "../queries/filters";
+import breakpoints from "../theme/breakpoints";
 
 const Lede = styled.h1`
-  font-size: ${toRem(28)};
+  font-size: ${toRem(22)};
   text-align: center;
-  color: ${theme.white};
-  font-weight: normal;
+  color: ${theme.textBlack};
+  font-weight: lighter;
+  position: absolute;
+  width: 50%;
+  left: 2%;
+  top: 20%;
+  padding: ${toRem(8)};
+
+  @media screen and (min-width: ${breakpoints._600}) {
+    font-size: ${toRem(28)};
+    left: 8%;
+  }
 `;
 
 const PracticeType = styled.h1`
@@ -66,6 +77,21 @@ const State = styled.li`
   margin: 0;
 `;
 
+const Background = styled.img`
+  right: 0;
+  height: 35vh;
+  position: absolute;
+  background: ${theme.aliceBlue};
+`;
+
+const Backdrop = styled.div`
+  width: 100%;
+  height: 35vh;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: ${toRem(16)};
+`;
+
 class Landing extends Component {
   onHeaderTyped = () => {
     this.setState({
@@ -92,15 +118,18 @@ class Landing extends Component {
 
   render() {
     const { data, service, city, insurance, handleChange } = this.props;
-    console.log(data);
+
     return (
       <div>
-        <Section background={theme.lightBlue}>
-          <Lede>Dentto lists the highest rated Dentists near you!</Lede>
-        </Section>
-        <Section background={theme.mediumBlue} zIndex={-2} squareBottom>
-          <Question>What can we help you find today?</Question>
-          <Card background={theme.aliceBlue} style={{ marginBottom: "20vh" }}>
+        <Section
+          style={{ overflow: "hidden", padding: 0 }}
+          background={theme.aliceBlue}
+        >
+          <Backdrop>
+            <Background src="landing.png" />
+            <Lede>Dentto lists the highest rated Dentists near you!</Lede>
+          </Backdrop>
+          <Card background={theme.aliceBlue}>
             <FilterContainer>
               <SearchFilters
                 loading={data.loading}
@@ -121,10 +150,10 @@ class Landing extends Component {
               </Link>
             </ButtonContainer>
           </Card>
+        </Section>
+        <Section background={theme.mediumBlue} zIndex={-2} squareBottom>
           <StateSelectorContainer>
-            <StateIntroduction>
-              We are currently serving the following states:
-            </StateIntroduction>
+            <StateIntroduction>Practices by State</StateIntroduction>
             <StateList>
               {data.allStates &&
                 data.allStates.map((state, i) => (

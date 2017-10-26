@@ -10,11 +10,16 @@ import { gql, graphql } from "react-apollo";
 import { Link } from "react-router-dom";
 
 const StyledFooter = styled.div`
+  position: absolute;
+  bottom: 0;
   width: 100%;
+  height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: ${toRem(4)} ${toRem(32)};
+  bottom: 0;
+  left: 0;
 `;
 
 const Copyright = styled.span`

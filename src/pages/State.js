@@ -57,12 +57,13 @@ const CenteredDiv = styled.div`
 `;
 
 const Explanation = styled.h3`
-  color: ${theme.white};
+  color: ${theme.textBlack};
   font-size: ${toRem(16)};
   font-weight: lighter;
   width: 100%;
   text-align: center;
-  padding: ${toRem(12)};
+  padding-left: ${toRem(12)};
+  padding-right: ${toRem(12)};
 `;
 
 class State extends Component {
@@ -73,7 +74,7 @@ class State extends Component {
 
     return (
       <div>
-        <Section background={theme.lightBlue}>
+        <Section background={theme.aliceBlue}>
           <Explanation
           >{`These are our valued customers in the state of ${capitalizeFirstLetter(
             queryString.parse(location.search).state

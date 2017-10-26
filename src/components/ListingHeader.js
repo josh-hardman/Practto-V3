@@ -3,9 +3,9 @@ import theme from "../theme/theme";
 import { toRem } from "../utils/utils";
 
 const ListingHeader = styled.h1`
-  color: ${theme.white};
+  color: ${theme.textBlack};
   font-weight: lighter;
-  font-size: ${toRem(42)};
+  font-size: ${toRem(36)};
   text-transform: capitalize;
   margin: 0;
 `;

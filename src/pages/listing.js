@@ -49,7 +49,7 @@ class ListingPage extends Component {
     return (
       <div>
         <div>
-          <Section background={theme.lightBlue} zIndex={-1}>
+          <Section background={theme.aliceBlue} zIndex={-1}>
             {data.loading ? (
               <ProgressWrapper>
                 <CircularProgress size={50} />
@@ -207,10 +207,6 @@ const Query = gql`
   }
 `;
 
-// Use Dumy Data
-// export default withTheme(ListingPage);
-
-// Fetch Live Data
 const PracticeQuery = graphql(Query, {
   options: props => ({
     variables: {

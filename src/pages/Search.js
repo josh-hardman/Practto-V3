@@ -123,7 +123,7 @@ class Search extends Component {
 
     return (
       <div>
-        <Section background={theme.lightBlue}>
+        <Section background={theme.aliceBlue}>
           <Card background={theme.aliceBlue}>
             <FilterContainer>
               <SearchFilters
