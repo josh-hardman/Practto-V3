@@ -76,7 +76,7 @@ class State extends Component {
       <div>
         <Section background={theme.aliceBlue}>
           <Explanation
-          >{`These are our valued customers in the state of ${capitalizeFirstLetter(
+          >{`These are our the highest rated practices in the state of ${capitalizeFirstLetter(
             queryString.parse(location.search).state
           )}`}</Explanation>
         </Section>
