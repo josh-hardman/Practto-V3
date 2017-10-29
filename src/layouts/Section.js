@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { toRem } from "../utils/utils";
-import PageColumn from '../components/PageColumn'
+import PageColumn from "../components/PageColumn";
 
 const StyledSection = styled.div`
   width: 100%;
@@ -15,7 +15,7 @@ const StyledSection = styled.div`
     top: -200px;
     bottom: ${toRem(20)};
     background: ${props => props.background};
-    transform: skewY(5deg);
+    transform: skewY(2deg);
     box-shadow: ${toRem(2)} ${toRem(2)} ${toRem(40)}
       ${props => props.theme.shadow};
     z-index: ${props => (props.index ? props.index : -1)};
@@ -47,9 +47,9 @@ const Section = ({ children, background, zIndex, squareBottom }) => (
     index={zIndex}
     squareBottom={squareBottom}
   >
-
-    <PageColumn><Padding squareBottom={squareBottom}>{children}</Padding></PageColumn>
-
+    <PageColumn>
+      <Padding squareBottom={squareBottom}>{children}</Padding>
+    </PageColumn>
   </StyledSection>
 );
 

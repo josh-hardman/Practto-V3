@@ -5,7 +5,7 @@ import { toRem } from "../utils/utils";
 const List = styled.ul`
   margin: 0;
   padding: 0 ${props => (!props.padding ? 0 : toRem(18))};
-  list-style: none;
+  list-style: ${props => (props.listStyle ? props.listStyle : "none")};
   line-height: ${toRem(18)};
 `;
 

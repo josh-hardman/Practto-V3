@@ -5,6 +5,7 @@ import { toRem } from "../utils/utils";
 import Menu from "react-icons/lib/md/menu";
 import Clear from "react-icons/lib/md/clear";
 import { Link } from "react-router-dom";
+import breakpoints from "../theme/breakpoints";
 
 const StyledHeader = styled.div`
   width: 100%;
@@ -21,9 +22,42 @@ const Logo = styled.img`
   margin: 0;
 `;
 
-const StyledMenu = styled(Menu)`
+const StyledMobileMenu = styled(Menu)`
   color: ${theme.textBlack};
   transition: all 0.3s ease;
+
+  @media screen and (min-width: ${breakpoints._480}) {
+    display: none;
+  }
+
+  &:hover {
+    color: ${theme.textHoverBlack};
+  }
+
+  &:active {
+    color: ${theme.lightRed};
+  }
+`;
+
+const StyledDesktopMenu = styled.ul`
+  color: ${theme.textBlack};
+  transition: all 0.3s ease;
+  display: none;
+  float: right;
+  margin: 0;
+  padding: 0;
+
+  @media screen and (min-width: ${breakpoints._480}) {
+    display: block;
+  }
+`;
+
+const DesktopNavItem = styled.li`
+  padding: ${toRem(8)};
+  font-weight: lighter;
+  margin: 0;
+  display: inline-block;
+  color: ${theme.textBlack};
 
   &:hover {
     color: ${theme.textHoverBlack};
@@ -105,27 +139,39 @@ class Header extends Component {
     });
 
   render() {
+    const navItems = [
+      { name: "Home", url: "/" },
+      { name: "About", url: "/about" }
+      //   { name: "Contact", url: "/contact" },
+      //   { name: "Get Listed", url: "/get-listed" }
+    ];
+
     return (
       <StyledHeader>
         <Link to="/">
           <Logo src="dentto_logo.svg" />
         </Link>
-        <StyledMenu onClick={this.handleToggleMenu} size={32} />
+        <StyledDesktopMenu>
+          {navItems.map((item, i) => (
+            <DesktopNavItem key={i}>
+              <StyledLink to={item.url}>{item.name}</StyledLink>
+            </DesktopNavItem>
+          ))}
+        </StyledDesktopMenu>
+        <StyledMobileMenu onClick={this.handleToggleMenu} size={32} />
         {this.state.open && (
           <DropDown innerRef={node => (this.node = node)}>
             <CloseWrapper>
               <CloseButton size={32} onClick={this.handleToggleMenu} />
             </CloseWrapper>
             <MenuList>
-              <MenuItem>
-                <StyledLink to="/about">About</StyledLink>
-              </MenuItem>
-              <MenuItem>
-                <StyledLink to="/contact">Contact</StyledLink>
-              </MenuItem>
-              <MenuItem>
-                <StyledLink to="/get-listed">Get Listed</StyledLink>
-              </MenuItem>
+              {navItems.map((item, i) => (
+                <MenuItem key={i}>
+                  <StyledLink to={item.url} onClick={this.handleToggleMenu}>
+                    {item.name}
+                  </StyledLink>
+                </MenuItem>
+              ))}
             </MenuList>
           </DropDown>
         )}

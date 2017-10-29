@@ -92,9 +92,9 @@ const Description = styled.p`
   color: ${theme.textBlack};
 `;
 
-const CardWithBar = styled(Card) `
+const CardWithBar = styled(Card)`
   max-width: ${toRem(300)};
-  
+
   &::before {
     content: "";
     position: absolute;
@@ -124,23 +124,27 @@ export default class Staff extends Component {
   };
 
   render() {
-    const { items } = this.state;
+    const { items = [] } = this.state;
 
     return (
       <SwipeWrapper>
-        <ButtonLeft onClick={this.handleLeft}>
-          <ArrowLeft size={28} color={theme.textBlack} />
-        </ButtonLeft>
-        <ButtonRight onClick={this.handleRight}>
-          <ArrowRight size={28} color={theme.textBlack} />
-        </ButtonRight>
+        {items.length > 1 && (
+          <ButtonLeft onClick={this.handleLeft}>
+            <ArrowLeft size={28} color={theme.textBlack} />
+          </ButtonLeft>
+        )}
+        {items.length > 1 && (
+          <ButtonRight onClick={this.handleRight}>
+            <ArrowRight size={28} color={theme.textBlack} />
+          </ButtonRight>
+        )}
         <ReactSwipe
           ref={node => (this.slideshow = node)}
           swipeOptions={{ continuous: true }}
         >
           {items &&
             items.map((item, i) => (
-             <div key={i}>
+              <div key={i}>
                 <AvatarWrapper>
                   <Avatar widthPercent={80} src={item.image.url} />
                 </AvatarWrapper>
@@ -150,7 +154,7 @@ export default class Staff extends Component {
                     {item.about}
                   </SectionParagraph>
                 </DescriptionWrapper>
-             </div>
+              </div>
             ))}
         </ReactSwipe>
       </SwipeWrapper>

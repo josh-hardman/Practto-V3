@@ -7,6 +7,7 @@ import ApolloClient, { createNetworkInterface } from "apollo-client";
 import { ApolloProvider } from "react-apollo";
 import { ThemeProvider } from "styled-components";
 import Landing from "../pages/index";
+import About from "../pages/About";
 import Listing from "../pages/listing";
 import Search from "../pages/Search";
 import State from "../pages/State";
@@ -92,6 +93,7 @@ class AppStateContainer extends Component {
                       path="/state"
                       render={({ location }) => <State location={location} />}
                     />
+                    <Route path="/about" render={() => <About />} />
                   </Switch>
                   <Footer />
                 </Wrapper>
