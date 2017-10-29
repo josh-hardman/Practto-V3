@@ -69,9 +69,9 @@ const Description = styled.p`
   color: ${theme.textBlack};
 `;
 
-const CardWithBar = styled(Card) `
+const CardWithBar = styled(Card)`
   max-width: ${toRem(300)};
-  
+
   &::before {
     content: "";
     position: absolute;
@@ -101,16 +101,21 @@ export default class Testimonial extends Component {
   };
 
   render() {
-    const { items } = this.state;
+    const { items = [] } = this.state;
 
     return (
       <SwipeWrapper>
-        <ButtonLeft onClick={this.handleLeft}>
-          <ArrowLeft size={28} color={theme.textBlack} />
-        </ButtonLeft>
-        <ButtonRight onClick={this.handleRight}>
-          <ArrowRight size={28} color={theme.textBlack} />
-        </ButtonRight>
+        {items.length > 1 && (
+          <ButtonLeft onClick={this.handleLeft}>
+            <ArrowLeft size={28} color={theme.textBlack} />
+          </ButtonLeft>
+        )}
+        {items.length > 1 && (
+          <ButtonRight onClick={this.handleRight}>
+            <ArrowRight size={28} color={theme.textBlack} />
+          </ButtonRight>
+        )}
+
         <ReactSwipe
           ref={node => (this.slideshow = node)}
           swipeOptions={{ continuous: true }}
@@ -125,7 +130,11 @@ export default class Testimonial extends Component {
                         <Flex>
                           <Avatar src={item.image.url} width={80} />
                         </Flex>
-                        <Divider color={theme.darkRed} paddingTop={8} paddingBottom={16} />
+                        <Divider
+                          color={theme.darkRed}
+                          paddingTop={8}
+                          paddingBottom={16}
+                        />
                       </div>
                     )}
                     <Description>{`"${item.content}"`}</Description>
