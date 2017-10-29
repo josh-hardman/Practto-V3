@@ -10,6 +10,7 @@ import { gql, graphql } from "react-apollo";
 import { Link } from "react-router-dom";
 import filterQuery from "../queries/filters";
 import breakpoints from "../theme/breakpoints";
+import SectionHeader from "../components/SectionHeader";
 
 const Lede = styled.h1`
   font-size: ${toRem(22)};
@@ -72,7 +73,7 @@ const StateIntroduction = styled.h3`
 const State = styled.li`
   text-decoration: none;
   color: ${theme.white};
-  font-size: ${toRem(12)};
+  font-size: ${toRem(14)};
   font-weight: lighter;
   margin: 0;
 `;
@@ -152,8 +153,8 @@ class Landing extends Component {
           </Card>
         </Section>
         <Section background={theme.mediumBlue} zIndex={-2} squareBottom>
+          <SectionHeader>Practices by State</SectionHeader>
           <StateSelectorContainer>
-            <StateIntroduction>Practices by State</StateIntroduction>
             <StateList>
               {data.allStates &&
                 data.allStates.map((state, i) => (

@@ -1,17 +1,17 @@
 export default `
-  allPracticeTypeses {
+  allPracticeTypeses(orderBy: name_ASC) {
     name
   }
-  allCities {
+  allCities(orderBy: name_ASC) {
     name
     state {
       postalCode
     }
   }
-  allInsurances {
+  allInsurances(orderBy: name_ASC) {
     name
   }
-  allStates {
+  allStates(orderBy: name_ASC) {
     name
   }
 `;
