@@ -186,7 +186,7 @@ class Search extends Component {
 const query = gql`
   query {
     ${filterQuery}
-    allPractices {
+    allPractices(orderBy: name_ASC) {
       name
       id
       hero {
@@ -199,16 +199,16 @@ const query = gql`
           postalCode
         }
       }
-      practiceType {
+      practiceType(orderBy: name_ASC) {
         name
       }
-      specialOffers {
+      specialOffers(orderBy: name_ASC) {
         id
       }
-      testimonials {
+      testimonials(orderBy: name_ASC) {
         id
       }
-      insurances {
+      insurances(orderBy: name_ASC) {
         name
       }
     }
