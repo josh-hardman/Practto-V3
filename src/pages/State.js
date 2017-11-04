@@ -70,8 +70,6 @@ class State extends Component {
   render() {
     const { data, loading, location } = this.props;
 
-    console.log(data);
-
     return (
       <div>
         <Section background={theme.aliceBlue}>
@@ -132,7 +130,10 @@ class State extends Component {
 
 const Query = gql`
   query($state: String) {
-    allPractices(filter: { city: { state: { name: $state } } }) {
+    allPractices(
+      filter: { city: { state: { name: $state } } }
+      orderBy: name_ASC
+    ) {
       name
       id
       hero {

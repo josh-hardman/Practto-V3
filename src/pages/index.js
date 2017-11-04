@@ -71,11 +71,15 @@ const StateIntroduction = styled.h3`
 `;
 
 const State = styled.li`
-  text-decoration: none;
   color: ${theme.white};
-  font-size: ${toRem(14)};
+  font-size: ${toRem(16)};
   font-weight: lighter;
+  padding-bottom: 8px;
   margin: 0;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const Background = styled.img`

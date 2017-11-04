@@ -119,8 +119,6 @@ class Search extends Component {
       handleChange
     } = this.props;
 
-    console.log(data);
-
     return (
       <div>
         <Section background={theme.aliceBlue}>

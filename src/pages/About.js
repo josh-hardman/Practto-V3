@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import Section from "../layouts/Section";
 import Card from "../components/Card";
 import theme from "../theme/theme";
@@ -8,6 +9,26 @@ import SectionParagraph from "../components/SectionParagraph";
 import Divider from "../components/Divider";
 import LineItem from "../components/LineItem";
 import List from "../components/List";
+import Avatar from "../components/Avatar";
+import breakpoints from "../theme/breakpoints";
+
+// const EddieWrapper = styled.div`
+//   display: flex;
+//   flex-wrap: wrap;
+// `;
+
+const AvatarWrapper = styled.div`
+  width: 50%;
+  min-width: 150px;
+  float: left;
+  padding: 12px;
+
+  @media screen and (min-width: ${breakpoints._480}) {
+    width: 25%;
+  }
+`;
+
+// const AboutParagraph = styled(SectionParagraph)`flex-grow: 1;`;
 
 const About = () => (
   <div>
@@ -61,18 +82,10 @@ const About = () => (
         <SectionHeader color={theme.textBlack}>
           Eddie Laparra: Founder/ CEO of dentto
         </SectionHeader>
-        <SectionParagraph color={theme.textBlack}>
-          Graduated in 2014 with an emphasis on Business development from The
-          Suazo Business Center hosted through Utah Valley University.
-        </SectionParagraph>
-        <SectionParagraph color={theme.textBlack}>
-          Completed courses: Business Administration, in Mariano Galvez
-          University (Guatemala)
-        </SectionParagraph>
-        <SectionParagraph color={theme.textBlack}>
-          Professional Sales, Basic Accounting and Quick Books, Personal
-          Finances, and Protocol in The Suazo Business Center. (Utah)
-        </SectionParagraph>
+
+        <AvatarWrapper>
+          <Avatar height={100} src="eddie.jpg" />
+        </AvatarWrapper>
         <SectionParagraph color={theme.textBlack}>
           In 2005, he created the company Voda Reputation. Mr. Laparra started
           working with companies to help increase their reputation and ranking
@@ -81,6 +94,17 @@ const About = () => (
           prospective clients by creating a more personalized directory targeted
           towards service providers.
         </SectionParagraph>
+
+        <List>
+          <LineItem margin={12} fontSize={12}>
+            Graduated in 2014 with an emphasis on Business development from The
+            Suazo Business Center hosted through Utah Valley University.
+          </LineItem>
+          <LineItem margin={12} fontSize={12}>
+            Professional Sales, Basic Accounting and Quick Books, Personal
+            Finances, and Protocol in The Suazo Business Center. (Utah)
+          </LineItem>
+        </List>
 
         <Divider />
 
