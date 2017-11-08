@@ -103,6 +103,14 @@ class TextFields extends React.Component {
         </FieldWrapper>
         <FieldWrapper>
           <TextField
+            id="phone"
+            name="phone"
+            label="Phone Number"
+            className={classes.textField}
+          />
+        </FieldWrapper>
+        <FieldWrapper>
+          <TextField
             id="request_date"
             name="request_date"
             label="Request Date"
@@ -129,14 +137,6 @@ class TextFields extends React.Component {
                 ))}
             </Select>
           </FormControl>
-        </FieldWrapper>
-        <FieldWrapper>
-          <TextField
-            id="email"
-            name="email"
-            label="email"
-            className={classes.textField}
-          />
         </FieldWrapper>
         <FieldWrapper>
           <TextField

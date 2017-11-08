@@ -144,7 +144,7 @@ const ResultCard = ({
             <Check size={14} />
             <Detail>{inNetwork ? "In Network" : "Out of Network"}</Detail>
           </LineItem>
-          <LineItem margin={0} color={theme.lightRed}>
+          <LineItem margin={0} color={theme.orange}>
             <Offer size={14} />
             <Detail>
               {numOffers > 0
@@ -152,12 +152,14 @@ const ResultCard = ({
                 : "Ask About Special Offers"}
             </Detail>
           </LineItem>
-          <LineItem margin={0} color={theme.lightRed}>
+          <LineItem margin={0} color={theme.orange}>
             <Chat size={14} />
             <Detail>
-              {numReviews > 0
-                ? `${numReviews} Verified Reviews`
-                : "No Reviews Yet"}
+              {numReviews === 1
+                ? `${numReviews} Verified Review`
+                : numReviews > 1
+                  ? `${numReviews} Verified Reviews`
+                  : "No Reviews Yet"}
             </Detail>
           </LineItem>
         </List>
