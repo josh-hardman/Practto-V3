@@ -73,16 +73,18 @@ class TextFields extends React.Component {
       specialOffers = [],
       insurance,
       insurances = [],
-      handleUpdate
+      handleUpdate,
+      practice
     } = this.props;
     return (
       <StyledForm
-        name="new_appointment_requested"
+        name="appointment_request"
         method="post"
         action="thank-you"
         netlify
       >
         <input type="hidden" name="form-name" value="appointment_request" />
+        <input type="hidden" name="practice" value={practice} />
         <FieldWrapper>
           <TextField
             id="full_name"

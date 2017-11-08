@@ -210,6 +210,7 @@ class ListingPage extends Component {
                     insurances={data.Practice.insurances}
                     specialOffers={data.Practice.specialOffers}
                     handleUpdate={handleChange}
+                    practice={data.Practice.name}
                   />
                 </Card>
               </Section>

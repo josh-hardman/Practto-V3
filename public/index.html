@@ -32,10 +32,12 @@
 
   <!-- A little help for the Netlify post-processing bots -->
 
-  <form name="new_appointment_requested" netlify netlify-honeypot="bot-field" action='thank-you' hidden>
+  <form name="appointment_request" netlify netlify-honeypot="bot-field" action='thank-you' hidden>
     <input type="text" name="bot-field" />
+    <input type="text" name="practice" />
     <input type="text" name="full_name" />
     <input type="text" name="email" />
+    <input type="text" name="phone" />
     <input type="text" name="request_date" />
     <input type="text" name="insuance" />
     <input type="text" name="special_offer[]" />
