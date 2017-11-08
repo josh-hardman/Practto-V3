@@ -44,6 +44,63 @@ class ListingPage extends Component {
 
   handleGetTitle = () => this.props.data.Practice.name;
 
+  handleGetOfficeHours = () => {
+    const {
+      mondayOpen,
+      mondayClose,
+      tuesdayOpen,
+      tuesdayClose,
+      wednesdaysOpen,
+      wednesdaysClose,
+      thursdaysOpen,
+      thursdaysClose,
+      fridaysOpen,
+      fridaysClose,
+      saturdayOpen,
+      saturdayClose,
+      sundayOpen,
+      sundayClose
+    } = this.props.data.Practice;
+
+    return [
+      {
+        name: "Monday",
+        open: (mondayOpen && mondayOpen.time) || "Closed",
+        close: (mondayClose && mondayClose.time) || "Closed"
+      },
+      {
+        name: "Tuesday",
+        open: (tuesdayOpen && tuesdayOpen.time) || "Closed",
+        close: (tuesdayClose && tuesdayClose.time) || "Closed"
+      },
+      {
+        name: "Wednesday",
+        open: (wednesdaysOpen && wednesdaysOpen.time) || "Closed",
+        close: (wednesdaysClose && wednesdaysClose.time) || "Closed"
+      },
+      {
+        name: "Thursday",
+        open: (thursdaysOpen && thursdaysOpen.time) || "Closed",
+        close: (thursdaysClose && thursdaysClose.time) || "Closed"
+      },
+      {
+        name: "Friday",
+        open: (fridaysOpen && fridaysOpen.time) || "Closed",
+        close: (fridaysClose && fridaysClose.time) || "Closed"
+      },
+      {
+        name: "Saturday",
+        open: (saturdayOpen && saturdayOpen.time) || "Closed",
+        close: (saturdayClose && saturdayClose.time) || "Closed"
+      },
+      {
+        name: "Sunday",
+        open: (sundayOpen && sundayOpen.time) || "Closed",
+        close: (sundayClose && sundayClose.time) || "Closed"
+      }
+    ];
+  };
+
   render() {
     const { theme, location, data = dummyData, handleChange } = this.props;
     return (
@@ -128,6 +185,7 @@ class ListingPage extends Component {
                     website={data.Practice.website}
                     location={data.Practice.location}
                     address={data.Practice.address}
+                    officeHours={this.handleGetOfficeHours()}
                   />
                   <SocialMediaBarWrapper>
                     <SocialMediaBarInner>
@@ -202,6 +260,48 @@ const Query = gql`
       }
       specialOffers {
         name
+      }
+      mondayOpen {
+        time
+      }
+      mondayClose {
+        time
+      }
+      tuesdayOpen {
+        time
+      }
+      tuesdayClose {
+        time
+      }
+      wednesdaysOpen {
+        time
+      }
+      wednesdaysClose {
+        time
+      }
+      thursdaysOpen {
+        time
+      }
+      thursdaysClose {
+        time
+      }
+      fridaysOpen {
+        time
+      }
+      fridaysClose {
+        time
+      }
+      saturdayOpen {
+        time
+      }
+      saturdayClose {
+        time
+      }
+      sundayOpen {
+        time
+      }
+      sundayClose {
+        time
       }
     }
   }

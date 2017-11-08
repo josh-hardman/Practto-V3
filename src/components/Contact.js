@@ -8,6 +8,7 @@ import Web from "react-icons/lib/fa/globe";
 import Place from "react-icons/lib/md/place";
 import LineItem from "../components/LineItem";
 import List from "../components/List";
+import Hours from "../components/Hours";
 
 import { compose, withStateHandlers } from "recompose";
 import {
@@ -57,7 +58,15 @@ const MapWithInfoWindow = compose(
   </GoogleMap>
 ));
 
-const Contact = ({ phone, email, website, location, practice, address }) => (
+const Contact = ({
+  phone,
+  email,
+  website,
+  location,
+  practice,
+  address,
+  officeHours
+}) => (
   <CenterContent>
     <ContactBlock>
       <List>
@@ -103,6 +112,7 @@ const Contact = ({ phone, email, website, location, practice, address }) => (
           practice={practice}
         />
       </MapContainer>
+      <Hours hours={officeHours} />
     </ContactBlock>
   </CenterContent>
 );
