@@ -155,25 +155,16 @@ class TextFields extends React.Component {
             <OffersWrapper>
               <Offers>Special Offers</Offers>
 
-              {specialOffers.map((item, i) => (
-                <FormControlLabel
-                  key={i}
-                  control={
-                    <Switch
-                      inputProps={{
-                        id: `special_offer[${addDash(
-                          removeSpecialChars(item.name)
-                        )}]`,
-                        name: `special_offer[${addDash(
-                          removeSpecialChars(item.name)
-                        )}]`
-                      }}
-                      aria-label="checkedA"
-                    />
-                  }
-                  label={item.name}
-                />
-              ))}
+              <FormControlLabel
+                control={
+                  <Switch
+                    inputProps={{
+                      name: `special_offer-cash_discount`
+                    }}
+                  />
+                }
+                label="$25 cash after your first visit"
+              />
             </OffersWrapper>
           )}
         </FieldWrapper>
