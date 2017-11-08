@@ -61,10 +61,7 @@ class Hours extends Component {
                     <ArrowDown onClick={this.handleToggleExpand} />
                   </div>
                 ) : (
-                  <div>
-                    Office Hours
-                    <ArrowUp onClick={this.handleToggleExpand} />
-                  </div>
+                  <div>Office Hours</div>
                 )}
               </TitleCell>
             </Row>

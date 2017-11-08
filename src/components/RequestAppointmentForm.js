@@ -76,11 +76,17 @@ class TextFields extends React.Component {
       handleUpdate
     } = this.props;
     return (
-      <StyledForm method="post">
+      <StyledForm
+        name="request_an_appointment"
+        method="post"
+        action="thank-you"
+        netlify
+      >
         <input type="hidden" name="form-name" value="appointment_request" />
         <FieldWrapper>
           <TextField
             id="full_name"
+            name="full_name"
             label="Full Name"
             margin="normal"
             className={classes.textField}
@@ -89,6 +95,7 @@ class TextFields extends React.Component {
         <FieldWrapper>
           <TextField
             id="email"
+            name="email"
             label="Email"
             margin="normal"
             className={classes.textField}
@@ -97,22 +104,21 @@ class TextFields extends React.Component {
         <FieldWrapper>
           <TextField
             id="request_date"
+            name="request_date"
             label="Request Date"
             type="date"
-            InputLabelProps={{
-              shrink: true
-            }}
+            InputLabelProps={{ shrink: true }}
             className={classes.textField}
           />
         </FieldWrapper>
         <FieldWrapper>
           <FormControl className={classes.textField}>
-            <InputLabel htmlFor="age-native-simple">Insurance</InputLabel>
+            <InputLabel htmlFor="insurance">Insurance</InputLabel>
             <Select
               native
               value={insurance}
               onChange={handleUpdate("insurance")}
-              input={<Input id="age-native-simple" />}
+              input={<Input id="insurance" name="insurance" />}
             >
               <option value="" />
               {insurances &&
@@ -125,13 +131,19 @@ class TextFields extends React.Component {
           </FormControl>
         </FieldWrapper>
         <FieldWrapper>
-          <TextField label="email" className={classes.textField} />
+          <TextField
+            id="email"
+            name="email"
+            label="email"
+            className={classes.textField}
+          />
         </FieldWrapper>
         <FieldWrapper>
           <TextField
             label="Additional Comments"
+            id="additional_comments"
+            name="additional_comments"
             floatingLabelFixed={true}
-            floatingLabelText="Phone Number"
             className={classes.textField}
           />
         </FieldWrapper>
@@ -144,7 +156,11 @@ class TextFields extends React.Component {
                 <FormControlLabel
                   key={i}
                   control={
-                    <Switch name={`special_offer[]`} aria-label="checkedA" />
+                    <Switch
+                      id={`special_offer[]`}
+                      name={`special_offer[]`}
+                      aria-label="checkedA"
+                    />
                   }
                   label={item.name}
                 />
@@ -154,11 +170,11 @@ class TextFields extends React.Component {
         </FieldWrapper>
 
         <ButtonContainer>
-          <Link style={{ textDecoration: "none" }} to="/search">
-            <Button raised color="primary">
-              Search
-            </Button>
-          </Link>
+          {/* <Link style={{ textDecoration: "none" }} to="/search"> */}
+          <Button type="submit" raised color="primary">
+            Search
+          </Button>
+          {/* </Link> */}
           <FinePrint>
             * This form will request an appointment on your behalf. You should
             receive an email to confirm your visit shortly.
