@@ -7,5 +7,7 @@ export const removeDash = string => string.replace(/-/g, " ");
 
 export const addDash = string => string.replace(/ /g, "-");
 
+export const removeSpecialChars = string => string.replace(/[^\w\s]/gi, "");
+
 export const capitalizeFirstLetter = string =>
   string.charAt(0).toUpperCase() + string.slice(1);

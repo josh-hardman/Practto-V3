@@ -14,7 +14,7 @@ import { FormControl, FormControlLabel } from "material-ui/Form";
 import Input, { InputLabel } from "material-ui/Input";
 import Select from "material-ui/Select";
 import breakpoints from "../theme/breakpoints";
-import { addDash } from "../utils/utils";
+import { addDash, removeSpecialChars } from "../utils/utils";
 
 const FinePrint = styled.p`
   padding: 0 ${toRem(12)};
@@ -160,8 +160,12 @@ class TextFields extends React.Component {
                   key={i}
                   control={
                     <Switch
-                      id={`special_offer[${addDash(item.name)}]`}
-                      name={`special_offer[${addDash(item.name)}]`}
+                      id={`special_offer[${addDash(
+                        removeSpecialChars(item.name)
+                      )}]`}
+                      name={`special_offer[${addDash(
+                        removeSpecialChars(item.name)
+                      )}]`}
                       aria-label="checkedA"
                     />
                   }
