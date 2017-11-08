@@ -160,12 +160,14 @@ class TextFields extends React.Component {
                   key={i}
                   control={
                     <Switch
-                      id={`special_offer[${addDash(
-                        removeSpecialChars(item.name)
-                      )}]`}
-                      name={`special_offer[${addDash(
-                        removeSpecialChars(item.name)
-                      )}]`}
+                      inputProps={{
+                        id: `special_offer[${addDash(
+                          removeSpecialChars(item.name)
+                        )}]`,
+                        name: `special_offer[${addDash(
+                          removeSpecialChars(item.name)
+                        )}]`
+                      }}
                       aria-label="checkedA"
                     />
                   }
