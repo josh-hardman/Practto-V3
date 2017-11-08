@@ -159,8 +159,8 @@ class TextFields extends React.Component {
                   key={i}
                   control={
                     <Switch
-                      id={`special_offer[]`}
-                      name={`special_offer[]`}
+                      id={`special_offer[${item.name}]`}
+                      name={`special_offer[${item.name}]`}
                       aria-label="checkedA"
                     />
                   }
