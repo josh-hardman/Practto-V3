@@ -84,7 +84,11 @@ class TextFields extends React.Component {
         action="thank-you"
         netlify
       >
-        <input type="hidden" name="form-name" value="appointment_request" />
+        <input
+          type="hidden"
+          name="form-name"
+          value="new_appointment_requested"
+        />
         <input type="hidden" name="practice" value={practice} />
         <FieldWrapper>
           <TextField
