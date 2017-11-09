@@ -154,17 +154,19 @@ class TextFields extends React.Component {
           {specialOffers.length > 0 && (
             <OffersWrapper>
               <Offers>Special Offers</Offers>
-
-              <FormControlLabel
-                control={
-                  <Switch
-                    inputProps={{
-                      name: `special_offer-cash_discount`
-                    }}
-                  />
-                }
-                label="$25 cash after your first visit"
-              />
+              {specialOffers.map((offer, i) => (
+                <FormControlLabel
+                  key={i}
+                  control={
+                    <Switch
+                      inputProps={{
+                        name: `special_offer-${offer.key}`
+                      }}
+                    />
+                  }
+                  label="$25 cash after your first visit"
+                />
+              ))}
             </OffersWrapper>
           )}
         </FieldWrapper>

@@ -261,6 +261,7 @@ const Query = gql`
       }
       specialOffers {
         name
+        key
       }
       mondayOpen {
         time
