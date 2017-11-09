@@ -160,7 +160,8 @@ class TextFields extends React.Component {
                   control={
                     <Switch
                       inputProps={{
-                        name: `special_offer-${offer.key}`
+                        name: `special_offer-${offer.key}`,
+                        id: `special_offer-${offer.key}`
                       }}
                     />
                   }
