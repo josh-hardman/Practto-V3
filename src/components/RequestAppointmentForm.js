@@ -79,7 +79,7 @@ class TextFields extends React.Component {
     } = this.props;
     return (
       <StyledForm
-        name="appointment_request"
+        name="new_appointment_requested"
         method="post"
         action="thank-you"
         netlify
