@@ -9,6 +9,7 @@ import { ThemeProvider } from "styled-components";
 import Landing from "../pages/index";
 import About from "../pages/About";
 import Listing from "../pages/listing";
+import Contact from "../pages/Contact";
 import Search from "../pages/Search";
 import State from "../pages/State";
 import ResultCard from "../pages/ResultCard";
@@ -94,6 +95,7 @@ class AppStateContainer extends Component {
                       render={({ location }) => <State location={location} />}
                     />
                     <Route path="/about" render={() => <About />} />
+                    <Route path="/contact" render={() => <Contact />} />
                   </Switch>
                   <Footer />
                 </Wrapper>

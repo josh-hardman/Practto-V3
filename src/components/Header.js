@@ -141,8 +141,9 @@ class Header extends Component {
   render() {
     const navItems = [
       { name: "Home", url: "/" },
-      { name: "About", url: "/about" }
-      //   { name: "Contact", url: "/contact" },
+      { name: "About", url: "/about" },
+      { name: "Contact Us", url: "/contact" }
+
       //   { name: "Get Listed", url: "/get-listed" }
     ];
 
