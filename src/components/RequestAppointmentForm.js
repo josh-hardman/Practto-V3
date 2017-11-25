@@ -1,20 +1,15 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
-import MenuItem from "material-ui/Menu/MenuItem";
 import TextField from "material-ui/TextField";
 import styled from "styled-components";
-import { toRem, removeDash } from "../utils/utils";
-import { toggleLabel } from "../theme/materialStyles";
+import { toRem } from "../utils/utils";
 import Switch from "material-ui/Switch";
-import SelectFilter from "../components/SelectFilter";
 import Button from "material-ui/Button";
-import { Link } from "react-router-dom";
 import { FormControl, FormControlLabel } from "material-ui/Form";
 import Input, { InputLabel } from "material-ui/Input";
 import Select from "material-ui/Select";
 import breakpoints from "../theme/breakpoints";
-import { addDash, removeSpecialChars } from "../utils/utils";
 
 const FinePrint = styled.p`
   padding: 0 ${toRem(12)};
@@ -67,7 +62,7 @@ const FieldWrapper = styled.div`
   }
 `;
 
-class TextFields extends React.Component {
+class TextFields extends Component {
   render() {
     const {
       classes,
