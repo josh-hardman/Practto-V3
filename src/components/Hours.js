@@ -48,7 +48,8 @@ class Hours extends Component {
 
   render() {
     const { hours } = this.props;
-    const dayOfWeek = new Date().getDay() - 1;
+    const dayOfWeek = new Date().getDay();
+    console.log(dayOfWeek);
     return (
       <div>
         <StyledHours>

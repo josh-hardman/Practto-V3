@@ -64,6 +64,11 @@ class ListingPage extends Component {
 
     return [
       {
+        name: "Sunday",
+        open: (sundayOpen && sundayOpen.time) || "Closed",
+        close: (sundayClose && sundayClose.time) || "Closed"
+      },
+      {
         name: "Monday",
         open: (mondayOpen && mondayOpen.time) || "Closed",
         close: (mondayClose && mondayClose.time) || "Closed"
@@ -92,11 +97,6 @@ class ListingPage extends Component {
         name: "Saturday",
         open: (saturdayOpen && saturdayOpen.time) || "Closed",
         close: (saturdayClose && saturdayClose.time) || "Closed"
-      },
-      {
-        name: "Sunday",
-        open: (sundayOpen && sundayOpen.time) || "Closed",
-        close: (sundayClose && sundayClose.time) || "Closed"
       }
     ];
   };
