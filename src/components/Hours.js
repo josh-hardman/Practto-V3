@@ -11,7 +11,7 @@ const StyledHours = styled.div`
   justify-content: center;
 `;
 
-const StyledTable = styled.table`width: 50%;`;
+const StyledTable = styled.table`width: 95%;`;
 
 const TitleCell = styled.td`
   font-size: ${toRem(18)};

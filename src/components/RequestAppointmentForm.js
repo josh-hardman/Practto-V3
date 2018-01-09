@@ -72,6 +72,7 @@ class TextFields extends Component {
       handleUpdate,
       practice
     } = this.props;
+    console.log("insurances", insurances);
     return (
       <StyledForm
         name="new_appointment_requested"
@@ -133,8 +134,8 @@ class TextFields extends Component {
               <option value="" />
               {insurances &&
                 insurances.map((suggestion, i) => (
-                  <option key={i} value={suggestion}>
-                    {suggestion}
+                  <option key={i} value={suggestion.name}>
+                    {suggestion.name}
                   </option>
                 ))}
             </Select>
