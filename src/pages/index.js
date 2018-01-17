@@ -132,7 +132,7 @@ class Landing extends Component {
         >
           <Backdrop>
             <Background src="landing.png" />
-            <Lede>Dentto lists the highest rated Dentists near you!</Lede>
+            <Lede>Dentto connects you with a Dentist you can trust!</Lede>
           </Backdrop>
           <Card background={theme.aliceBlue}>
             <FilterContainer>
