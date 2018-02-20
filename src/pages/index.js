@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-import styled from "styled-components";
-import { toRem } from "../utils/utils";
-import theme from "../theme/theme";
-import Section from "../layouts/Section";
-import Card from "../components/Card";
-import Button from "material-ui/Button";
-import SearchFilters from "../components/SearchFilters";
-import { gql, graphql } from "react-apollo";
-import { Link } from "react-router-dom";
-import filterQuery from "../queries/filters";
-import breakpoints from "../theme/breakpoints";
-import SectionHeader from "../components/SectionHeader";
+import React, { Component } from 'react'
+import styled from 'styled-components'
+import { toRem } from '../utils/utils'
+import theme from '../theme/theme'
+import Section from '../layouts/Section'
+import Card from '../components/Card'
+import Button from 'material-ui/Button'
+import SearchFilters from '../components/SearchFilters'
+import { gql, graphql } from 'react-apollo'
+import { Link } from 'react-router-dom'
+import filterQuery from '../queries/filters'
+import breakpoints from '../theme/breakpoints'
+import SectionHeader from '../components/SectionHeader'
 
 const Lede = styled.h1`
   font-size: ${toRem(22)};
@@ -27,7 +27,7 @@ const Lede = styled.h1`
     font-size: ${toRem(28)};
     left: 8%;
   }
-`;
+`
 
 const PracticeType = styled.h1`
   width: 100%;
@@ -35,32 +35,32 @@ const PracticeType = styled.h1`
   text-align: center;
   color: ${theme.darkBlue};
   font-weight: normal;
-`;
+`
 
 const Question = styled.p`
   color: ${theme.white};
   font-weight: lighter;
-`;
+`
 
 const FilterContainer = styled.div`
   display: flex;
   justify-content: space-between;
-`;
+`
 
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   padding-top: 32px;
   padding-right: 8px;
-`;
+`
 
-const StateSelectorContainer = styled.div``;
+const StateSelectorContainer = styled.div``
 
 const StateList = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
-`;
+`
 
 const StateIntroduction = styled.h3`
   color: ${theme.white};
@@ -68,7 +68,7 @@ const StateIntroduction = styled.h3`
   font-weight: lighter;
   margin: ${toRem(0)};
   margin-bottom: ${toRem(12)};
-`;
+`
 
 const State = styled.li`
   color: ${theme.white};
@@ -80,14 +80,14 @@ const State = styled.li`
   &:hover {
     text-decoration: underline;
   }
-`;
+`
 
 const Background = styled.img`
   right: 0;
   height: 35vh;
   position: absolute;
   background: ${theme.aliceBlue};
-`;
+`
 
 const Backdrop = styled.div`
   width: 100%;
@@ -95,44 +95,44 @@ const Backdrop = styled.div`
   position: relative;
   overflow: hidden;
   margin-bottom: ${toRem(16)};
-`;
+`
 
 class Landing extends Component {
   onHeaderTyped = () => {
     this.setState({
       index: 1
-    });
-  };
+    })
+  }
 
   handleGetPracticeTypes = () =>
-    this.props.data.allPracticeTypeses
+    (this.props.data.allPracticeTypeses
       ? this.props.data.allPracticeTypeses.map(item => item.name)
-      : [];
+      : [])
 
   handleGetLocations = () =>
-    this.props.data.allCities
+    (this.props.data.allCities
       ? this.props.data.allCities.map(
           item => `${item.name}, ${item.state.postalCode}`
         )
-      : [];
+      : [])
 
   handleGetInsurances = () =>
-    this.props.data.allInsurances
+    (this.props.data.allInsurances
       ? this.props.data.allInsurances.map(item => item.name)
-      : [];
+      : [])
 
-  render() {
-    const { data, service, city, insurance, handleChange } = this.props;
+  render () {
+    const { data, service, city, insurance, handleChange } = this.props
 
     return (
       <div>
         <Section
-          style={{ overflow: "hidden", padding: 0 }}
+          style={{ overflow: 'hidden', padding: 0 }}
           background={theme.aliceBlue}
         >
           <Backdrop>
-            <Background src="landing.png" />
-            <Lede>Dentto connects you with a Dentist you can trust</Lede>
+            <Background src='landing.png' />
+            <Lede>Dentto connects you with a Dentist you can trust!</Lede>
           </Backdrop>
           <Card background={theme.aliceBlue}>
             <FilterContainer>
@@ -148,8 +148,8 @@ class Landing extends Component {
               />
             </FilterContainer>
             <ButtonContainer>
-              <Link style={{ textDecoration: "none" }} to="/search">
-                <Button raised color="primary">
+              <Link style={{ textDecoration: 'none' }} to='/search'>
+                <Button raised color='primary'>
                   Search
                 </Button>
               </Link>
@@ -166,7 +166,7 @@ class Landing extends Component {
                     <Link
                       to={`/state?state=${state.name}`}
                       style={{
-                        textDecoration: "none",
+                        textDecoration: 'none',
                         color: theme.aliceBlue
                       }}
                     >
@@ -178,12 +178,12 @@ class Landing extends Component {
           </StateSelectorContainer>
         </Section>
       </div>
-    );
+    )
   }
 }
 
 const query = gql`query{
   ${filterQuery}
-}`;
+}`
 
-export default graphql(query)(Landing);
+export default graphql(query)(Landing)
