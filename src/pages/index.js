@@ -10,7 +10,7 @@ import { gql, graphql } from 'react-apollo'
 import { Link } from 'react-router-dom'
 import filterQuery from '../queries/filters'
 import breakpoints from '../theme/breakpoints'
-import SectionHeader from '../components/SectionHeader'
+import PropTypes from 'prop-types'
 
 const Lede = styled.h1`
   font-size: ${toRem(22)};
@@ -29,19 +29,6 @@ const Lede = styled.h1`
   }
 `
 
-const PracticeType = styled.h1`
-  width: 100%;
-  font-size: ${toRem(40)};
-  text-align: center;
-  color: ${theme.darkBlue};
-  font-weight: normal;
-`
-
-const Question = styled.p`
-  color: ${theme.white};
-  font-weight: lighter;
-`
-
 const FilterContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -52,34 +39,6 @@ const ButtonContainer = styled.div`
   justify-content: flex-end;
   padding-top: 32px;
   padding-right: 8px;
-`
-
-const StateSelectorContainer = styled.div``
-
-const StateList = styled.ul`
-  list-style: none;
-  margin: 0;
-  padding: 0;
-`
-
-const StateIntroduction = styled.h3`
-  color: ${theme.white};
-  font-size: ${toRem(14)};
-  font-weight: lighter;
-  margin: ${toRem(0)};
-  margin-bottom: ${toRem(12)};
-`
-
-const State = styled.li`
-  color: ${theme.white};
-  font-size: ${toRem(16)};
-  font-weight: lighter;
-  padding-bottom: 8px;
-  margin: 0;
-
-  &:hover {
-    text-decoration: underline;
-  }
 `
 
 const Background = styled.img`
@@ -156,30 +115,17 @@ class Landing extends Component {
             </ButtonContainer>
           </Card>
         </Section>
-        <Section background={theme.mediumBlue} zIndex={-2} squareBottom>
-          <SectionHeader>Practices by State</SectionHeader>
-          <StateSelectorContainer>
-            <StateList>
-              {data.allStates &&
-                data.allStates.map((state, i) => (
-                  <State key={i}>
-                    <Link
-                      to={`/state?state=${state.name}`}
-                      style={{
-                        textDecoration: 'none',
-                        color: theme.aliceBlue
-                      }}
-                    >
-                      {state.name}
-                    </Link>
-                  </State>
-                ))}
-            </StateList>
-          </StateSelectorContainer>
-        </Section>
       </div>
     )
   }
+}
+
+Landing.propTypes = {
+  data: PropTypes.object,
+  service: PropTypes.string,
+  city: PropTypes.string,
+  insurance: PropTypes.string,
+  handleChange: PropTypes.func
 }
 
 const query = gql`query{
