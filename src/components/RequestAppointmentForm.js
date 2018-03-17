@@ -28,6 +28,7 @@ const Offers = styled.h3`
 
 const ButtonContainer = styled.div`
   display: flex;
+  align-items: center;
   justify-content: flex-end;
   padding-top: 32px;
   padding-right: 8px;
@@ -72,7 +73,6 @@ class TextFields extends Component {
       handleUpdate,
       practice
     } = this.props
-
     return (
       <StyledForm
         name='new_appointment_requested'
@@ -146,7 +146,6 @@ class TextFields extends Component {
             label='Additional Comments'
             id='additional_comments'
             name='additional_comments'
-            floatingLabelFixed
             className={classes.textField}
           />
         </FieldWrapper>
@@ -172,8 +171,8 @@ class TextFields extends Component {
         </FieldWrapper>
 
         <ButtonContainer>
-          <Button type='submit' raised color='primary'>
-            Search
+          <Button type='submit' raised='true' color='primary'>
+            Submit
           </Button>
           <FinePrint>
             * This form will request an appointment on your behalf. You should

@@ -10,7 +10,8 @@ import Listing from '../pages/listing'
 import Contact from '../pages/Contact'
 import Search from '../pages/Search'
 import theme from '../theme/theme'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
+
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import '../index.css'
@@ -23,6 +24,8 @@ const networkInterface = createNetworkInterface({
 const client = new ApolloClient({
   networkInterface
 })
+
+const muiTheme = createMuiTheme()
 
 const Wrapper = styled.div`
   min-height: 100vh;
@@ -45,7 +48,7 @@ class AppStateContainer extends Component {
     const { service, city, insurance } = this.state
     return (
       <ApolloProvider client={client}>
-        <MuiThemeProvider>
+        <MuiThemeProvider theme={muiTheme}>
           <ThemeProvider theme={theme}>
             <BrowserRouter>
               <ScrollToTop>
@@ -85,6 +88,10 @@ class AppStateContainer extends Component {
                           handleChange={this.handleChange}
                         />
                       )}
+                    />
+                    <Route
+                      path='/state'
+                      render={({ location }) => <State location={location} />}
                     />
                     <Route path='/about' render={() => <About />} />
                     <Route path='/contact' render={() => <Contact />} />

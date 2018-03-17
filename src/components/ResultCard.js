@@ -11,9 +11,9 @@ import Offer from 'react-icons/lib/md/local-offer'
 import Chat from 'react-icons/lib/md/chat'
 import ArrowRight from 'react-icons/lib/fa/angle-right'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
-const StyledResultCard = styled(Link)`
+const StyledResultCard = styled.div`
   margin: ${toRem(8)};
   width: 100%;
   max-width: 400px;
@@ -23,6 +23,12 @@ const StyledResultCard = styled(Link)`
   overflow: hidden;
   display: flex;
   box-shadow: ${theme.dropShadow};
+
+  &:hover {
+    box-shadow: ${theme.hoverDropShadow};
+    transform: scale(1.01);
+    cursor: pointer;
+  }
 `
 
 const AvatarWrapper = styled.div`
@@ -120,15 +126,13 @@ const ResultCard = ({
   id,
   name,
   practiceType,
-  location,
+  city,
   inNetwork,
   numOffers,
-  numReviews
+  numReviews,
+  history
 }) => (
-  <StyledResultCard
-    to={`/listing?practice=${id}`}
-    style={{ textDecoration: 'none' }}
-  >
+  <StyledResultCard onClick={() => history.push(`/listing?practice=${id}`)}>
     <AvatarWrapper>
       <Avatar height={100} src={url || placeholderImg} />
     </AvatarWrapper>
@@ -136,7 +140,7 @@ const ResultCard = ({
       <CardTitle>{name.replace(/-/g, ' ')}</CardTitle>
       <SubHeader>
         <Pill>{practiceType}</Pill>
-        <Location>{`in ${location}`}</Location>
+        <Location>{`in ${city}`}</Location>
       </SubHeader>
       <InfoContainer>
         <List>
@@ -176,10 +180,11 @@ ResultCard.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
   practiceType: PropTypes.string,
-  location: PropTypes.string,
+  city: PropTypes.string,
   inNetwork: PropTypes.bool,
   numOffers: PropTypes.number,
-  numReviews: PropTypes.number
+  numReviews: PropTypes.number,
+  history: PropTypes.object
 }
 
-export default ResultCard
+export default withRouter(ResultCard)
