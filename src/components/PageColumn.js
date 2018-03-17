@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import { toRem } from "../utils/utils";
-import breakpoints from "../theme/breakpoints";
+import React from 'react'
+import styled from 'styled-components'
+import breakpoints from '../theme/breakpoints'
+import PropTypes from 'prop-types'
 
 const PageColumnWrapper = styled.div`
     display: flex;
@@ -14,11 +14,15 @@ const PageColumnInner = styled.div`
 `
 
 const PageColumn = ({ children }) => (
-    <PageColumnWrapper>
-        <PageColumnInner>
-            {children}
-        </PageColumnInner>
-    </PageColumnWrapper>
-);
+  <PageColumnWrapper>
+    <PageColumnInner>
+      {children}
+    </PageColumnInner>
+  </PageColumnWrapper>
+)
 
-export default PageColumn;
+PageColumn.propTypes = {
+  children: PropTypes.node
+}
+
+export default PageColumn
