@@ -60,41 +60,6 @@ class Hours extends Component {
       <div>
         <StyledHours>
           <StyledTable>
-<<<<<<< Updated upstream
-            <Row>
-              <TitleCell>
-                {!this.state.expanded
-                  ? <div>
-                    {`Today's hours`}
-                    <ArrowDown onClick={this.handleToggleExpand} />
-                  </div>
-                  : <div>Office Hours</div>}
-              </TitleCell>
-            </Row>
-            {!this.state.expanded
-              ? <DayDetails
-                day={hours[dayOfWeek].name}
-                open={hours[dayOfWeek].open}
-                close={hours[dayOfWeek].close}
-                />
-              : hours.map((day, i) => {
-                return (
-                  <DayDetails
-                    key={i}
-                    day={day.name}
-                    open={day.open}
-                    close={day.close}
-                    bold={i === dayOfWeek}
-<<<<<<< HEAD
-                    />
-                )
-              })}
-=======
-                  />
-                );
-              })
-            )}
-=======
             <tbody>
               <Row>
                 <TitleCell>
@@ -124,8 +89,6 @@ class Hours extends Component {
                   )
                 })}
             </tbody>
->>>>>>> Stashed changes
->>>>>>> master
           </StyledTable>
         </StyledHours>
       </div>

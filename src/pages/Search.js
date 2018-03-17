@@ -10,10 +10,7 @@ import filterQuery from '../queries/filters'
 import SearchFilters from '../components/SearchFilters'
 import { CircularProgress } from 'material-ui/Progress'
 import { toRem } from '../utils/utils'
-<<<<<<< HEAD
 import PropTypes from 'prop-types'
-=======
->>>>>>> master
 
 const ResultsContainer = styled.div`
   width: ${breakpoints._840};
@@ -114,11 +111,7 @@ class Search extends Component {
     )
 
   render () {
-<<<<<<< HEAD
     const { data, service, city, insurance, handleChange } = this.props
-=======
-    const { data, loading, service, city, insurance, handleChange } = this.props
->>>>>>> master
 
     return (
       <div>
@@ -162,11 +155,7 @@ class Search extends Component {
                                 ? practice.practiceType[0].name
                                 : ''
                         }
-<<<<<<< HEAD
-                      location={`${practice.city.name}, ${practice.city.state.postalCode}`}
-=======
                       city={`${practice.city.name}, ${practice.city.state.postalCode}`}
->>>>>>> master
                       inNetwork
                       numOffers={practice.specialOffers.length}
                       numReviews={practice.testimonials.length}

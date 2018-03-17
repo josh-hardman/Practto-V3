@@ -89,10 +89,6 @@ class AppStateContainer extends Component {
                         />
                       )}
                     />
-                    <Route
-                      path='/state'
-                      render={({ location }) => <State location={location} />}
-                    />
                     <Route path='/about' render={() => <About />} />
                     <Route path='/contact' render={() => <Contact />} />
                   </Switch>
