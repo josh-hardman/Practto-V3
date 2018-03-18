@@ -150,7 +150,7 @@ const ResultCard = ({
     <ContentWrapper>
       <CardTitle>
         {name.replace(/-/g, ' ')}
-        {isMember && <MemberIcon />}
+        {/* {isMember && <MemberIcon />} */}
       </CardTitle>
       <SubHeader>
         <Pill>{practiceType}</Pill>
