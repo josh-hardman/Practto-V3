@@ -10,6 +10,7 @@ import Check from 'react-icons/lib/md/check-circle'
 import Offer from 'react-icons/lib/md/local-offer'
 import Chat from 'react-icons/lib/md/chat'
 import ArrowRight from 'react-icons/lib/fa/angle-right'
+// import Icon from 'react-icons/lib/fa/Icon'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 
@@ -20,7 +21,6 @@ const StyledResultCard = styled.div`
   background: ${theme.white};
   height: ${toRem(130)};
   position: relative;
-  overflow: hidden;
   display: flex;
   box-shadow: ${theme.dropShadow};
 
@@ -29,6 +29,14 @@ const StyledResultCard = styled.div`
     transform: scale(1.01);
     cursor: pointer;
   }
+`
+
+const MemberIcon = styled(Check)`
+  color: ${theme.green};
+  font-size: 18px;
+  margin-left: 4px;
+  margin-bottom: 3px;
+  z-index:1;
 `
 
 const AvatarWrapper = styled.div`
@@ -42,6 +50,7 @@ const AvatarWrapper = styled.div`
   display: none;
   padding: 18px;
   display: flex;
+  overflow: hidden;
 
   &::before {
     content: "";
@@ -86,14 +95,14 @@ const Location = styled.span`
 
 const Pill = styled.span`
   padding: 2px 10px;
-  border-radius: ${toRem(20)};
-  background: ${theme.teal};
-  font-size: ${toRem(10)};
+  border-radius: ${theme.defaultBorderRadius};
+  background: ${theme.link};
+  font-size: ${toRem(8)};
   color: ${theme.white};
   font-weight: lighter;
 
   @media screen and (min-width: ${breakpoints._480}) {
-    font-size: ${toRem(12)};
+    font-size: ${toRem(10)};
   }
 `
 
@@ -130,25 +139,30 @@ const ResultCard = ({
   inNetwork,
   numOffers,
   numReviews,
+  isMember,
   history
 }) => (
   <StyledResultCard onClick={() => history.push(`/listing?practice=${id}`)}>
+
     <AvatarWrapper>
       <Avatar height={100} src={url || placeholderImg} />
     </AvatarWrapper>
     <ContentWrapper>
-      <CardTitle>{name.replace(/-/g, ' ')}</CardTitle>
+      <CardTitle>
+        {name.replace(/-/g, ' ')}
+        {isMember && <MemberIcon />}
+      </CardTitle>
       <SubHeader>
         <Pill>{practiceType}</Pill>
         <Location>{`in ${city}`}</Location>
       </SubHeader>
       <InfoContainer>
         <List>
-          <LineItem margin={0} color={theme.green} fontSize={8}>
+          <LineItem margin={0} color={theme.textOffBlack} fontSize={8}>
             <Check size={14} />
             <Detail>{inNetwork ? 'In Network' : 'Out of Network'}</Detail>
           </LineItem>
-          <LineItem margin={0} color={theme.orange}>
+          <LineItem margin={0} color={theme.textOffBlack}>
             <Offer size={14} />
             <Detail>
               {numOffers > 0
@@ -156,7 +170,7 @@ const ResultCard = ({
                 : 'Ask About Special Offers'}
             </Detail>
           </LineItem>
-          <LineItem margin={0} color={theme.orange}>
+          <LineItem margin={0} color={theme.textOffBlack}>
             <Chat size={14} />
             <Detail>
               {numReviews === 1
@@ -184,6 +198,7 @@ ResultCard.propTypes = {
   inNetwork: PropTypes.bool,
   numOffers: PropTypes.number,
   numReviews: PropTypes.number,
+  isMember: PropTypes.bool,
   history: PropTypes.object
 }
 
