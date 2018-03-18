@@ -145,6 +145,7 @@ class Search extends Component {
                   ? this.getFilteredPractices().map((practice, i) => (
                     <ResultCard
                       key={i}
+                      isMember={practice.isMember}
                       id={practice.id}
                       name={practice.name}
                       url={practice.hero && practice.hero.url}
@@ -186,6 +187,7 @@ const query = gql`
     allPractices(orderBy: name_ASC) {
       name
       id
+      isMember
       hero {
         url
       }
