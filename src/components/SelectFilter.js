@@ -17,13 +17,21 @@ const styles = theme => ({
 
 class NativeSelect extends React.Component {
   render () {
-    const { classes, label, suggestions, value, handleUpdate } = this.props
+    const {
+      classes,
+      label,
+      suggestions,
+      value,
+      handleUpdate,
+      disabled
+    } = this.props
 
     return (
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor='age-native-simple'>{label}</InputLabel>
         <Select
           native
+          disabled={disabled}
           value={value}
           onChange={handleUpdate(label.toLowerCase())}
           input={<Input id='age-native-simple' />}
@@ -44,7 +52,8 @@ NativeSelect.propTypes = {
   label: PropTypes.string,
   suggestions: PropTypes.array,
   value: PropTypes.string,
-  handleUpdate: PropTypes.func
+  handleUpdate: PropTypes.func,
+  disabled: PropTypes.bool
 }
 
 NativeSelect.propTypes = {

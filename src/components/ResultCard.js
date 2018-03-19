@@ -143,7 +143,6 @@ const ResultCard = ({
   history
 }) => (
   <StyledResultCard onClick={() => history.push(`/listing?practice=${id}`)}>
-
     <AvatarWrapper>
       <Avatar height={100} src={url || placeholderImg} />
     </AvatarWrapper>

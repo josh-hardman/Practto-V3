@@ -36,6 +36,7 @@ const Wrapper = styled.div`
 class AppStateContainer extends Component {
   state = {
     service: '',
+    state: '',
     city: '',
     insurance: ''
   }
@@ -45,7 +46,7 @@ class AppStateContainer extends Component {
   }
 
   render () {
-    const { service, city, insurance } = this.state
+    const { service, state, city, insurance } = this.state
     return (
       <ApolloProvider client={client}>
         <MuiThemeProvider theme={muiTheme}>
@@ -73,6 +74,7 @@ class AppStateContainer extends Component {
                       render={() => (
                         <Search
                           service={service}
+                          state={state}
                           city={city}
                           insurance={insurance}
                           handleChange={this.handleChange}
