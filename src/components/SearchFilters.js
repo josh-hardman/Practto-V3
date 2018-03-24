@@ -28,72 +28,57 @@ const ProgressWrapper = styled.div`
 
 const FullWidth = styled.div`width: 100%;`
 
-const SearchFilters = ({
-  loading,
-  handleChange,
-  service,
-  services,
-  states,
-  state,
-  city,
-  cities,
-  insurance,
-  insurances
-}) => (
-  <FullWidth>
-    {loading
-      ? <ProgressWrapper>
-        <CircularProgress size={50} />
-      </ProgressWrapper>
-      : <Wrapper>
-        <DropDown>
-          <SelectFilter
-            label='Service'
-            suggestions={services}
-            handleUpdate={handleChange}
-            value={service}
-            />
-        </DropDown>
-        <DropDown>
-          <SelectFilter
-            label='State'
-            suggestions={states}
-            handleUpdate={handleChange}
-            value={state}
-            />
-        </DropDown>
-        <DropDown>
-          <SelectFilter
-            label='City'
-            suggestions={cities}
-            handleUpdate={handleChange}
-            value={city}
-            disabled={!state}
-            />
-        </DropDown>
-        <DropDown>
-          <SelectFilter
-            label='Insurance'
-            suggestions={insurances}
-            handleUpdate={handleChange}
-            value={insurance}
-            />
-        </DropDown>
-      </Wrapper>}
-  </FullWidth>
-)
+const SearchFilters = ({ loading, handleChange, filters }) => {
+  const { service, state, city, insurance } = filters
+  return (
+    <FullWidth>
+      {loading
+        ? <ProgressWrapper>
+          <CircularProgress size={50} />
+        </ProgressWrapper>
+        : <Wrapper>
+          <DropDown>
+            <SelectFilter
+              label='Service'
+              suggestions={service.options}
+              handleUpdate={handleChange}
+              value={service.value}
+              />
+          </DropDown>
+          <DropDown>
+            <SelectFilter
+              label='State'
+              suggestions={state.options}
+              handleUpdate={handleChange}
+              value={state.value}
+              />
+          </DropDown>
+          <DropDown>
+            <SelectFilter
+              label='City'
+              suggestions={city.options}
+              handleUpdate={handleChange}
+              value={city.value}
+              disabled={!state.value}
+              />
+          </DropDown>
+          <DropDown>
+            <SelectFilter
+              label='Insurance'
+              suggestions={insurance.options}
+              handleUpdate={handleChange}
+              value={insurance.value}
+              />
+          </DropDown>
+        </Wrapper>}
+    </FullWidth>
+  )
+}
 
 SearchFilters.propTypes = {
   loading: PropTypes.bool,
   handleChange: PropTypes.func,
-  service: PropTypes.string,
-  services: PropTypes.array,
-  city: PropTypes.string,
-  state: PropTypes.string,
-  states: PropTypes.array,
-  cities: PropTypes.array,
-  insurance: PropTypes.string,
-  insurances: PropTypes.array
+  filters: PropTypes.object
 }
 
 export default SearchFilters

@@ -6,6 +6,7 @@
     "apollo-client": "^1.9.3",
     "embed-video": "^2.0.0",
     "eslint": "^4.7.2",
+    "geolocator": "^2.1.1",
     "graphql-tag": "^2.4.2",
     "material-ui": "^1.0.0-beta.37",
     "parse-address": "^0.0.10",

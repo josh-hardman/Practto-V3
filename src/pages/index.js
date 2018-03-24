@@ -6,9 +6,7 @@ import Section from '../layouts/Section'
 import Card from '../components/Card'
 import Button from 'material-ui/Button'
 import SearchFilters from '../components/SearchFilters'
-import { gql, graphql } from 'react-apollo'
 import { Link } from 'react-router-dom'
-import filterQuery from '../queries/filters'
 import breakpoints from '../theme/breakpoints'
 import PropTypes from 'prop-types'
 
@@ -57,31 +55,8 @@ const Backdrop = styled.div`
 `
 
 class Landing extends Component {
-  onHeaderTyped = () => {
-    this.setState({
-      index: 1
-    })
-  }
-
-  handleGetPracticeTypes = () =>
-    (this.props.data.allPracticeTypeses
-      ? this.props.data.allPracticeTypeses.map(item => item.name)
-      : [])
-
-  handleGetLocations = () =>
-    (this.props.data.allCities
-      ? this.props.data.allCities.map(
-          item => `${item.name}, ${item.state.postalCode}`
-        )
-      : [])
-
-  handleGetInsurances = () =>
-    (this.props.data.allInsurances
-      ? this.props.data.allInsurances.map(item => item.name)
-      : [])
-
   render () {
-    const { data, service, city, insurance, handleChange } = this.props
+    const { loading, filters, handleChange } = this.props
 
     return (
       <div>
@@ -96,14 +71,9 @@ class Landing extends Component {
           <Card background={theme.aliceBlue}>
             <FilterContainer>
               <SearchFilters
-                loading={data.loading}
+                loading={loading}
                 handleChange={handleChange}
-                service={service}
-                services={this.handleGetPracticeTypes()}
-                city={city}
-                cities={this.handleGetLocations()}
-                insurance={insurance}
-                insurances={this.handleGetInsurances()}
+                filters={filters}
               />
             </FilterContainer>
             <ButtonContainer>
@@ -121,15 +91,9 @@ class Landing extends Component {
 }
 
 Landing.propTypes = {
-  data: PropTypes.object,
-  service: PropTypes.string,
-  city: PropTypes.string,
-  insurance: PropTypes.string,
+  loading: PropTypes.bool,
+  filters: PropTypes.object,
   handleChange: PropTypes.func
 }
 
-const query = gql`query{
-  ${filterQuery}
-}`
-
-export default graphql(query)(Landing)
+export default Landing
