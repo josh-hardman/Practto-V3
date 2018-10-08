@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/runtime": "^7.1.2",
     "apollo-client": "^1.9.3",
     "embed-video": "^2.0.0",
     "eslint": "^4.7.2",
