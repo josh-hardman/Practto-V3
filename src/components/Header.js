@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import styled from "styled-components";
-import theme from "../theme/theme";
-import { toRem } from "../utils/utils";
-import Menu from "react-icons/lib/md/menu";
-import Clear from "react-icons/lib/md/clear";
-import { Link } from "react-router-dom";
-import breakpoints from "../theme/breakpoints";
+import React, { Component } from 'react'
+import styled from 'styled-components'
+import theme from '../theme/theme'
+import { toRem } from '../utils/utils'
+import Menu from 'react-icons/lib/md/menu'
+import Clear from 'react-icons/lib/md/clear'
+import { Link } from 'react-router-dom'
+import breakpoints from '../theme/breakpoints'
 
 const StyledHeader = styled.div`
   width: 100%;
@@ -15,12 +15,12 @@ const StyledHeader = styled.div`
   padding-left: ${toRem(32)};
   padding-right: ${toRem(32)};
   padding-top: ${toRem(32)};
-`;
+`
 
 const Logo = styled.img`
   width: 100px;
   margin: 0;
-`;
+`
 
 const StyledMobileMenu = styled(Menu)`
   color: ${theme.textBlack};
@@ -37,7 +37,7 @@ const StyledMobileMenu = styled(Menu)`
   &:active {
     color: ${theme.lightRed};
   }
-`;
+`
 
 const StyledDesktopMenu = styled.ul`
   color: ${theme.textBlack};
@@ -50,7 +50,7 @@ const StyledDesktopMenu = styled.ul`
   @media screen and (min-width: ${breakpoints._480}) {
     display: block;
   }
-`;
+`
 
 const DesktopNavItem = styled.li`
   padding: ${toRem(8)};
@@ -66,7 +66,7 @@ const DesktopNavItem = styled.li`
   &:active {
     color: ${theme.lightRed};
   }
-`;
+`
 
 const DropDown = styled.div`
   position: absolute;
@@ -74,14 +74,14 @@ const DropDown = styled.div`
   right: 0;
   background: ${theme.white};
   z-index: 4;
-`;
+`
 
 const CloseWrapper = styled.div`
   display: flex;
   width: 100%;
   justify-content: flex-end;
   padding: 8px;
-`;
+`
 
 const CloseButton = styled(Clear)`
   color: ${theme.textBlack};
@@ -89,13 +89,13 @@ const CloseButton = styled(Clear)`
   &:hover {
     cursor: pointer;
   }
-`;
+`
 
 const MenuList = styled.ul`
   margin: 0;
   list-style: none;
   padding: 18px;
-`;
+`
 
 const MenuItem = styled.li`
   margin: ${toRem(12)} 0;
@@ -103,7 +103,7 @@ const MenuItem = styled.li`
   font-size: ${toRem(18)};
   font-weight: lighter;
   color: ${theme.textBlack};
-`;
+`
 
 const StyledLink = styled(Link)`
   color: ${theme.textBlack};
@@ -112,45 +112,45 @@ const StyledLink = styled(Link)`
   &:hover {
     color: ${theme.textHoverBlack};
   }
-`;
+`
 
 class Header extends Component {
   state = {
     open: false
-  };
-
-  componentWillMount() {
-    document.addEventListener("click", this.handleClick, false);
   }
 
-  componentWillUnmount() {
-    document.removeEventListener("click", this.handleClick, false);
+  componentWillMount () {
+    document.addEventListener('click', this.handleClick, false)
+  }
+
+  componentWillUnmount () {
+    document.removeEventListener('click', this.handleClick, false)
   }
 
   handleClick = e => {
     this.state.open &&
       !this.node.contains(e.target) &&
-      this.setState({ open: false });
-  };
+      this.setState({ open: false })
+  }
 
   handleToggleMenu = () =>
     this.setState({
       open: !this.state.open
-    });
+    })
 
-  render() {
+  render () {
     const navItems = [
-      { name: "Home", url: "/" },
-      { name: "About", url: "/about" },
-      { name: "Contact Us", url: "/contact" }
+      { name: 'Home', url: '/' },
+      { name: 'About', url: '/about' },
+      { name: 'Contact Us', url: '/contact' }
 
       //   { name: "Get Listed", url: "/get-listed" }
-    ];
+    ]
 
     return (
       <StyledHeader>
-        <Link to="/">
-          <Logo src="dentto_logo.svg" />
+        <Link to='/'>
+          <Logo src='logo2.jpg' />
         </Link>
         <StyledDesktopMenu>
           {navItems.map((item, i) => (
@@ -160,7 +160,7 @@ class Header extends Component {
           ))}
         </StyledDesktopMenu>
         <StyledMobileMenu onClick={this.handleToggleMenu} size={32} />
-        {this.state.open && (
+        {this.state.open &&
           <DropDown innerRef={node => (this.node = node)}>
             <CloseWrapper>
               <CloseButton size={32} onClick={this.handleToggleMenu} />
@@ -174,11 +174,10 @@ class Header extends Component {
                 </MenuItem>
               ))}
             </MenuList>
-          </DropDown>
-        )}
+          </DropDown>}
       </StyledHeader>
-    );
+    )
   }
 }
 
-export default Header;
+export default Header
