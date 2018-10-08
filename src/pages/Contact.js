@@ -41,10 +41,10 @@ const Contact = () => (
             <LineItem
               margin={4}
               target='_blank'
-              href='mailto:info@dentto.com?subject=Question about Dentto'
+              href='mailto:info@practto.com?subject=Question about Practto'
             >
               <Email size={22} />
-              <Detail>info@dentto.com</Detail>
+              <Detail>info@practto.com</Detail>
             </LineItem>
           </List>
         </SectionParagraph>

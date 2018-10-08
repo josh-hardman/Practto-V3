@@ -1,16 +1,16 @@
-import React from "react";
-import styled from "styled-components";
-import Section from "../layouts/Section";
-import Card from "../components/Card";
-import theme from "../theme/theme";
-import ListingHeader from "../components/ListingHeader";
-import SectionHeader from "../components/SectionHeader";
-import SectionParagraph from "../components/SectionParagraph";
-import Divider from "../components/Divider";
-import LineItem from "../components/LineItem";
-import List from "../components/List";
-import Avatar from "../components/Avatar";
-import breakpoints from "../theme/breakpoints";
+import React from 'react'
+import styled from 'styled-components'
+import Section from '../layouts/Section'
+import Card from '../components/Card'
+import theme from '../theme/theme'
+import ListingHeader from '../components/ListingHeader'
+import SectionHeader from '../components/SectionHeader'
+import SectionParagraph from '../components/SectionParagraph'
+import Divider from '../components/Divider'
+import LineItem from '../components/LineItem'
+import List from '../components/List'
+import Avatar from '../components/Avatar'
+import breakpoints from '../theme/breakpoints'
 
 // const EddieWrapper = styled.div`
 //   display: flex;
@@ -26,7 +26,7 @@ const AvatarWrapper = styled.div`
   @media screen and (min-width: ${breakpoints._480}) {
     width: 25%;
   }
-`;
+`
 
 // const AboutParagraph = styled(SectionParagraph)`flex-grow: 1;`;
 
@@ -39,7 +39,7 @@ const About = () => (
       <Card background={theme.aliceBlue}>
         <SectionHeader color={theme.textBlack}>Who are we?</SectionHeader>
         <SectionParagraph color={theme.textBlack}>
-          dentto: Is the fastest and most convenient way for patients to
+          Practto: Is the fastest and most convenient way for patients to
           interact with dental service providers.
         </SectionParagraph>
         <SectionParagraph color={theme.textBlack}>
@@ -80,11 +80,11 @@ const About = () => (
         <Divider />
 
         <SectionHeader color={theme.textBlack}>
-          Eddie Laparra: Founder/ CEO of dentto
+          Eddie Laparra: Founder/ CEO of Practto
         </SectionHeader>
 
         <AvatarWrapper>
-          <Avatar height={100} src="eddie.jpg" />
+          <Avatar height={100} src='eddie.jpg' />
         </AvatarWrapper>
         <SectionParagraph color={theme.textBlack}>
           In 2005, he created the company Voda Reputation. Mr. Laparra started
@@ -126,13 +126,13 @@ const About = () => (
           </LineItem>
         </List>
         <SectionParagraph color={theme.textBlack}>
-          dentto covers all aspects and helps patients/clients feel confidence
+          Practto covers all aspects and helps patients/clients feel confidence
           in knowing that the provider they are choosing meets all their
           expectations before moving forward.
         </SectionParagraph>
       </Card>
     </Section>
   </div>
-);
+)
 
-export default About;
+export default About

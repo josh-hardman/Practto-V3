@@ -42,7 +42,7 @@ const Item = styled.li`
 const Footer = ({ data }) => (
   <StyledFooter>
     <Copyright>
-      {`© ${new Date().getFullYear()} Dentto all rights reserved`}
+      {`© ${new Date().getFullYear()} Practto all rights reserved`}
     </Copyright>
     <SocialMedia>
       <Item>
