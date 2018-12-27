@@ -10,6 +10,7 @@ import { gql, graphql } from 'react-apollo'
 import { Link } from 'react-router-dom'
 import filterQuery from '../queries/filters'
 import breakpoints from '../theme/breakpoints'
+import fiveStars from './five_stars.png'
 import PropTypes from 'prop-types'
 
 const Lede = styled.h1`
@@ -56,6 +57,13 @@ const Backdrop = styled.div`
   margin-bottom: ${toRem(16)};
 `
 
+const Stars = styled.img`
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 12px 32px;
+`
+
 class Landing extends Component {
   onHeaderTyped = () => {
     this.setState({
@@ -93,9 +101,7 @@ class Landing extends Component {
             <Background src='landing.png' />
             <Lede>
               Practto connects you with
-              <div style={{ fontSize: 48, color: 'gold', padding: '8px' }}>
-                ⭐️⭐️⭐️⭐️⭐️
-              </div>
+              <Stars src={fiveStars} />
               professionals you can trust!
             </Lede>
           </Backdrop>
