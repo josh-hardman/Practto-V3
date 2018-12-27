@@ -35,7 +35,7 @@ const StyledMobileMenu = styled(Menu)`
   }
 
   &:active {
-    color: ${theme.lightRed};
+    color: ${theme.burgandy};
   }
 `
 
@@ -64,7 +64,7 @@ const DesktopNavItem = styled.li`
   }
 
   &:active {
-    color: ${theme.lightRed};
+    color: ${theme.burgandy};
   }
 `
 
@@ -142,7 +142,7 @@ class Header extends Component {
     const navItems = [
       { name: 'Home', url: '/' },
       { name: 'About', url: '/about' },
-      { name: 'Contact Us', url: '/contact' }
+      { name: 'Contact', url: '/contact' }
 
       //   { name: "Get Listed", url: "/get-listed" }
     ]
@@ -150,7 +150,7 @@ class Header extends Component {
     return (
       <StyledHeader>
         <Link to='/'>
-          <Logo src='logo2.jpg' />
+          <Logo src='logo2_trans.png' />
         </Link>
         <StyledDesktopMenu>
           {navItems.map((item, i) => (
@@ -160,7 +160,7 @@ class Header extends Component {
           ))}
         </StyledDesktopMenu>
         <StyledMobileMenu onClick={this.handleToggleMenu} size={32} />
-        {this.state.open &&
+        {this.state.open && (
           <DropDown innerRef={node => (this.node = node)}>
             <CloseWrapper>
               <CloseButton size={32} onClick={this.handleToggleMenu} />
@@ -174,7 +174,8 @@ class Header extends Component {
                 </MenuItem>
               ))}
             </MenuList>
-          </DropDown>}
+          </DropDown>
+        )}
       </StyledHeader>
     )
   }

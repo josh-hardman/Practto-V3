@@ -2,11 +2,10 @@ import { toRem } from '../utils/utils'
 
 const theme = {
   lightBlue: '#8FC7E0',
-  mediumBlue: '#69B3D3',
   darkBlue: '#0077B5',
   teal: '#428CAC',
   aliceBlue: 'aliceBlue',
-  lightRed: '#FE6F61',
+  burgandy: '#800020',
   darkRed: '#DD5143',
   orange: '#E79E24',
   yellow: 'yellow',

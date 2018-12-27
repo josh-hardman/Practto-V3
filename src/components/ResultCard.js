@@ -66,7 +66,7 @@ const AvatarWrapper = styled.div`
 `
 
 const CardTitle = styled.h1`
-  color: ${theme.mediumBlue};
+  color: ${theme.burgandy};
   font-weight: lighter;
   font-size: ${toRem(12)};
   margin: 0;

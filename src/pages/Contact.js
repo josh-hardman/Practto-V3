@@ -22,9 +22,9 @@ const Detail = styled.span`
 const Contact = () => (
   <div>
     <Section background={theme.aliceBlue}>
-      <ListingHeader>Contact Us</ListingHeader>
+      <ListingHeader>Contact</ListingHeader>
     </Section>
-    <Section background={theme.mediumBlue} zIndex={-2} squareBottom>
+    <Section background={theme.burgandy} zIndex={-2} squareBottom>
       <Card background={theme.aliceBlue}>
         <SectionHeader color={theme.textBlack}>
           {'How can we help?'}
@@ -34,9 +34,9 @@ const Contact = () => (
         <SectionHeader color={theme.textBlack}>{'Contact Info'}</SectionHeader>
         <SectionParagraph color={theme.textBlack}>
           <List>
-            <LineItem margin={4} target='_blank' href={`tel:801-687-3089`}>
+            <LineItem margin={4} target='_blank' href={`tel:385-335-1213`}>
               <Phone size={22} />
-              <Detail>801-687-3089</Detail>
+              <Detail>385-335-1213</Detail>
             </LineItem>
             <LineItem
               margin={4}

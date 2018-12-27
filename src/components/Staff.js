@@ -79,14 +79,16 @@ export default class Staff extends Component {
 
     return (
       <SwipeWrapper>
-        {items.length > 1 &&
+        {items.length > 1 && (
           <ButtonLeft onClick={this.handleLeft}>
             <ArrowLeft size={28} color={theme.textBlack} />
-          </ButtonLeft>}
-        {items.length > 1 &&
+          </ButtonLeft>
+        )}
+        {items.length > 1 && (
           <ButtonRight onClick={this.handleRight}>
             <ArrowRight size={28} color={theme.textBlack} />
-          </ButtonRight>}
+          </ButtonRight>
+        )}
         <ReactSwipe
           ref={node => (this.slideshow = node)}
           swipeOptions={{ continuous: true }}
@@ -97,12 +99,14 @@ export default class Staff extends Component {
                 <AvatarWrapper>
                   <Avatar widthPercent={80} src={item.image.url} />
                 </AvatarWrapper>
-                <Name>{item.name}</Name>
-                <DescriptionWrapper>
-                  <SectionParagraph color={theme.textBlack}>
-                    {item.about}
-                  </SectionParagraph>
-                </DescriptionWrapper>
+                {item.name && <Name>{item.name}</Name>}
+                {item.about && (
+                  <DescriptionWrapper>
+                    <SectionParagraph color={theme.textBlack}>
+                      {item.about}
+                    </SectionParagraph>
+                  </DescriptionWrapper>
+                )}
               </div>
             ))}
         </ReactSwipe>

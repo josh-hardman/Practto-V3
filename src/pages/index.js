@@ -64,21 +64,21 @@ class Landing extends Component {
   }
 
   handleGetPracticeTypes = () =>
-    (this.props.data.allPracticeTypeses
+    this.props.data.allPracticeTypeses
       ? this.props.data.allPracticeTypeses.map(item => item.name)
-      : [])
+      : []
 
   handleGetLocations = () =>
-    (this.props.data.allCities
+    this.props.data.allCities
       ? this.props.data.allCities.map(
-          item => `${item.name}, ${item.state.postalCode}`
-        )
-      : [])
+        item => `${item.name}, ${item.state.postalCode}`
+      )
+      : []
 
   handleGetInsurances = () =>
-    (this.props.data.allInsurances
+    this.props.data.allInsurances
       ? this.props.data.allInsurances.map(item => item.name)
-      : [])
+      : []
 
   render () {
     const { data, service, city, insurance, handleChange } = this.props
@@ -91,7 +91,13 @@ class Landing extends Component {
         >
           <Backdrop>
             <Background src='landing.png' />
-            <Lede>Practto connects you with a Dentist you can trust!</Lede>
+            <Lede>
+              Practto connects you with
+              <div style={{ fontSize: 48, color: 'gold', padding: '8px' }}>
+                ⭐️⭐️⭐️⭐️⭐️
+              </div>
+              professionals you can trust!
+            </Lede>
           </Backdrop>
           <Card background={theme.aliceBlue}>
             <FilterContainer>

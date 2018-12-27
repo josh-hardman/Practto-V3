@@ -31,7 +31,9 @@ const SocialMediaBarWrapper = styled.div`
   justify-content: center;
 `
 
-const SocialMediaBarInner = styled.div`width: 40%;`
+const SocialMediaBarInner = styled.div`
+  width: 40%;
+`
 
 class ListingPage extends Component {
   handleGetInsurances = () =>
@@ -102,115 +104,136 @@ class ListingPage extends Component {
       <div>
         <div>
           <Section background={theme.aliceBlue} zIndex={-1}>
-            {data.loading
-              ? <ProgressWrapper>
+            {data.loading ? (
+              <ProgressWrapper>
                 <CircularProgress size={50} />
               </ProgressWrapper>
-              : <ListingHeader>
+            ) : (
+              <ListingHeader>
                 {data.Practice && removeDash(data.Practice.name)}
-              </ListingHeader>}
+              </ListingHeader>
+            )}
           </Section>
-          {data.loading
-            ? <Section background={theme.mediumBlue} zIndex={-2} squareBottom>
+          {data.loading ? (
+            <Section background={theme.burgandy} zIndex={-2} squareBottom>
               <Card background={theme.aliceBlue}>
                 <ProgressWrapper>
                   <CircularProgress size={50} />
                 </ProgressWrapper>
               </Card>
             </Section>
-            : data.Practice
-                ? <div>
-                  <Section background={theme.mediumBlue} zIndex={-2}>
-                    <Card background={theme.aliceBlue}>
-                      {data.Practice.about &&
-                      <div>
-                        <SectionHeader color={theme.textBlack}>
-                              About Us
-                            </SectionHeader>
-                        <SectionParagraph color={theme.textBlack}>
-                          {data.Practice.about}
-                        </SectionParagraph>
-
-                        <Divider />
-                      </div>}
-
-                      {data.Practice.staffMembers.length > 0 &&
-                      <div>
-                        <SectionHeader color={theme.textBlack}>
-                              Doctors
-                            </SectionHeader>
-                        <Staff items={data.Practice.staffMembers} />
-
-                        <Divider />
-                      </div>}
-
-                      {data.Practice.welcomeVideo &&
-                      <div>
-                        <SectionHeader color={theme.textBlack}>
-                              Welcome Video
-                            </SectionHeader>
-                        <MediaPlayer url={data.Practice.welcomeVideo} />
-                      </div>}
-                    </Card>
-                  </Section>
-
-                  {data.Practice.testimonials.length > 0 &&
-                  <Section background={theme.lightRed} zIndex={-3}>
-                    <SectionHeader color={theme.white}>
-                          Patient Testimonials
-                        </SectionHeader>
-                    <Testimonials items={data.Practice.testimonials} />
-                  </Section>}
-
-                  <Section background={theme.white} zIndex={-4}>
-                    <Card>
+          ) : data.Practice ? (
+            <div>
+              <Section background={theme.burgandy} zIndex={-2}>
+                <Card background={theme.aliceBlue}>
+                  {data.Practice.about && (
+                    <div>
                       <SectionHeader color={theme.textBlack}>
-                          Contact Us
-                        </SectionHeader>
-                      <Contact
-                        practice={data.Practice.name}
-                        phone={data.Practice.phone}
-                        email={data.Practice.email}
-                        website={data.Practice.website}
-                        location={data.Practice.location}
-                        address={data.Practice.address}
-                        officeHours={this.handleGetOfficeHours()}
-                        />
-                      <SocialMediaBarWrapper>
-                        <SocialMediaBarInner>
-                          <SocialMediaBar
-                            facebook={data.Practice.facebook}
-                            instagram={data.Practice.instagram}
-                            twitter={data.Practice.twitter}
-                            youtube={data.Practice.youtube}
-                            />
-                        </SocialMediaBarInner>
-                      </SocialMediaBarWrapper>
-                    </Card>
-                  </Section>
+                        About Us
+                      </SectionHeader>
+                      <SectionParagraph color={theme.textBlack}>
+                        {data.Practice.about}
+                      </SectionParagraph>
 
-                  <Section background={theme.orange} zIndex={-5} squareBottom>
-                    <Card>
+                      <Divider />
+                    </div>
+                  )}
+
+                  {data.Practice.services && (
+                    <div>
                       <SectionHeader color={theme.textBlack}>
-                          Request Appointment
-                        </SectionHeader>
-
-                      <RequestAppointmentForm
-                        insurances={data.Practice.insurances}
-                        specialOffers={data.Practice.specialOffers}
-                        handleUpdate={handleChange}
-                        practice={data.Practice.name}
+                        Services
+                      </SectionHeader>
+                      <SectionParagraph color={theme.textBlack}>
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: data.Practice.services
+                          }}
                         />
-                    </Card>
-                  </Section>
-                </div>
-                : <Section
-                  background={theme.mediumBlue}
-                  zIndex={-2}
-                  squareBottom
-                  >
-                  <Card background={theme.aliceBlue}>Practice Not Found</Card>
-                </Section>}
+                      </SectionParagraph>
+
+                      <Divider />
+                    </div>
+                  )}
+
+                  {data.Practice.staffMembers.length > 0 && (
+                    <div>
+                      <SectionHeader color={theme.textBlack}>
+                        Profile
+                      </SectionHeader>
+                      <Staff items={data.Practice.staffMembers} />
+
+                      <Divider />
+                    </div>
+                  )}
+
+                  {data.Practice.welcomeVideo && (
+                    <div>
+                      <SectionHeader color={theme.textBlack}>
+                        Welcome Video
+                      </SectionHeader>
+                      <MediaPlayer url={data.Practice.welcomeVideo} />
+                    </div>
+                  )}
+                </Card>
+              </Section>
+
+              {data.Practice.testimonials.length > 0 && (
+                <Section background={theme.textBlack} zIndex={-3}>
+                  <SectionHeader color={theme.white}>
+                    Patient Testimonials
+                  </SectionHeader>
+                  <Testimonials items={data.Practice.testimonials} />
+                </Section>
+              )}
+
+              <Section background={theme.white} zIndex={-4}>
+                <Card>
+                  <SectionHeader color={theme.textBlack}>
+                    Contact Us
+                  </SectionHeader>
+                  <Contact
+                    practice={data.Practice.name}
+                    phone={data.Practice.phone}
+                    email={data.Practice.email}
+                    website={data.Practice.website}
+                    location={data.Practice.location}
+                    address={data.Practice.address}
+                    officeHours={this.handleGetOfficeHours()}
+                  />
+                  <SocialMediaBarWrapper>
+                    <SocialMediaBarInner>
+                      <SocialMediaBar
+                        facebook={data.Practice.facebook}
+                        instagram={data.Practice.instagram}
+                        twitter={data.Practice.twitter}
+                        youtube={data.Practice.youtube}
+                      />
+                    </SocialMediaBarInner>
+                  </SocialMediaBarWrapper>
+                </Card>
+              </Section>
+
+              <Section background={theme.orange} zIndex={-5} squareBottom>
+                <Card>
+                  <SectionHeader color={theme.textBlack}>
+                    Request Appointment
+                  </SectionHeader>
+
+                  <RequestAppointmentForm
+                    insurances={data.Practice.insurances}
+                    specialOffers={data.Practice.specialOffers}
+                    handleUpdate={handleChange}
+                    practice={data.Practice.name}
+                  />
+                </Card>
+              </Section>
+            </div>
+          ) : (
+            <Section background={theme.burgandy} zIndex={-2} squareBottom>
+              <Card background={theme.aliceBlue}>Practice Not Found</Card>
+            </Section>
+          )}
         </div>
       </div>
     )
@@ -228,6 +251,7 @@ const Query = gql`
     Practice(id: $practice) {
       name
       about
+      services
       staffMembers {
         name
         image {
